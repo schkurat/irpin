@@ -19,11 +19,11 @@ function nexArhNumber($serial){
 function getSerial($idOrder){
     $serial = false;
     $sql = "SELECT arhiv_zakaz.RN FROM arhiv_zakaz WHERE arhiv_zakaz.KEY='$idOrder'";
-    $atu = mysqli_query($sql);
-    while ($aut = mysqli_fetch_array($atu)) {
+    $atu = mysql_query($sql);
+    while ($aut = mysql_fetch_array($atu)) {
         $serial = $aut["RN"];
     }
-    mysqli_free_result($atu);
+    mysql_free_result($atu);
     return $serial;
 //    $start = strtotime('2019-01-01');
 //    $dt_now = date("Y-m-d");
