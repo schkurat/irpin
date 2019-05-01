@@ -1,0 +1,32 @@
+/*Установка фона*/
+/*Создаем класс в котором делаем рамку для таблицы*/
+/*table.bordur {border-collapse: collapse;
+              height: 40%; 
+				  width: 70%;
+				  font: 18px;}
+
+.bordur td {border: 2px solid black;}
+*/
+td.men {
+//	width: 250px;
+	vertical-align: top;
+}
+
+//body {
+//  background: url(fon1.jpg);
+// }
+ 
+#zal a{
+	display:block;
+	text-decoration: none;
+	color: black;
+	padding: 0px 10px 0px 10px;
+}
+
+td#zal a:hover{
+display:block;
+	background: #c1c1c1;
+	padding: 0px 10px 0px 10px;
+	background-repeat:repeat;
+
+}

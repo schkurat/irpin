@@ -1,0 +1,847 @@
+<?xml version="1.0"?>
+<?mso-application progid="Excel.Sheet"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:o="urn:schemas-microsoft-com:office:office"
+ xmlns:x="urn:schemas-microsoft-com:office:excel"
+ xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+ xmlns:html="http://www.w3.org/TR/REC-html40">
+ <DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+  <LastPrinted>2015-11-25T14:38:15Z</LastPrinted>
+  <Created>2006-09-28T05:33:49Z</Created>
+  <LastSaved>2015-11-25T14:38:39Z</LastSaved>
+  <Version>11.9999</Version>
+ </DocumentProperties>
+ <OfficeDocumentSettings xmlns="urn:schemas-microsoft-com:office:office">
+  <RemovePersonalInformation/>
+ </OfficeDocumentSettings>
+ <ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+  <WindowHeight>8010</WindowHeight>
+  <WindowWidth>15120</WindowWidth>
+  <WindowTopX>120</WindowTopX>
+  <WindowTopY>105</WindowTopY>
+  <ProtectStructure>False</ProtectStructure>
+  <ProtectWindows>False</ProtectWindows>
+ </ExcelWorkbook>
+ <Styles>
+  <Style ss:ID="Default" ss:Name="Normal">
+   <Alignment ss:Vertical="Bottom"/>
+   <Borders/>
+   <Font ss:FontName="Calibri" x:CharSet="204" x:Family="Swiss" ss:Size="11"
+    ss:Color="#000000"/>
+   <Interior/>
+   <NumberFormat/>
+   <Protection/>
+  </Style>
+  <Style ss:ID="m22901286">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="m22901306">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="m22910590">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="m22887264">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="m22887274">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="m22887304">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s62">
+   <Alignment ss:Vertical="Center"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s63">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="7" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s64">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s65">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s66">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s68">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s70">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Center"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="9" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s72">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s73">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s74">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s75">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s76">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:Indent="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s77">
+   <Alignment ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s78">
+   <Alignment ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s79">
+   <Alignment ss:Vertical="Center"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s80">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s81">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s85">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s86">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="14" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s87">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="14" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s91">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s92">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s93">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s95">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="16" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s97">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s98">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+   <NumberFormat ss:Format="@"/>
+  </Style>
+  <Style ss:ID="s101">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s102">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s103">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s104">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="9" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s105">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="9" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s108">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s109">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s113">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s115">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s116">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s117">
+   <Alignment ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s118">
+   <Alignment ss:Horizontal="Left" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s119">
+   <Alignment ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s122">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s123">
+   <Alignment ss:Horizontal="Right" ss:Vertical="Top" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="9" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s126">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s129">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center"/>
+   <Borders/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="11" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s134">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s135">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Top" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="8" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s137">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Left" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Right" ss:LineStyle="Continuous" ss:Weight="1"/>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Color="#333333"/>
+  </Style>
+  <Style ss:ID="s138">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Borders>
+    <Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="1"/>
+   </Borders>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="12" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+  <Style ss:ID="s141">
+   <Alignment ss:Horizontal="Center" ss:Vertical="Center" ss:WrapText="1"/>
+   <Font x:CharSet="204" x:Family="Swiss" ss:Size="12" ss:Color="#333333"
+    ss:Bold="1"/>
+  </Style>
+ </Styles>
+ <Worksheet ss:Name="1">
+  <Names>
+   <NamedRange ss:Name="Print_Area" ss:RefersTo="='1'!R1C1:R43C6"/>
+  </Names>
+  <Table ss:ExpandedColumnCount="7" ss:ExpandedRowCount="61" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s62" ss:DefaultRowHeight="15">
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="147.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="6.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="143.25"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="42.75"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="39"/>
+   <Column ss:StyleID="s62" ss:AutoFitWidth="0" ss:Width="73.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="6" ss:StyleID="s70"><Data ss:Type="String">Додаток 1.12</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="33.75">
+    <Cell ss:Index="4" ss:MergeAcross="2" ss:StyleID="s123"><Data ss:Type="String">до Інструкції про порядок проведення технічної інвентаризації об'єктів нерухомого майна&#160;</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="4.5">
+    <Cell ss:Index="6" ss:StyleID="s63"><NamedCell ss:Name="Print_Area"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="19.5">
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s95"><Data ss:Type="String">ЕСКІЗ</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="19.5">
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s86"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s87"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s87"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s87"><NamedCell ss:Name="Print_Area"/></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s72"><Data ss:Type="String">НЕ ЗАБУДЬ!</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s73"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s74"><Data ss:Type="String">Планів поверхів будинку №</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s75"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s76"><Data ss:Type="String">літер</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s77"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">1.Внутрішні висоти.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s74"><Data ss:Type="String">вулиця (провулок, площа) </Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="2" ss:MergeDown="1" ss:StyleID="m22901286"><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">2.Товщина стін.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:Index="7" ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">3.Крізні проміри</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeDown="1" ss:StyleID="s78"><Data ss:Type="String">місто (селище, село)</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="2" ss:MergeDown="1" ss:StyleID="m22901306"><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">4.Діагоналі.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:Index="7" ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">5.Сантехнічні прилади.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:Index="7" ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">6.Найменування приміщень.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s129"><Data ss:Type="String">Обстеження проведено в присутності:</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s79">
+    <Cell ss:StyleID="s80"><Data ss:Type="String">7.Найменування прибудов.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:Index="7" ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="30" ss:StyleID="s79">
+    <Cell ss:StyleID="s85"><Data ss:Type="String">8.Висота цоколя, товщину, глибину фундамента.</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s81"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s126"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s78"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s66"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s68"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s122"><Data ss:Type="String">(прізвище,ім'я, по батькові, підпис)</Data><NamedCell
+      ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:Index="3" ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s64"><NamedCell ss:Name="Print_Area"/></Cell>
+    <Cell ss:StyleID="s65"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Span="41"/>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.41"/>
+    <Footer x:Margin="0.31496062992125984"/>
+    <PageMargins x:Bottom="0.19685039370078741" x:Left="0.98425196850393704"
+     x:Right="0.42" x:Top="0.28"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <FitHeight>0</FitHeight>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <HorizontalResolution>180</HorizontalResolution>
+    <VerticalResolution>180</VerticalResolution>
+   </Print>
+   <Selected/>
+   <GridlineColorIndex>22</GridlineColorIndex>
+   <GridlineColor>#C0C0C0</GridlineColor>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveCol>5</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+ <Worksheet ss:Name="2">
+  <Table ss:ExpandedColumnCount="10" ss:ExpandedRowCount="38" x:FullColumns="1"
+   x:FullRows="1" ss:StyleID="s92" ss:DefaultRowHeight="18">
+   <Column ss:StyleID="s93" ss:AutoFitWidth="0" ss:Width="103.5"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="35.25"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="40.5"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="42"/>
+   <Column ss:Index="7" ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="51.75"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="39.75"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="33.75"/>
+   <Column ss:StyleID="s92" ss:AutoFitWidth="0" ss:Width="28.5"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:MergeAcross="9" ss:StyleID="s141"><Data ss:Type="String">ТЕХНІЧНИЙ ОПИС</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="4.5"/>
+   <Row ss:AutoFitHeight="0" ss:Height="15">
+    <Cell><Data ss:Type="String">Призначення будинку</Data></Cell>
+    <Cell ss:MergeAcross="4" ss:StyleID="m22887274"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s93"><Data ss:Type="String"> рік побудови</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="m22910590"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="3.9375"/>
+   <Row ss:AutoFitHeight="0" ss:Height="36.75">
+    <Cell ss:StyleID="s101"><Data ss:Type="String">Найменування конструктивних елементів</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s101"><Data ss:Type="String">Характеристика конструктивних елементів</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="s101"><Data ss:Type="String">Технічний стан</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="s101"><Data ss:Type="String">% зносу</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Фундамент</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Стіни</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Перегородки</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Перекриття</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Підлога</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Покрівля</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Вікна</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Двері</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Сходи</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Інженерне обладнання</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Опалення</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Електроенергія</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Газифікація</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Водопровід</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Каналізація</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Опис сантехнічн. приладів </Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Ліфтове обладнання</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Сміттєпровід</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Оздоблення зовнішнє</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Оздоблення внутрішнє</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="40.5">
+    <Cell ss:StyleID="s91"><Data ss:Type="String">Відомості про капремонт та реконструкцію</Data></Cell>
+    <Cell ss:MergeAcross="3" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="1" ss:StyleID="s137"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s137"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="4.5">
+    <Cell ss:StyleID="s102"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+    <Cell ss:StyleID="s103"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24">
+    <Cell ss:MergeAcross="9" ss:StyleID="s138"><Data ss:Type="String">ТЕНІЧНИЙ ОПИС ПРИБУДОВ, НАДБУДОВ ТА ПІДВАЛІВ</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="28.5">
+    <Cell ss:StyleID="s104"><Data ss:Type="String">Найменування  </Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Літера</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Фунда- мент </Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Стіни</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Пере- криття</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Підлога</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Покрівля</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Інж. обладн. </Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">Оздоб-лення</Data></Cell>
+    <Cell ss:StyleID="s105"><Data ss:Type="String">%</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:Height="24.9375">
+    <Cell ss:StyleID="s91"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+    <Cell ss:StyleID="s97"/>
+   </Row>
+   <Row ss:AutoFitHeight="0"/>
+   <Row ss:AutoFitHeight="0">
+    <Cell><Data ss:Type="String">«           »</Data></Cell>
+    <Cell ss:StyleID="s108"/>
+    <Cell ss:StyleID="s98"><Data ss:Type="String">201    р.</Data></Cell>
+    <Cell><Data ss:Type="String">Виконав</Data></Cell>
+    <Cell ss:MergeAcross="1" ss:StyleID="m22887264"/>
+    <Cell ss:StyleID="s118"><Data ss:Type="String">Перевірив</Data></Cell>
+    <Cell ss:MergeAcross="2" ss:StyleID="m22887304"/>
+   </Row>
+   <Row ss:AutoFitHeight="0" ss:StyleID="s109">
+    <Cell ss:StyleID="s115"/>
+    <Cell ss:StyleID="s113"/>
+    <Cell ss:Index="5" ss:MergeAcross="1" ss:StyleID="s134"><Data ss:Type="String">(прізвище)</Data></Cell>
+    <Cell ss:StyleID="s119"/>
+    <Cell ss:MergeAcross="2" ss:StyleID="s135"><Data ss:Type="String">(прізвище)</Data></Cell>
+   </Row>
+   <Row ss:AutoFitHeight="0">
+    <Cell ss:StyleID="s116"/>
+    <Cell ss:StyleID="s117"/>
+   </Row>
+  </Table>
+  <WorksheetOptions xmlns="urn:schemas-microsoft-com:office:excel">
+   <PageSetup>
+    <Header x:Margin="0.31496062992125984"/>
+    <Footer x:Margin="0.31496062992125984"/>
+    <PageMargins x:Bottom="0.19685039370078741" x:Left="0.78740157480314965"
+     x:Right="0.78740157480314965" x:Top="0.35"/>
+   </PageSetup>
+   <Unsynced/>
+   <Print>
+    <ValidPrinterInfo/>
+    <PaperSizeIndex>9</PaperSizeIndex>
+    <Scale>95</Scale>
+    <HorizontalResolution>180</HorizontalResolution>
+    <VerticalResolution>180</VerticalResolution>
+   </Print>
+   <PageBreakZoom>100</PageBreakZoom>
+   <GridlineColorIndex>22</GridlineColorIndex>
+   <GridlineColor>#C0C0C0</GridlineColor>
+   <Panes>
+    <Pane>
+     <Number>3</Number>
+     <ActiveRow>20</ActiveRow>
+     <ActiveCol>16</ActiveCol>
+    </Pane>
+   </Panes>
+   <ProtectObjects>False</ProtectObjects>
+   <ProtectScenarios>False</ProtectScenarios>
+  </WorksheetOptions>
+ </Worksheet>
+</Workbook>

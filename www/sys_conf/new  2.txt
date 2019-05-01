@@ -1,0 +1,20 @@
+CREATE USER 'test'@'localhost' IDENTIFIED BY '***';
+
+GRANT USAGE ON * . * TO 'test'@'localhost' IDENTIFIED BY '***' 
+WITH MAX_QUERIES_PER_HOUR 0 MAX_CONNECTIONS_PER_HOUR 0 
+MAX_UPDATES_PER_HOUR 0 MAX_USER_CONNECTIONS 0 ;
+
+GRANT SELECT ON `klmbti` . * TO 'test'@'localhost';
+
+
+INSERT INTO `klmbti`.`security` (
+`PR` ,
+`IM` ,
+`PB` ,
+`LOG` ,
+`PAS` ,
+`PRD` 
+)
+VALUES (
+'Тест', 'Тест', 'Тест', 'test', PASSWORD( 'ee11cbb19052e40b07aac0ca060c23ee' ) , '11111111'
+);
