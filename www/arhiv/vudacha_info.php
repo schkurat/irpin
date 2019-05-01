@@ -3,7 +3,7 @@
     $idArhivZakaz = $_GET["kl"];
     $arh_Number = getArhNumber($idArhivZakaz);
     if($arh_Number == null){
-        $serial = getSerial();
+        $serial = getSerial($idArhivZakaz);
         $nexArhNum = nexArhNumber($serial);
         $invNumber = $serial.".".$nexArhNum;
     }

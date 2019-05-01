@@ -16,14 +16,21 @@ function nexArhNumber($serial){
     
     return $num;
 }
-function getSerial(){
-    $start = strtotime('2019-01-01');
-    $dt_now = date("Y-m-d");
-    $end = strtotime($dt_now);
-
-    $days_between = ceil(abs($end - $start) / 86400);
-    
-    return $days_between;
+function getSerial($idOrder){
+    $serial = false;
+    $sql = "SELECT arhiv_zakaz.RN FROM arhiv_zakaz WHERE arhiv_zakaz.KEY='$idOrder'";
+    $atu = mysqli_query($sql);
+    while ($aut = mysqli_fetch_array($atu)) {
+        $serial = $aut["RN"];
+    }
+    mysqli_free_result($atu);
+    return $serial;
+//    $start = strtotime('2019-01-01');
+//    $dt_now = date("Y-m-d");
+//    $end = strtotime($dt_now);
+//
+//    $days_between = ceil(abs($end - $start) / 86400);
+//    return $days_between;
 }
 function getArhNumber($idZak){
     $arhNumber = null;
