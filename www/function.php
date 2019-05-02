@@ -6,22 +6,22 @@ function nexArhNumber($serial){
     $atu=mysql_query($sql);
     while($aut=mysql_fetch_array($atu))
         {
-            $num=$aut["NUM"]+1;    
+            $num=$aut["NUM"]+1;
         }
    mysql_free_result($atu); 
 
     if ($num == 0){
         $num=1;
     }
-    
+    $num = str_pad($num,7,'0',STR_PAD_LEFT);
     return $num;
 }
-function getSerial($idOrder){
+function getSerial($idOrder){//определение серии для архивного номера
     $serial = false;
     $sql = "SELECT arhiv_zakaz.RN FROM arhiv_zakaz WHERE arhiv_zakaz.KEY='$idOrder'";
     $atu = mysql_query($sql);
     while ($aut = mysql_fetch_array($atu)) {
-        $serial = $aut["RN"];
+        $serial = str_pad($aut["RN"],2,'0',STR_PAD_LEFT);
     }
     mysql_free_result($atu);
     return $serial;
