@@ -1,27 +1,19 @@
 <?php
 session_start();
-$lg=$_SESSION['LG'];
-$pas=$_SESSION['PAS'];
+$lg = $_SESSION['LG'];
+$pas = $_SESSION['PAS'];
 
 include_once "../function.php";
 
-$kl=$_GET['kl'];
-/* if(isset($_GET['tip'])) $tip=$_GET['tip'];
-else $tip='';
-if($tip=='10') $file_ur='dog_ur_10.xml';
-if($tip=='30') $file_ur='dog_ur_30.xml';
-if($tip=='b') $file_ur='dog_ur_b.xml';
-if($tip=='3h') $file_ur='dog_ur_3h.xml';
-if($tip=='r') $file_ur='dog_ur_r.xml'; */
+$kl = $_GET['kl'];
 
-$db=mysql_connect("localhost",$lg,$pas);
-if(!$db) echo "Не вiдбулося зєднання з базою даних";
-  
- if(!@mysql_select_db(kpbti,$db))
-  {
-   echo("Не завантажена таблиця");
-   exit(); 
-   }
+$db = mysql_connect("localhost", $lg, $pas);
+if (!$db) echo "Не вiдбулося зєднання з базою даних";
+
+if (!@mysql_select_db(kpbti, $db)) {
+    echo("Не завантажена таблиця");
+    exit();
+}
 
 $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP,
 				tup_nsp.TIP_NSP,dlya_oformlennya.id_oform,
@@ -33,159 +25,148 @@ $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.N
 					AND rayonu.ID_RAYONA=RN AND nas_punktu.ID_NSP=NS AND vulutsi.ID_VUL=VL
 					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
-$atu=mysql_query($sql);
-while($aut=mysql_fetch_array($atu))
-{
-$t_zak=$aut["TUP_ZAM"];
-$b_rn=p_buk($aut["RAYON"]);
-$ndog=$aut["SZ"].'/'.$aut["NZ"].'/'.$b_rn;
-$dtdog=german_date($aut["D_PR"]);
-$datavuh=german_date($aut["DATA_VUH"]);
-$datagot=german_date($aut["DATA_GOT"]);
-$pruymalnuk=$aut["PR_OS"];
-$idn=$aut["IDN"];
-$vidrob=$aut["document"];
-$kod_rob=$aut["id_oform"];
-$zamovnuk=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
-$zayavnuk=$aut["PR"].' '.p_buk($aut["IM"]).'.'.p_buk($aut["PB"]).'.';
-$pasport=$aut["PASPORT"];
-$primitka=$aut["PRIM"];
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $t_zak = $aut["TUP_ZAM"];
+    $b_rn = p_buk($aut["RAYON"]);
+    $ndog = $aut["SZ"] . '/' . $aut["NZ"] . '/' . $b_rn;
+    $dtdog = german_date($aut["D_PR"]);
+    $datavuh = german_date($aut["DATA_VUH"]);
+    $datagot = german_date($aut["DATA_GOT"]);
+    $pruymalnuk = $aut["PR_OS"];
+    $idn = $aut["IDN"];
+    $vidrob = $aut["document"];
+    $kod_rob = $aut["id_oform"];
+    $zamovnuk = $aut["PR"] . ' ' . $aut["IM"] . ' ' . $aut["PB"];
+    $zayavnuk = $aut["PR"] . ' ' . p_buk($aut["IM"]) . '.' . p_buk($aut["PB"]) . '.';
+    $pasport = $aut["PASPORT"];
+    $primitka = $aut["PRIM"];
 
-if($aut["BUD"]!="") $bud="буд.".$aut["BUD"]; else $bud="";
-if($aut["KVAR"]!="") $kvar=", кв.".$aut["KVAR"]; else $kvar="";
-$adresa=$aut["TIP_NSP"].' '.$aut["NSP"].', '.$aut["TIP_VUL"].' '.$aut["VUL"].', '.$bud.$kvar;
-$vart=$aut["SUM"];/* +$aut["SUM_D"] */
-$tel=$aut["TEL"];
-$term=$aut["TERM"];
+    if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
+    if ($aut["KVAR"] != "") $kvar = ", кв." . $aut["KVAR"]; else $kvar = "";
+    $adresa = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . $bud . $kvar;
+    $vart = $aut["SUM"];/* +$aut["SUM_D"] */
+    $tel = $aut["TEL"];
+    $term = $aut["TERM"];
 }
-mysql_free_result($atu); 
+mysql_free_result($atu);
 
-$dodvl='';
+$dodvl = '';
 $sql = "SELECT PR,IM,PB	FROM zm_dod WHERE IDZM='$kl'";
-$atu=mysql_query($sql);
-while($aut=mysql_fetch_array($atu))
-{
-$dodvl.=', '.$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $dodvl .= ', ' . $aut["PR"] . ' ' . $aut["IM"] . ' ' . $aut["PB"];
 }
-mysql_free_result($atu); 
+mysql_free_result($atu);
 
-$grn=(int)$vart;
-$kop=fract($vart);
-$sumpr=in_str($grn);
-if($kop!=0) $smpr=$sumpr.' грн. '.$kop.' коп.';
-else $smpr=$sumpr.' грн. ';
+$grn = (int)$vart;
+$kop = fract($vart);
+$sumpr = in_str($grn);
+if ($kop != 0) $smpr = $sumpr . ' грн. ' . $kop . ' коп.';
+else $smpr = $sumpr . ' грн. ';
 
-$file_fiz='dog_fiz.xml';
+require('../tfpdf/tfpdf.php');
+// створюємо FPDF обєкт
+$pdf = new TFPDF();
 
-$file_fiz_new='dog_fiz_new.xml';
-//$file_ur_new='dog_ur_new.xml';
+$pdf->SetAutoPageBreak('true', 2);
+$pdf->SetMargins(05, 05, 2);
 
-$rahunok="26002283741";
+$pdf->AddFont('dejavu', '', 'DejaVuSans.ttf', true);
+$pdf->AddFont('dejavub', '', 'DejaVuSans-Bold.ttf', true);
 
-/* if($t_zak==2){
-$file = fopen($file_ur, 'r');
-$text_dog = fread($file, filesize($file_ur));
-fclose($file);
+// Вказуємо автора та заголовок
+$pdf->SetAuthor('КП КОР Північне БТІ');
+$pdf->SetTitle('Замовлення');
 
-$patterns[0] = "[ndog]";
-$patterns[1] = "[dtdog]";
-$patterns[2] = "[zamovnuk]";
-$patterns[3] = "[vidrob]";
-$patterns[4] = "[adresa]";
-$patterns[5] = "[vart]";
-$patterns[6] = "[smpr]";
-$patterns[7] = "[tel]";
-$patterns[8] = "[rahunok]";
-$patterns[9] = "[phone]";
-$patterns[10] = "[primitka]";
+//створюємо нову сторiнку та вказуємо режим її вiдображення
+$pdf->AddPage('P');
+$pdf->SetDisplayMode('real', 'default');
 
-$replacements[0] = $ndog;
-$replacements[1] = $dt_dog;
-$replacements[2] = $zamovnuk;
-$replacements[3] = $vidrob;
-$replacements[4] = $adresa;
-$replacements[5] = $vart;
-$replacements[6] = $smpr;
-$replacements[7] = $tel;
-$replacements[8] = $rahunok;
-$replacements[9] = $phone;
-$replacements[10] = $primitka;
+$pdf->SetXY(05, 05);
+$pdf->SetDrawColor(50, 60, 100);
 
-$text_dog_new=preg_replace($patterns, $replacements,$text_dog);
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(188, 10, 'Замовник:');
 
-$filez = fopen($file_ur_new, 'w+');
-fwrite($filez,$text_dog_new);
-fclose($filez);
+$pdf->Text(120, 15, 'Гром.');
+$pdf->SetFont('dejavub', '', 8);
+$pdf->Text(130, 15, $zamovnuk);
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(120, 19, $pasport);
+if (!empty($idn)) $pdf->Text(136, 19, ', ІПН:' . $idn);
+$pdf->Text(120, 23, 'Що мешкає за адресою:');
+$pdf->Text(120, 27, $adresa);
+$pdf->Text(120, 31, 'Телефон: ' . $tel);
+$pdf->SetFont('dejavu', '', 10);
+$pdf->Text(65, 40, 'ЗАМОВЛЕННЯ-ЗОБОВ`ЯЗАННЯ № ');
+$pdf->SetFont('dejavub', '', 10);
+$pdf->Text(128, 40, $ndog);
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(95, 44, 'від ' . $dtdog . 'р.');
+$pdf->Text(15, 48, 'Вид робіт: ' . $vidrob);
+$pdf->SetFont('dejavub', '', 8);
+$pdf->Text(15, 52, 'далі за текстом Об`єкту, що знаходиться за адресою:');
+$pdf->Text(105, 52, $adresa);
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(15, 56, 'Зобов`язання та гарантії:');
+$pdf->SetXY(15, 57);
+$pdf->MultiCell(190, 4, '1. Засвідчую, що до комунального підприємства Київської обласної ради “Північне БТІ” (далі –БТІ) надані всі наявні документи щодо Об`єкта, на підтвердження законності та належності;', 0, 'L', 0);
+$pdf->SetXY(15, 65);
+$pdf->MultiCell(190, 4, '1.1. БТІ гарантує наявність належних документів та кваліфікаційних сертифікатів, передбачених  чинним законодавством України для виконання даного виду робіт, і буде підтримувати їх в силі протягом строку дії цього Замовлення-зобовязання;', 0, 'L', 0);
+$pdf->SetXY(15, 73);
+$pdf->MultiCell(190, 4, '1.2. БТІ не розпочинає виконання робіт до моменту проведення оплати авансу та отримання необхідних документів для виконання робіт;', 0, 'L', 0);
+$pdf->SetXY(15, 81);
+$pdf->MultiCell(190, 4, '1.3.У випадку надання Замовником неточних, або недостовірних необхідних документів, БТІ звільняється  від  відповідальності, а виконанні роботи вважаються виконаними належним чином і підлягають оплаті відповідно до цього Замовлення-зобов`язання;', 0, 'L', 0);
+$pdf->Text(16, 96, '2. Підписанням даного ЗАМОВЛЕННЯ-ЗОБОВ`ЯЗАННЯ зобов`язуюсь *:');
+$pdf->SetXY(15, 97);
+$pdf->MultiCell(190, 4, '2.1. Не пізніше трьох робочих днів з дня складання даного Замовлення-зобов`язання здійснити передоплату  (авансовий платіж) на розрахунковий рахунок БТІ у розмірі ' . $vart . ' грн (' . $smpr . ');', 0, 'L', 0);
+$pdf->SetXY(15, 105);
+$pdf->MultiCell(190, 4, '2.2. Забезпечити представникам БТІ доступ у всі будівлі та приміщення власників, співвласників Об`єкту за конкретною адресою для здійснення їх обміру та обстеження;', 0, 'L', 0);
+$pdf->SetXY(15, 113);
+$pdf->MultiCell(190, 4, '2.3. Забезпечити власну присутність або присутність повноважного представника за дорученням на об’єкті  під час здійснення робіт з інвентаризації та контролю;', 0, 'L', 0);
+$pdf->SetXY(15, 121);
+$pdf->MultiCell(190, 4, '2.4. По закінченні обстеження (контролю) забезпечити підписання власноруч (чи представником за дорученням) абрису, ескізу та інших необхідних документів;', 0, 'L', 0);
+$pdf->SetXY(15, 129);
+$pdf->MultiCell(190, 4, '2.5. Протягом 2-х днів з дня отримання  квитанції  здійснити остаточний розрахунок з БТІ **;', 0, 'L', 0);
+$pdf->SetXY(15, 133);
+$pdf->MultiCell(190, 4, '2.6. Вжити заходів щодо забезпечення безпеки проведення інвентаризаційних робіт (в разі необхідності провести відповідний інструктаж представників БТІ);', 0, 'L', 0);
+$pdf->SetXY(15, 141);
+$pdf->MultiCell(190, 4, '2.7. В разі попереднього повідомлення за три робочі дні, забезпечити можливість проведення контролю якості виконання робіт з інвентаризації;', 0, 'L', 0);
+$pdf->SetXY(15, 149);
+$pdf->MultiCell(190, 4, '2.8 У випадку порушення Замовником зобов’язання даного договору, Виконавець має право відмовитись від даного договору (припинити його юридичну дію) в односторонньому порядку.', 0, 'L', 0);
+$pdf->SetXY(15, 157);
+$pdf->MultiCell(190, 4, '3. У разі невиконання  Замовлення-зобов`язання в строк до 15-ти календарних днів, з причин залежних від Замовника, (не надання повного пакету документів, доступу у всі  будівлі та приміщення для обмірів та обстеження, забезпечення безпеки при проведенні технічної інвентаризації, забезпечення присутності власника або уповноваженої особи, тощо), авансовий платіж не повертається.', 0, 'L', 0);
+$pdf->SetXY(15, 173);
+$pdf->MultiCell(190, 4, '4. Відповідно до положень Закону України “Про захист персональних даних”, надаю згоду на обробку моїх персональних даних БТІ, а саме: на обробку виданих на моє ім`я документів, підписаних мною документів та відомостей, що надаються мною.', 0, 'L', 0);
+$pdf->SetXY(15, 185);
+$pdf->MultiCell(190, 4, '5. Оплата авансу та надання необхідних документів для виконання робіт вважається згодою на початок робіт;', 0, 'L', 0);
+$pdf->SetXY(15, 189);
+$pdf->MultiCell(190, 4, '* БТІ зобов`язується виконати замовлення в повному обсязі протягом 30-ти календарних днів, в разі терміновості - протягом трьох робочих днів, за відсутності порушень Замовником, передбачених пунктом 3, 2.', 0, 'L', 0);
+$pdf->SetXY(15, 197);
+$pdf->MultiCell(190, 4, '** В разі порушення обов`язків, передбачених підпунктами 2.1, 2.2, 2.3, 2.4, 2.7 БТІ має право відмовитись від проведення інвентаризації та повернути отримані документи без виконання. Достатнім доказом порушення є складений БТІ акт про ненадання можливості обстеження.', 0, 'L', 0);
+$pdf->SetXY(15, 209);
+$pdf->MultiCell(190, 4, '*** Повторний виїзд представника БТІ на Об`єкт можливий лише після повторного оформлення замовлення-зобов`язання та сплати авансу.', 0, 'L', 0);
+$pdf->SetXY(15, 217);
+$pdf->MultiCell(190, 4, '**** Загальна вартість виконання замовлення розраховується згідно Збірника норм часу на роботи та послуги, що виконуються бюро технічної інвентаризації України, з врахуванням вартості 1 нормо-години 132,0 грн.', 0, 'L', 0);
+$pdf->SetXY(15, 225);
+$pdf->MultiCell(190, 4, '***** Період звернення щодо усунення помилок складає - 14 каландарних днів з дня отримання звернення.', 0, 'L', 0);
+$pdf->SetXY(15, 229);
+$pdf->MultiCell(190, 4, '****** У разі виконання замовлення в скорочений термін до вартості 1 нормо-години застосовується коефіцієнт 2.', 0, 'L', 0);
+$pdf->Text(15, 235, 'Відомості надані мною щодо об`єкту:');
+$pdf->Text(15, 239, 'Документи:');
+$pdf->Text(15, 244, $dtdog . 'р.                     ____________________________________ (' . $zamovnuk . ')');
+$pdf->Text(15, 251, 'Прошу виконати замовлення в скорочений термін (3-и робочі дні)******    ___________________________________________');
+$pdf->SetFont('dejavu', '', 7);
+$pdf->Text(150, 254, 'підпис, П.І.Б.');
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(15, 262, 'Замовлення-зобов`язання прийняв    ________________________  (' . $pruymalnuk . ')   ' . $dtdog . ' р.');
+$pdf->Text(15, 272, 'Документи відповідно до замовлення отримав    ____________________  (                               )   "_____" ________________ 20 ___ року"');
 
-$download_size = filesize($file_ur_new);
-header("Content-type: application/msword");
-header("Content-Disposition: attachment; filename=".$file_ur_new.";");
-header("Accept-Ranges: bytes");
-header("Content-Length: " . $download_size );
-readfile($file_ur_new);
-} */
-if($t_zak==1){
-$file = fopen($file_fiz, 'r');
-$text_dog = fread($file, filesize($file_fiz));
-fclose($file);
-
-$patterns[0] = "[ndog]";
-$patterns[1] = "[dtdog]";
-$patterns[2] = "[zamovnuk]";
-$patterns[3] = "[vidrob]";
-$patterns[4] = "[datavuh]";
-$patterns[5] = "[adresa]";
-$patterns[6] = "[vart]";
-$patterns[7] = "[tel]";
-$patterns[8] = "[datagot]";
-$patterns[9] = "[pasport]";
-$patterns[10] = "[pruymalnuk]";
-$patterns[11] = "[phone]";
-$patterns[12] = "[idn]";
-$patterns[13] = "[rahunok]";
-$patterns[14] = "[smpr]";
-$patterns[15] = "[dodvl]";
-$patterns[16] = "[primitka]";
-
-$replacements[0] = $ndog;
-$replacements[1] = $dtdog;
-$replacements[2] = $zamovnuk;
-$replacements[3] = $vidrob;
-$replacements[4] = $datavuh;
-$replacements[5] = $adresa;
-$replacements[6] = $vart;
-$replacements[7] = $tel;
-$replacements[8] = $datagot;
-$replacements[9] = $pasport;
-$replacements[10] = $pruymalnuk;
-$replacements[11] = $phone;
-$replacements[12] = $idn;
-$replacements[13] = $rahunok;
-$replacements[14] = $smpr;
-$replacements[15] = $dodvl;
-$replacements[16] = $primitka;
-
-$text_dog_new=preg_replace($patterns, $replacements,$text_dog);
-
-$filez = fopen($file_fiz_new, 'w+');
-fwrite($filez,$text_dog_new);
-fclose($filez);
-
-$download_size = filesize($file_fiz_new);
-header("Content-type: application/msword");
-//header("Content-type: application/msexcel");
-header("Content-Disposition: attachment; filename=".$file_fiz_new.";");
-header("Accept-Ranges: bytes");
-header("Content-Length: " . $download_size );
-readfile($file_fiz_new);
+//Zakrutie bazu
+if (mysql_close($db)) {
+    // echo("Закриття бази даних");
+} else {
+    echo("Не можливо виконати закриття бази");
 }
-//Zakrutie bazu       
-       if(mysql_close($db))
-        {
-        // echo("Закриття бази даних");
-         }
-         else
-         {
-          echo("Не можливо виконати закриття бази"); 
-          }
-?>
+$pdf->Output('dogovir.pdf', 'I');
