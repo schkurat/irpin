@@ -98,7 +98,7 @@ $(".zmview").append('<tr>\
 Номер замовлення
 <input type="text" size="7" maxlength="7" name="nzam" value="<?php echo $nz; ?>" readonly />
 Норма часу
-<input type="text" size="7" maxlength="7" name="nch" value="116.24" />
+<input type="text" size="7" maxlength="7" name="nch" value="132.00" />
 <input type="hidden" name="term" value="<?php echo $term; ?>"/>
  &nbsp &nbsp &nbsp ПДВ <input type="text" size="2" maxlength="2" name="pdv" value="<?php echo $nds; ?>" readonly />
  <input type="checkbox" name="okr" value="yes" <?php if($okr=='yes') echo 'checked'; ?> />Окр.

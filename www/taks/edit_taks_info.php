@@ -119,7 +119,7 @@ $(".zmview").append('<tr>\
 </td>
 </tr>
 <tr><td colspan="9">
-Норма часу<input type="text" size="5" maxlength="5" name="nch" value="116.24"/>
+Норма часу<input type="text" size="5" maxlength="5" name="nch" value="132.00"/>
 <input id="r1" type="radio" name="t_zm" value="1" <?php echo $chek1; ?>/><label for="r1">Звичайне</label>
 <input id="r2" type="radio" name="t_zm" value="2" <?php echo $chek2; ?>/><label for="r2">Термінове</label>
  &nbsp &nbsp &nbsp ПДВ <input type="text" size="2" maxlength="2" name="pdv" value="<?php echo $pdv; ?>" readonly />

@@ -184,7 +184,7 @@ $nadb=10;
 }
 
 $pdf->SetFont('dejavu','',10);
-$pdf->Text(19,52+$it+$nadb+5,'Вартість 1 нормо-години: 96,87'); 
+$pdf->Text(19,52+$it+$nadb+5,'Вартість 1 нормо-години: 132,00');
 $pdf->Text(19,52+$it+$nadb+10,'Округлення до гривні'); 
 $pdf->Text(182,52+$it+$nadb+10,(string)number_format($sum_okr,3)); 
 $pdf->Text(19,52+$it+$nadb+15,'Разом по рахунку:'); 

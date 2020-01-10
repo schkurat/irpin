@@ -153,7 +153,7 @@ $razom=number_format($ssum,2);
 $nalog=number_format($pdv,2);
 $itogo=number_format($sm_spdv,2);
 $p.='<tr>
-<td colspan="2">Вартість 1 нормо-години: 96,87</br>
+<td colspan="2">Вартість 1 нормо-години: 132.00</br>
 Округлення до гривні</br>
 Разом по рахунку:</br>
 ПДВ-20%</br>

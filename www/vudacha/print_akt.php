@@ -66,19 +66,13 @@ $kop=fract($sum);
 $sumpr=in_str($grn);
 $smpr=$sumpr.' грн. ';
 if($kop!=0) $smpr.=$kop.' коп.';
-/* $sbpdv=number_format(round($sum/1.2,2),2,'.','');
-$spdv=number_format(round($sum/6,2),2,'.','');
-$grnpdv=(int)$spdv;
-$koppdv=fract($spdv);
-$spdvpr=in_str($grnpdv);
-$prpdv=$spdvpr.' грн. '.$koppdv.' коп.'; */
 
-$file_fiz='akt_fiz.xml';
-$file_fiz_new='akt_fiz_new.xml';
-$file_ur='akt.xml';
-$file_ur_new='akt_new.xml';
-
-$rahunok="26002283741";
+//$file_fiz='akt_fiz.xml';
+//$file_fiz_new='akt_fiz_new.xml';
+//$file_ur='akt.xml';
+//$file_ur_new='akt_new.xml';
+//
+//$rahunok="26002283741";
 
 if($tup_zam==2){
 $sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.EDRPOU='$edrpou'";
@@ -94,115 +88,231 @@ $rahzamovn=$aut["RR"];
 $svzamovn=$aut["SVID"];
 $pnzamovn=$aut["IPN"];
 }
-mysql_free_result($atu); 
-
-$file = fopen($file_ur, 'r');
-$text_rah = fread($file, filesize($file_ur));
-fclose($file);
-
-$patterns[0] = "[zamovnuk]";
-$patterns[1] = "[adrzamovn]";
-$patterns[2] = "[tel]";
-$patterns[3] = "[edrpou]";
-$patterns[4] = "[vidrob]";
-$patterns[5] = "[dodat]";
-$patterns[6] = "[adresa]";
-$patterns[7] = "[sum]";
-$patterns[8] = "[smpr]";
-$patterns[9] = "[dtzak]";
-$patterns[10] = "[ndog]";
-$patterns[11] = "[rahunok]";
-$patterns[12] = "[sbpdv]";
-$patterns[13] = "[spdv]";
-$patterns[14] = "[dtpidp]";
-$patterns[15] = "[bank]";
-$patterns[16] = "[mfo]";
-$patterns[17] = "[rahzamovn]";
-$patterns[18] = "[svzamovn]";
-$patterns[19] = "[pnzamovn]";
-
-$replacements[0] = $zamovnuk;
-$replacements[1] = $adrzamovn;
-$replacements[2] = $tel;
-$replacements[3] = $edrpou;
-$replacements[4] = $vidrob;
-$replacements[5] = $dodat;
-$replacements[6] = $adresa;
-$replacements[7] = $sum;
-$replacements[8] = $smpr;
-$replacements[9] = $dtzak;
-$replacements[10] = $ndog;
-$replacements[11] = $rahunok;
-$replacements[12] = $sbpdv;
-$replacements[13] = $spdv;
-$replacements[14] = $dtpidp;
-$replacements[15] = $bank;
-$replacements[16] = $mfo;
-$replacements[17] = $rahzamovn;
-$replacements[18] = $svzamovn;
-$replacements[19] = $pnzamovn;
-
-$text_rah_new=preg_replace($patterns, $replacements,$text_rah);
-
-$filez = fopen($file_ur_new, 'w+');
-fwrite($filez,$text_rah_new);
-fclose($filez);
-
-$download_size = filesize($file_ur_new);
-header("Content-type: application/msword");
-//header("Content-type: application/msexcel");
-header("Content-Disposition: attachment; filename=".$file_ur_new.";");
-header("Accept-Ranges: bytes");
-header("Content-Length: ". $download_size );
-readfile($file_ur_new);
+mysql_free_result($atu);
+//
+//$file = fopen($file_ur, 'r');
+//$text_rah = fread($file, filesize($file_ur));
+//fclose($file);
+//
+//$patterns[0] = "[zamovnuk]";
+//$patterns[1] = "[adrzamovn]";
+//$patterns[2] = "[tel]";
+//$patterns[3] = "[edrpou]";
+//$patterns[4] = "[vidrob]";
+//$patterns[5] = "[dodat]";
+//$patterns[6] = "[adresa]";
+//$patterns[7] = "[sum]";
+//$patterns[8] = "[smpr]";
+//$patterns[9] = "[dtzak]";
+//$patterns[10] = "[ndog]";
+//$patterns[11] = "[rahunok]";
+//$patterns[12] = "[sbpdv]";
+//$patterns[13] = "[spdv]";
+//$patterns[14] = "[dtpidp]";
+//$patterns[15] = "[bank]";
+//$patterns[16] = "[mfo]";
+//$patterns[17] = "[rahzamovn]";
+//$patterns[18] = "[svzamovn]";
+//$patterns[19] = "[pnzamovn]";
+//
+//$replacements[0] = $zamovnuk;
+//$replacements[1] = $adrzamovn;
+//$replacements[2] = $tel;
+//$replacements[3] = $edrpou;
+//$replacements[4] = $vidrob;
+//$replacements[5] = $dodat;
+//$replacements[6] = $adresa;
+//$replacements[7] = $sum;
+//$replacements[8] = $smpr;
+//$replacements[9] = $dtzak;
+//$replacements[10] = $ndog;
+//$replacements[11] = $rahunok;
+//$replacements[12] = $sbpdv;
+//$replacements[13] = $spdv;
+//$replacements[14] = $dtpidp;
+//$replacements[15] = $bank;
+//$replacements[16] = $mfo;
+//$replacements[17] = $rahzamovn;
+//$replacements[18] = $svzamovn;
+//$replacements[19] = $pnzamovn;
+//
+//$text_rah_new=preg_replace($patterns, $replacements,$text_rah);
+//
+//$filez = fopen($file_ur_new, 'w+');
+//fwrite($filez,$text_rah_new);
+//fclose($filez);
+//
+//$download_size = filesize($file_ur_new);
+//header("Content-type: application/msword");
+//header("Content-Disposition: attachment; filename=".$file_ur_new.";");
+//header("Accept-Ranges: bytes");
+//header("Content-Length: ". $download_size );
+//readfile($file_ur_new);
 }
-else{
-$file = fopen($file_fiz, 'r');
-$text_rah = fread($file, filesize($file_fiz));
-fclose($file);
+//else{
+//$file = fopen($file_fiz, 'r');
+//$text_rah = fread($file, filesize($file_fiz));
+//fclose($file);
+//
+//$patterns[0] = "[zamovnuk]";
+//$patterns[1] = "[adrzamovn]";
+//$patterns[2] = "[passport]";
+//$patterns[3] = "[idn]";
+//$patterns[4] = "[tel]";
+//$patterns[5] = "[vidrob]";
+//$patterns[6] = "[adresa]";
+//$patterns[7] = "[sum]";
+//$patterns[8] = "[smpr]";
+//$patterns[9] = "[dtzak]";
+//$patterns[10] = "[ndog]";
+//$patterns[11] = "[rahunok]";
+//$patterns[12] = "[dtpidp]";
+//
+//$replacements[0] = $zamovnuk;
+//$replacements[1] = $adrzamovn;
+//$replacements[2] = $passport;
+//$replacements[3] = $idn;
+//$replacements[4] = $tel;
+//$replacements[5] = $vidrob;
+//$replacements[6] = $adresa;
+//$replacements[7] = $sum;
+//$replacements[8] = $smpr;
+//$replacements[9] = $dtzak;
+//$replacements[10] = $ndog;
+//$replacements[11] = $rahunok;
+//$replacements[12] = $dtpidp;
+//
+//$text_rah_new=preg_replace($patterns, $replacements,$text_rah);
+//
+//$filez = fopen($file_fiz_new, 'w+');
+//fwrite($filez,$text_rah_new);
+//fclose($filez);
+//
+//$download_size = filesize($file_fiz_new);
+//header("Content-type: application/msword");
+//header("Content-Disposition: attachment; filename=".$file_fiz_new.";");
+//header("Accept-Ranges: bytes");
+//header("Content-Length: ". $download_size );
+//readfile($file_fiz_new);
+//}
 
-$patterns[0] = "[zamovnuk]";
-$patterns[1] = "[adrzamovn]";
-$patterns[2] = "[passport]";
-$patterns[3] = "[idn]";
-$patterns[4] = "[tel]";
-$patterns[5] = "[vidrob]";
-$patterns[6] = "[adresa]";
-$patterns[7] = "[sum]";
-$patterns[8] = "[smpr]";
-$patterns[9] = "[dtzak]";
-$patterns[10] = "[ndog]";
-$patterns[11] = "[rahunok]";
-$patterns[12] = "[dtpidp]";
+require('../tfpdf/tfpdf.php');
+// створюємо FPDF обєкт
+$pdf = new TFPDF();
 
-$replacements[0] = $zamovnuk;
-$replacements[1] = $adrzamovn;
-$replacements[2] = $passport;
-$replacements[3] = $idn;
-$replacements[4] = $tel;
-$replacements[5] = $vidrob;
-$replacements[6] = $adresa;
-$replacements[7] = $sum;
-$replacements[8] = $smpr;
-$replacements[9] = $dtzak;
-$replacements[10] = $ndog;
-$replacements[11] = $rahunok;
-$replacements[12] = $dtpidp;
+$pdf->SetAutoPageBreak('true', 2);
+$pdf->SetMargins(05, 05, 2);
 
-$text_rah_new=preg_replace($patterns, $replacements,$text_rah);
+$pdf->AddFont('dejavu', '', 'DejaVuSans.ttf', true);
+$pdf->AddFont('dejavub', '', 'DejaVuSans-Bold.ttf', true);
+//$pdf->AddFont('dejavu_bobl', '', 'DejaVuSans-BoldOblique.ttf', true);
+$pdf->AddFont('dejavu_light', '', 'DejaVuSans-ExtraLight.ttf', true);
+$pdf->AddFont('dejavu_i', '', 'DejaVuSans-Oblique.ttf', true);
 
-$filez = fopen($file_fiz_new, 'w+');
-fwrite($filez,$text_rah_new);
-fclose($filez);
+// Вказуємо автора та заголовок
+$pdf->SetAuthor('КП КОР Північне БТІ');
+$pdf->SetTitle('Акт виконаних робіт');
 
-$download_size = filesize($file_fiz_new);
-header("Content-type: application/msword");
-//header("Content-type: application/msexcel");
-header("Content-Disposition: attachment; filename=".$file_fiz_new.";");
-header("Accept-Ranges: bytes");
-header("Content-Length: ". $download_size );
-readfile($file_fiz_new);	
-}
+//створюємо нову сторiнку та вказуємо режим її вiдображення
+$pdf->AddPage('P');
+$pdf->SetDisplayMode('real', 'default');
+
+$pdf->SetXY(05, 05);
+$pdf->SetDrawColor(50, 60, 100);
+
+$pdf->SetFont('dejavu', '', 12);
+$pdf->Text(15, 15, 'ЗАТВЕРДЖУЮ');
+
+$pdf->SetFont('dejavub', '', 10);
+$pdf->Text(15, 20, 'В.о. генерального директора');
+$pdf->Text(15, 25, 'КП КОР “Північне БТІ”');
+$pdf->Text(15, 32, '___________________________ О.Я.Костиліна');
+$pdf->SetFont('dejavu', '', 10);
+$pdf->Text(15, 37, 'М.П.');
+
+$pdf->SetFont('dejavub', '', 12);
+$pdf->Text(65, 60, 'АКТ виконаних робіт № ');
+$pdf->SetFont('dejavub', '', 10);
+$pdf->Text(125, 60, $ndog);
+$pdf->SetFont('dejavu', '', 8);
+$pdf->Text(92, 64, 'від ' . $dtzak . ' року');
+
+$pdf->SetFont('dejavu', '', 10);
+$pdf->SetXY(14, 70);
+$pdf->MultiCell(190, 4, 'Ми, що нижче підписалися, ' . $zamovnuk .' з одного боку, та представник виконавця О.Я.Костиліна з іншого боку, склали цей акт про те, що на підставі наведених документів:
+Замовлення-зобов’язання: № '. $ndog .' від '. $dtzak .' р.
+Виконавцем були виконані наступні роботи (надані такі послуги):' , 0, 'L', 0);
+
+$pdf->SetXY(15, 90);
+$pdf->MultiCell(10, 5, '№ п/п' , 1, 'C', 0);
+$pdf->SetXY(25, 90);
+$pdf->MultiCell(100, 10, 'Найменування робіт, послуг' , 1, 'C', 0);
+$pdf->SetXY(125, 90);
+$pdf->MultiCell(10, 5, 'Кіл- сть' , 1, 'C', 0);
+$pdf->SetXY(135, 90);
+$pdf->MultiCell(20, 10, 'Од.' , 1, 'C', 0);
+$pdf->SetXY(155, 90);
+$pdf->MultiCell(25, 10, 'Ціна' , 1, 'C', 0);
+$pdf->SetXY(180, 90);
+$pdf->MultiCell(25, 10, 'Сума' , 1, 'C', 0);
+$pdf->SetXY(15, 100);
+$pdf->MultiCell(10, 10, '1' , 1, 'C', 0);
+$pdf->SetXY(25, 100);
+$pdf->MultiCell(100, 5, $vidrob . ' за адресою ' . $adresa , 1, 'L', 0);
+$pdf->SetXY(125, 100);
+$pdf->MultiCell(10, 10, '1' , 1, 'C', 0);
+$pdf->SetXY(135, 100);
+$pdf->MultiCell(20, 10, 'послуга' , 1, 'C', 0);
+$pdf->SetXY(155, 100);
+$pdf->MultiCell(25, 10, number_format($sum,2) , 1, 'R', 0);
+$pdf->SetXY(180, 100);
+$pdf->MultiCell(25, 10, number_format($sum,2) , 1, 'R', 0);
+$pdf->SetXY(155, 110);
+$pdf->SetFont('dejavub', '', 9);
+$pdf->MultiCell(25, 10, 'Всього:' , 0, 'R', 0);
+$pdf->SetXY(180, 110);
+$pdf->MultiCell(25, 10, number_format($sum,2) , 0, 'R', 0);
+
+$pdf->SetFont('dejavub', '', 10);
+$pdf->Text(15, 125, 'Загальна вартість виконаних робіт:');
+$pdf->Text(15, 130, $smpr);
+
+$pdf->SetFont('dejavu', '', 10);
+$pdf->Text(15, 140, 'Замовник претензій по об’єму, якості та строкам виконання робіт (надання послуг) не має.');
+
+$pdf->SetFont('dejavu', '', 12);
+$pdf->Text(40, 155, 'ВИКОНАВЕЦЬ');
+$pdf->Text(130, 155, 'ЗАМОВНИК');
+
+$pdf->SetFont('dejavub', '', 10);
+$pdf->Text(16, 165, 'КП КОР “Північне БТІ”');
+$pdf->Text(111, 165, $zamovnuk);
+
+$pdf->SetFont('dejavu', '', 10);
+$pdf->SetXY(15, 167);
+$pdf->MultiCell(85, 4, 'Поштова адреса: 08200, Київська область, 
+місто Ірпінь, вул. Стельмаха, 9-А
+Тел.: 098 012 28 02
+ЄДРПОУ: 38733758
+Банк: АБ "Укргазбанк"
+Р/рахунок: UA703204780000026009924432768', 0, 'L', 0);
+
+$pdf->SetXY(110, 167);
+$pdf->MultiCell(85, 4, 'Адреса: '. $adresa .' 
+Телефон: '. $tel .'
+ІПН: '. $idn .'
+Паспорт: '. $pasport , 0, 'L', 0);
+
+
+$pdf->SetFont('dejavu', '', 10);
+$pdf->Text(16, 205, 'В.о. генерального директора');
+$pdf->Text(16, 210, 'КП КОР “Північне БТІ”');
+$pdf->Text(16, 217, '___________________________');
+$pdf->Text(111, 217, '___________________________');
+$pdf->Text(16, 222, 'О.Я.Костиліна');
+$pdf->Text(111, 222, $zamovnuk);
+$pdf->Text(16, 227, 'М.П.');
+
 //Zakrutie bazu       
        if(mysql_close($db))
         {
@@ -212,4 +322,4 @@ readfile($file_fiz_new);
          {
           echo("Не можливо виконати закриття бази"); 
           }
-?>
+$pdf->Output('akt.pdf', 'I');
