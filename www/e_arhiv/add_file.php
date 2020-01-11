@@ -4,8 +4,8 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 include("../function.php");
 $katalog = $_POST['id_kat'];
-$nazv = $_POST['nazv'];
-$adres = $_POST['adres'];
+$inv = $_POST['inv'];
+//$adres = $_POST['adres'];
 $page = (isset($_POST['page'])) ? $_POST['page'] : 0;
 $o_file = ($page > 0) ? $_POST['old_file'] : '';
 
@@ -100,5 +100,5 @@ if (mysql_close($db)) {
     echo("Не можливо виконати закриття бази");
 }
 
-header("location: earhiv.php?filter=file_view&kat=" . $katalog . "&name=" . $nazv . "&adr=" . $adres);
+header("location: earhiv.php?filter=spr_view&inv_spr=" . $inv);
 ?>

@@ -1,11 +1,8 @@
 <?php
-$url=$_GET['url'];
-$kat=$_GET['kat'];
-$name=$_GET['name'];
-$adr=$_GET['adr'];
+$url = $_GET['url'];
+$inv = $_GET['inv'];
 
-$rez=unlink( $url);
-if(!$rez) echo 'Ошибка удаления файла!';
+$rez = unlink($url);
+if (!$rez) echo 'Ошибка удаления файла!';
 else
-header("location: earhiv.php?filter=file_view&kat=".$kat."&name=".$name."&adr=".$adr);
-?>
+    header("location: earhiv.php?filter=spr_view&inv_spr=" . $inv);
