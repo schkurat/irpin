@@ -18,11 +18,12 @@ $ddl=$_SESSION['DDL'];
 <title>
 Автоматизована система інвентаризації об'єктів нерухомості
 </title>
-<!--<script type="text/javascript" src="../js/jquery-1.4.2.js"></script>
-<script type="text/javascript" src="../js/jquery-1.3.1.js"></script>-->
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!--<script type="text/javascript" src="../js/jquery-1.4.2.js"></script>-->
+<script type="text/javascript" src="../js/jquery.min.js"></script>
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>-->
 <script type="text/javascript" src="../js/autozap.js"></script>
-<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>
+<!--<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>-->
+<script type="text/javascript" src="../js/bti.js"></script>
 <link rel="stylesheet" type="text/css" href="../js/autozap.css" />
 <link rel="stylesheet" type="text/css" href="../my.css" />
 <link rel="stylesheet" type="text/css" href="../menu.css" />

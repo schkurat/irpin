@@ -1,14 +1,14 @@
-/*Установка фона*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ*/
 body {
 	//background: #ededed none;
     background: url(images/fon.png) no-repeat 50% 0%;
 	-moz-background-size: cover; /* Firefox 3.6+ */
-    -webkit-background-size: cover; /* Safari 3.1+ и Chrome 4.0+ */
+    -webkit-background-size: cover; /* Safari 3.1+ пїЅ Chrome 4.0+ */
     -o-background-size: cover; /* Opera 9.6+ */
-    background-size: cover; /* Современные браузеры */
+    background-size: cover; /* пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ */
    
 }
-/*Создаем класс в котором делаем рамку для таблицы*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 table.bordur {
 	border-collapse: collapse;
 }
@@ -182,4 +182,11 @@ td#zal a:hover{
 	vertical-align: top;
 	//background: #FFFFFF; //ButtonFace;
 	//opacity: 0.6;
+}
+#adr_el_arh{
+	width: 100%;
+	border: 0;
+	font-size: 12px;
+	color: red;
+	background: lightyellow;
 }
