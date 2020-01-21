@@ -625,55 +625,9 @@ include "../scriptu.php";
         <tr>
             <td colspan="2">Файли для електронного архіву</td>
             <td colspan="3">
-                <input type="file" name="e_arh_files" size="40" id="e_arh_files">
+                <input type="file" name="file[]" size="40" multiple>
             </td>
         </tr>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         <tr>
             <th colspan="5">Інформація про замовніка</th>
         </tr>

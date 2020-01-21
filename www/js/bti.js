@@ -19,10 +19,27 @@ function searchArhiv() {
 }
 
 function selectArhiv() {
-    $('#id_el_arh').val($(this).data("arh"));
-    $('#adr_el_arh').val($(this).parent().next('.arh-item-adr').html());
-    $('#selected_ea').css("display","table-row");
-    // alert($(this).data("arh"));
-    // alert($(this).parent().next('.arh-item-adr').html());
+    let id_arh = $(this).data("arh");
+    let address = $(this).parent().next('.arh-item-adr').html()
 
+    $('#id_el_arh').val(id_arh);
+    $('#adr_el_arh').val(address);
+    $('#selected_ea').css("display","table-row");
+
+    $.ajax({
+        type: "POST",
+        url: "getArchive.php",
+        data: 'id_ea=' + id_arh + '&adr=' + address,
+        dataType: "html",
+        success: function (html) {
+            $('#open_dir').parent().prev().nextAll('tr').remove();
+            if (html > '') {
+                $('#e_arhiv > tbody').append(html);
+                $('#e_arhiv').fadeIn();
+            }
+        },
+        error: function (html) {
+            alert(html.error);
+        }
+    });
 }
