@@ -108,10 +108,15 @@ if ($error == 0) {
         $nz = 1;
     }
 
+    if ($id_el_arh == 0) {
+        $ath3 = mysql_query("INSERT INTO arhiv (RN,NS,VL,BD,KV) VALUES('$rn','$ns','$vl','$bd','$kva');");
+        $id_el_arh = mysql_insert_id();
+    }
+
     if ($id_vr != "" and $pr != "" and $rn != "" and $ns != "" and $vl != "" and $bd != "" and $sm != "" and $dg != "") {
-        $ath1 = mysql_query("INSERT INTO zamovlennya (SZ,NZ,TUP_ZAM,TERM,VUD_ROB,PR_OS,IDN,EDRPOU,IPN,SVID,PR,IM,PB,PRIM,
+        $ath1 = mysql_query("INSERT INTO zamovlennya (EA,SZ,NZ,TUP_ZAM,TERM,VUD_ROB,PR_OS,IDN,EDRPOU,IPN,SVID,PR,IM,PB,PRIM,
 	D_NAR,PASPORT,TEL,EMAIL,PRVL,IMVL,PBVL,D_NARVL,PASPORTVL,DOR,RN,NS,VL,BUD,KVAR,SUM,D_PR,DATA_VUH,DATA_GOT)
-	VALUES('$sz','$nz','$v_zm','$term','$id_vr','$priyom','$idn','$edrpou','$ipn','$svid','$pr','$im','$pb','$prim',
+	VALUES('$id_el_arh','$sz','$nz','$v_zm','$term','$id_vr','$priyom','$idn','$edrpou','$ipn','$svid','$pr','$im','$pb','$prim',
 	'$dn','$pasport','$tl','$email','$prvl','$imvl','$pbvl','$dnvl','$pasportvl','$dover','$rn','$ns','$vl','$bd','$kva','$sm','$d_pr','$datav','$dg');");
         if (!$ath1) {
             echo "Замовлення не внесене до БД";
