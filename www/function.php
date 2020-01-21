@@ -342,7 +342,12 @@ function open_dir($dir, $adr)
     if ($dh = opendir($dir)) {
         while (false !== ($file = readdir($dh))) {
             if ($file != "." && $file != "..") {
-                $files .= '<tr><td id="zal" colspan="2"><a href="download_file.php?url=' . $dir . '/' . $file . '">' . $file . '</a></td></tr>';
+                $files .= '<tr><td style="text-align: center;">
+                                    <img class="del-file" src="../images/b_drop.png" data-url="' . $dir . '/' . $file . '" border="0">
+                               </td>
+                               <td id="zal">
+                                    <a href="download_file.php?url=' . $dir . '/' . $file . '">' . $file . '</a>
+                               </td></tr>';
             }
         }
         closedir($dh);

@@ -54,6 +54,8 @@ include "../scriptu.php";
         $('#vulutsya').change(searchArhiv);
         $('#bd, #kv').keyup(searchArhiv);
         $('#e_arhiv').on('click','.set-arh-item', selectArhiv);
+        $('#e_arhiv').on('click','.del-file', delFile);
+        $('#pr, #im, #pb').change(checkEaSelect);
 
         $('#tehpas').change(function () {
             $('#tehpas').each(function () {

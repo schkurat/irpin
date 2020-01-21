@@ -12,12 +12,12 @@ if (!@mysql_select_db(kpbti, $db)) {
     exit();
 }
 $response = '';
-if (isset($_POST['id_ea'])) {
+if ($_POST['action'] == 'select') {
     $ie_ea = $_POST['id_ea'];
     $adr = $_POST['adr'];
-    $dir = 'ea/' . $ie_ea . '/priyom';
+    $dir = 'ea/' . $ie_ea . '/document';
     $response = open_dir($dir, $adr);
-} else {
+} elseif ($_POST['action'] == 'search') {
     $rn = $_POST['rn'];
     $ns = $_POST['ns'];
     $vl = $_POST['vl'];
@@ -44,6 +44,10 @@ if (isset($_POST['id_ea'])) {
         }
         mysql_free_result($ath);
     }
+} elseif ($_POST['action'] == 'delete'){
+    $url = $_POST['url'];
+    $rez = unlink($url);
+    if (!$rez) $response = 'Помилка видалення файла!';
 }
 
 if (mysql_close($db)) {

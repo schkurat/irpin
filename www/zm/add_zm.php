@@ -154,8 +154,8 @@ if ($error == 0) {
             mkdir($katalog . '/document');
             mkdir($katalog . '/technical');
             mkdir($katalog . '/inventory');
-            $katalog .= '/document';
         }
+        $katalog .= '/document';
 
         if (isset($_FILES)) {
             //пролистываем весь массив изображений по одному $_FILES['file']['name'] as $k=>$v
