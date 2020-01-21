@@ -9,7 +9,7 @@ $v_zm = $_POST['vud_zam'];
 $pdv = $_POST['pdv'];
 $term = $_POST['term'];
 if (isset($_POST['kod'])) $idn = $_POST['kod']; else $idn = "";
-//$v_rob
+
 $id_vr = $_POST['vud_rob'];
 $pr = trim($_POST['priz']);
 $im = trim($_POST['imya']);
@@ -20,13 +20,11 @@ for ($zz = 1; $zz <= 12; $zz++) {
 $prim = $doci . $_POST['prim'];
 $dn = $_POST['dnar'];
 $pasport = trim($_POST['pasport']);
-//------------------------
 $prvl = trim($_POST['prizvl']);
 $imvl = trim($_POST['imyavl']);
 $pbvl = trim($_POST['pobatvl']);
 $dnvl = $_POST['dnarvl'];
 $pasportvl = trim($_POST['pasportvl']);
-//------------------------
 
 $edrpou = $_POST['edrpou'];
 $ipn = $_POST['ipn'];
@@ -153,22 +151,19 @@ if ($error == 0) {
         $katalog = 'ea/' . $id_el_arh;
         if (!is_dir($katalog)) {
             mkdir($katalog);
-            $katalog .= '/priyom';
-            if (!is_dir($katalog)) {
-                mkdir($katalog);
-            }
+            mkdir($katalog . '/document');
+            mkdir($katalog . '/technical');
+            mkdir($katalog . '/inventory');
+            $katalog .= '/document';
         }
 
         if (isset($_FILES)) {
             //пролистываем весь массив изображений по одному $_FILES['file']['name'] as $k=>$v
             foreach ($_FILES['file']['name'] as $k => $v) {
                 //директория загрузки
-                $uploaddir = $katalog . '/'; //"/home/sc_zm/$firma$n_zm/";
+                $uploaddir = $katalog . '/';
 
                 //новое имя изображения
-                /* $poz=strrpos($_FILES["file"]["name"][$k],'.');
-                $rez_obr=substr($_FILES["file"]["name"][$k],$poz);
-                $apend=date('YmdHis').rand(100,1000).$rez_obr; */
                 $apend = str_replace(" ", "_", $_FILES["file"]["name"][$k]);
                 //путь к новому изображению
                 $uploadfile = "$uploaddir$apend";
@@ -188,7 +183,6 @@ if ($error == 0) {
                         }
                     }
                     //перемещаем файл из временного хранилища
-                    // mkdir("/home/sc_zm/$firma$n_zm");
                     if (move_uploaded_file($_FILES['file']['tmp_name'][$k], $uploadfile)) {
                         //получаем размеры файла
                         $size = getimagesize($uploadfile);
@@ -198,10 +192,7 @@ if ($error == 0) {
                     echo "<center><br>Можно загружать только изображения в форматах jpg, jpeg, gif и png.</center>";
             }
         }
-
-//-------------------------------------------------------------------------
-
-
+        //-------------------------------------------------------------------------
         if ($v_zm == "1") {
             header("location: zamovlennya.php?filter=drugi_vlasnuku&sz=" . $sz . "&nz=" . $nz . "");
         } else {
@@ -227,4 +218,3 @@ if (mysql_close($db)) {
 } else {
     echo("Не можливо виконати закриття бази");
 }
-?>
