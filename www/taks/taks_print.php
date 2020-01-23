@@ -38,8 +38,9 @@ $pdf->SetXY(05, 05);
 $pdf->SetDrawColor(50, 60, 100);
 
 $idtaks=$_GET['idtaks'];
+$storage = $_GET['storage'];
 
-$sql="SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,
+$sql="SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,
 	zamovlennya.PB,zamovlennya.BUD,zamovlennya.KVAR,nas_punktu.NSP,tup_nsp.TIP_NSP,
 	vulutsi.VUL,tup_vul.TIP_VUL,taks.DATE_T,taks.SUM_OKR,taks.NDS,zamovlennya.PRIM   
 	FROM zamovlennya,taks,nas_punktu,vulutsi,tup_nsp,tup_vul
@@ -64,6 +65,7 @@ $dtak=german_date($aut["DATE_T"]);
 $sum_okr=$aut["SUM_OKR"];
 $nds=$aut["NDS"];
 $prim=$aut["PRIM"];
+$ea = $aut["EA"];
  } 
  mysql_free_result($atu); 
 
@@ -206,5 +208,11 @@ if(mysql_close($db))
           }
 		  
 //виводимо документ на екран
-$pdf->Output('taks.pdf','I');
-?>
+if($storage == 0){
+    $pdf->Output('taks.pdf','I');
+}else{
+    $tax_name = 'ea/' . $ea . '/technical/tax_time_' . date('d_m_Y_H_i_s_'). '.pdf';
+    $pdf->Output($tax_name, 'F');
+    echo "Файл збережено до електронного архіву";
+}
+

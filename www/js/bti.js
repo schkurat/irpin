@@ -59,3 +59,27 @@ function checkEaSelect() {
         alert("Зазначте адресу електронного архіву!");
     }
 }
+
+function addToStorage() {
+    let tax_id = $(this).data("tax-id");
+    let isAdd = confirm("Ви дійсно бажаєте додати таксування до електронного архіву?");
+    if (isAdd){
+
+        let url = 'idtaks=' + tax_id + '&storage=1';
+
+        $.ajax({
+            type: "GET",
+            url: "taks_print.php",
+            data: url,
+            dataType: "html",
+            success: function (html) {
+                if (html > '') {
+                    alert(html);
+                }
+            },
+            error: function (html) {
+                alert(html.error);
+            }
+        });
+    }
+}
