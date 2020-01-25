@@ -6,21 +6,21 @@ $pib="";
 
 $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,
 			rayonu.RAYON,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.BUD,
-			zamovlennya.KVAR,dlya_oformlennya.document,zamovlennya.KEY 
+			zamovlennya.KVAR,dlya_oformlennya.document,zamovlennya.KEY
 		FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya
 		WHERE
 			zamovlennya.SZ=".$sz." AND zamovlennya.NZ=".$nz." AND zamovlennya.VUK='' AND
-			zamovlennya.KODP=".$kodp." AND zamovlennya.DL='1'  
+			zamovlennya.KODP=".$kodp." AND zamovlennya.DL='1'
 			AND rayonu.ID_RAYONA=zamovlennya.RN
 			AND nas_punktu.ID_NSP=zamovlennya.NS
 			AND vulutsi.ID_VUL=zamovlennya.VL
 			AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 			AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
-			AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB"; 
-//echo $sql;			
+			AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB";
+//echo $sql;
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
-  {	
+  {
 /* 	$sz=$aut["SZ"];
 	$nz=$aut["NZ"]; */
 	if($aut["BUD"]!="") $bud="буд.".$aut["BUD"]; else $bud="";
@@ -33,7 +33,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamov
 mysql_free_result($atu);
 if($pib!=''){
 ?>
-<form action="kontrol.php" name="myform" method="get">
+<form action="index.php" name="myform" method="get">
 <table align="center" cellspacing=0 class="zmview">
 <tr>
 <th>Замовлення</th>
@@ -138,7 +138,7 @@ echo $p;
 </tr>
 <tr><td align="center"  colspan="4">
 <input name="Ok" type="submit" value="Зберегти" />
-<a href="kontrol.php?filter=fon">
+<a href="index.php?filter=fon">
 <input name="Cancel" type="button" value="Відміна" />
 </a>
 </td>

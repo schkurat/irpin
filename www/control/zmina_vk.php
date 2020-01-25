@@ -5,20 +5,20 @@ $vk=$_GET['vk'];
 $skl=$_GET['skl'];
 $zv=$_GET['zv'];
 $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,
-						nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,zamovlennya.VUD_ROB AS IDROB, 
+						nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,zamovlennya.VUD_ROB AS IDROB,
 						tup_vul.TIP_VUL,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,
 						zamovlennya.VUK
 				FROM zamovlennya, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 				WHERE
-					zamovlennya.KEY=".$kl." AND zamovlennya.DL='1'  
+					zamovlennya.KEY=".$kl." AND zamovlennya.DL='1'
 					AND nas_punktu.ID_NSP=zamovlennya.NS
 					AND vulutsi.ID_VUL=zamovlennya.VL
 					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
-					AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB"; 			
+					AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB";
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
-  {	
+  {
 	$sz=$aut["SZ"];
 	$nz=$aut["NZ"];
 	if($aut["BUD"]!="") $bud="буд.".$aut["BUD"]; else $bud="";
@@ -28,7 +28,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamov
 	$pib=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
 	$vuk=$aut["VUK"];
 ?>
-<form action="kontrol.php?filter=zmina_vk_update" name="myform" method="post">
+<form action="index.php?filter=zmina_vk_update" name="myform" method="post">
 <table align="center" cellspacing=0 class="zmview">
 <tr><th colspan="4" align="center">Зміна виконавця</th></tr>
 <tr>
@@ -53,8 +53,8 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamov
 <?php
 if($aut["IDROB"]>=19) {$brug=5; $zagl='disabled';}
 else {$brug=1; $zagl='';}
- 
- 
+
+
 $sql1 = "SELECT ROBS,ID_ROB,BRUGADA FROM robitnuku WHERE BRUGADA='$brug' AND DL='1' ORDER BY ROBS";
 $atu1=mysql_query($sql1);
   while($aut1=mysql_fetch_array($atu1))
@@ -68,20 +68,20 @@ echo $p;
 ?>
 </td></tr>
 <tr><td>Дзвінок</td>
-<td><?php 
+<td><?php
 if($zv=='1') echo '<input name="zvon" type="checkbox" value="yes" checked>';
 else echo '<input name="zvon" type="checkbox" value="yes">';
 ?>
 </td></tr>
 <tr><td>Складність</td>
-<td><?php 
+<td><?php
 if($skl=='1') echo '<input name="skl" type="checkbox" value="yes" '.$zagl.' checked>';
 else echo '<input name="skl" type="checkbox" value="yes" '.$zagl.'>';
 ?>
 </td></tr>
 <tr><td align="center"  colspan="2">
 <input name="Ok" type="submit" value="Змінити" />
-<a href="kontrol.php?filter=kontrol_view">
+<a href="index.php?filter=kontrol_view">
 <input name="Cancel" type="button" value="Відміна" />
 </a>
 </td>

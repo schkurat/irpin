@@ -1,7 +1,7 @@
 <?php
 include "../scriptu.php";
 ?>
-<form action="kontrol.php" name="myform" method="get">
+<form action="index.php" name="myform" method="get">
 <table align="center" cellspacing=0 class="zmview">
 <tr><th colspan="2" align="center">Оберіть замовлення</th></tr>
 <tr>
@@ -19,7 +19,7 @@ include "../scriptu.php";
 <input name="Ok" type="submit" value="Пошук" /></td>
 </form>
 <td align="center">
-<a href="kontrol.php?filter=fon">
+<a href="index.php?filter=fon">
 <input name="Cancel" type="button" value="Відміна" />
 </a>
 </td>

@@ -19,7 +19,8 @@ if($krit=="zm"){
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" value="Пошук" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form>
+\<form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" value="Відміна" />
 </form>
@@ -95,7 +96,7 @@ mysql_free_result($atu);
 </td>
 </tr>
 <tr>
-<td>Будинок: 
+<td>Будинок:
 <input name="flag" type="hidden" value="adres" />
 </td>
 <td><input type="text" size="10" maxlength="10" name="bud" value=""/></td>

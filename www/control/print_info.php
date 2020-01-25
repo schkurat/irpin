@@ -15,7 +15,7 @@ if($krit=="got"){
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -38,7 +38,7 @@ if($krit=="nevk"){
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -74,7 +74,7 @@ mysql_free_result($atu1);
 </td></tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -97,7 +97,7 @@ if($krit=="pr_per"){
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -133,7 +133,7 @@ mysql_free_result($atu1);
 </td></tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -159,7 +159,7 @@ if($krit=="vk_d_vuh"){
 </td></tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
@@ -182,7 +182,7 @@ if($krit=="d_vuh"){
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
-</form><form action="kontrol.php?filter=kontrol_view" name="myform" method="post">
+</form><form action="index.php?filter=kontrol_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>

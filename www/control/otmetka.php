@@ -5,11 +5,11 @@ $pas=$_SESSION['PAS'];
 
 $db=mysql_connect("localhost",$lg,$pas);
 if(!$db) echo "Не вiдбулося зєднання з базою даних";
-  
+
  if(!@mysql_select_db(kpbti,$db))
   {
    echo("Не завантажена таблиця");
-   exit(); 
+   exit();
    }
 $kl=$_GET['i'];
 
@@ -37,12 +37,12 @@ else{
 }
 }
 
-//Zakrutie bazu       
+//Zakrutie bazu
        if(mysql_close($db))
         {// echo("Закриття бази даних");
 		}
          else
          {echo("Не можливо виконати закриття бази"); }
-		  
-header("location: pidpus.php");
+
+header("location: index.php");
 ?>
