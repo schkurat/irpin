@@ -1,11 +1,23 @@
 <?php
 include "../function.php";
 
-$inv_spr = $_GET["inv_spr"];
+$id_storage = (isset($_GET['id_storage']))? $_GET['id_storage'] : 0;
+if($id_storage == 0){
+    $sz = $_GET["sz"];
+    $nz = (int)$_GET["nz"];
+    $add_table = ',zamovlennya';
+    $filter = "zamovlennya.SZ='$sz' AND zamovlennya.NZ='$nz' AND zamovlennya.DL='1' AND zamovlennya.EA=arhiv.ID ";
+}else{
+    $filter = "arhiv.ID='$id_storage' ";
+    $add_table = '';
+}
+
 $fl = 0;
-$sql = "SELECT nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV  
-	FROM arhiv,nas_punktu,vulutsi,tup_nsp,tup_vul 
-	WHERE arhiv.N_SPR='$inv_spr' AND nas_punktu.ID_NSP=arhiv.NS 
+$dir = 0;
+$sql = "SELECT arhiv.ID,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV  
+	FROM arhiv,nas_punktu,vulutsi,tup_nsp,tup_vul" . $add_table . " 
+	WHERE " . $filter . " 
+	AND nas_punktu.ID_NSP=arhiv.NS 
 	AND vulutsi.ID_VUL=arhiv.VL 
 	AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP 
 	AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL 
@@ -16,6 +28,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $fl++;
     $obj_ner = objekt_ner(0, $aut["BD"], $aut["KV"]);
     $adr = $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
+    $dir = $aut["ID"];
 }
 mysql_free_result($atu);
 if ($fl != 0) {
@@ -84,10 +97,10 @@ if ($fl != 0) {
 //<tr>
 //<th>' . $adr . '</th>
 //</tr>';
-    $dir = 'ea/' . $inv_spr;
-    if(!is_dir($dir)){
+    $dir = 'ea/' . $dir . '/inventory';
+    if (!is_dir($dir)) {
         mkdir($dir, 0777);
-        $ath1 = mysql_query("INSERT INTO arh_sec(N_SPR) VALUES ('$inv_spr');");
+//        $ath1 = mysql_query("INSERT INTO arh_sec(N_SPR) VALUES ('$dir');");
     }
 
     $sf = 0;
@@ -107,7 +120,7 @@ if ($fl != 0) {
                         ?>
                         <tr>
                             <td align="center">
-                                <a href="earhiv.php?filter=delete_file&url=<?= $kat ?>/<?= $file ?>&inv=<?= $inv_spr ?>">
+                                <a href="earhiv.php?filter=delete_file&url=<?= $kat ?>/<?= $file ?>&sz=<?= $sz ?>&nz=<?= $nz ?>&id_storage=<?= $id_storage ?>">
                                     <img src="../images/b_drop.png" border="0">
                                 </a>
                             </td>
@@ -133,13 +146,15 @@ if ($fl != 0) {
                     ?>
                     <input type="file" name="file[]"><input type="submit" id="submit" value="Завантажити">
                     <input name="id_kat" type="hidden" value="<?= $kat ?>"/>
-                    <input name="inv" type="hidden" value="<?= $inv_spr ?>"/>
+                    <input name="sz" type="hidden" value="<?= $sz ?>"/>
+                    <input name="nz" type="hidden" value="<?= $nz ?>"/>
+                    <input name="id_storage" type="hidden" value="<?= $id_storage ?>"/>
                 </td>
             </tr>
 
         </table>
     </form>
-<?php
+    <?php
 
 //    if (is_dir($dir)) {
 //        $p .= open_sprava($dir, $adr);
@@ -158,7 +173,7 @@ if ($fl != 0) {
 
 //        $ath1 = mysql_query("INSERT INTO arh_sec(N_SPR) VALUES ('$inv_spr');");
 
-       // $p .= open_sprava($dir, $adr);
+    // $p .= open_sprava($dir, $adr);
 
 //    }
 
