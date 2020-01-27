@@ -42,7 +42,7 @@ if($pr!="")
   }
 
   $pb='<table align="center" border="0" cellspacing="0" style="width:900px;"><tr>';
-  $p[0]='<td align="center"><A href="zm/zamovlennya.php">
+  $p[0]='<td align="center"><!--<A href="zm/zamovlennya.php">--><A href="new_zm/index.php">
     <img src="images/new_zm.png" style="width:100px;height:100px" title="Нове замовлення" alt="Нове замовлення" border="0">
     </A></td>';
   $p[1]='<td align="center"><A href="kans/kanselyariya.php">
@@ -54,9 +54,9 @@ if($pr!="")
   $p[3]='<td align="center"><A href="control/index.php">
     <img src="images/control.png" style="width:100px;height:100px" title="Контроль замовлень" alt="Контроль замовлень" border="0">
     </A></td>';
-  $p[4]='<td align="center"><A href="vudacha/vudacha.php">
+  $p[4]='<!--<td align="center"><A href="vudacha/vudacha.php">
     <img src="images/vudacha.png" style="width:100px;height:100px" title="Видача замовлення" alt="Видача замовлення" border="0">
-    </A></td>';
+    </A></td>-->';
   $str='</tr><tr>';
   $p[5]='<!--<td align="center"><A href="pidpus/pidpus.php?filter=pidpus_view&flag=nap">
     <img src="images/pidpus.png" style="width:100px;height:100px" title="Підпис" alt="Підпис" border="0">

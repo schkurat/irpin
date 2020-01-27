@@ -9,7 +9,7 @@
 </tr>
 <tr><td align="center">
 <input name="Ok" type="submit" value="Друк" /></td>
-</form><form action="pidpus.php?filter=pidpus_view" name="myform" method="post">
+</form><form action="index.php?filter=pidpus_view" name="myform" method="post">
 <td align="center">
 <input name="Cancel" type="submit" value="Відміна" />
 </form>

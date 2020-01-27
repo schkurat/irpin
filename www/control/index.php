@@ -65,10 +65,11 @@
     </li>
   	<li><a href="#">Пошук</a>
   		<ul>
-  			<li><a href="index.php?filter=seach&krit=zm">Замовлення</a></li>
+        <li><a href="index.php?filter=seach&krit=zm">Замовлення</a></li>
   			<li><a href="index.php?filter=seach&krit=kont">Власник (Назва)</a></li>
   			<li><a href="index.php?filter=seach&krit=vuk">Виконавець</a></li>
-  			<li><a href="index.php?filter=seach&krit=adr">Адреса</a></li>
+  			<li><a href="index.php?filter=seach&krit=adrk">Адреса</a></li>
+        <li><a href="index.php?filter=seach&krit=adrp">Адреса</a></li>
   		</ul>
   	</li>
   	<li><a href="#">Друк</a>
