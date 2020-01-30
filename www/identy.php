@@ -10,18 +10,18 @@ $pas=$ps;
 
 $db=mysql_connect("localhost",$lg,$pas);
 if(!$db) echo "Не вiдбулося зєднання з базою даних";
-  
+
  if(!@mysql_select_db(kpbti,$db))
   {
    echo("Не завантажена таблиця");
-   exit(); 
+   exit();
    }
  //AND PAS=PASSWORD('$pas')
 $sql = "SELECT * FROM security WHERE LOG='$lg' AND DL='1'";
-					
+
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
- {	
+ {
     $pr=$aut["PR"];
     $im=$aut["IM"];
     $pb=$aut["PB"];
@@ -29,9 +29,9 @@ $sql = "SELECT * FROM security WHERE LOG='$lg' AND DL='1'";
 	$brigada=$aut["BR"];
 	$ddl=$aut['DTL'];
 	}
-mysql_free_result($atu); 
+mysql_free_result($atu);
 
-if($pr!=""){ 
+if($pr!=""){
 $_SESSION['LG']=$lg;
 $_SESSION['PAS']=$pas;
 $_SESSION['PR']=$pr;
@@ -41,15 +41,15 @@ $_SESSION['PD']=$pd;
 $_SESSION['BRIGADA']=$brigada;
 if($ddl=='1') $_SESSION['DDL']='1';
 else $_SESSION['DDL']='0';
- } 
-//Zakrutie bazu--       
+ }
+//Zakrutie bazu--
        if(mysql_close($db))
         {
         // echo("Закриття бази даних");
          }
          else
          {
-          echo("Не можливо виконати закриття бази"); 
-          } 
+          echo("Не можливо виконати закриття бази");
+          }
 header("location: menu.php");
 ?>

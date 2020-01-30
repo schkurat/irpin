@@ -51,7 +51,7 @@ if($pr!="")
   $p[2]='<td align="center"><A href="sys_conf/admin.php">
     <img src="images/admin.png" style="width:100px;height:100px" title="Адміністратор" alt="Адміністратор" border="0">
     </A></td>';
-  $p[3]='<td align="center"><A href="control/index.php">
+  $p[3]='<td align="center"><A href="control2/index.php">
     <img src="images/control.png" style="width:100px;height:100px" title="Контроль замовлень" alt="Контроль замовлень" border="0">
     </A></td>';
   $p[4]='<!--<td align="center"><A href="vudacha/vudacha.php">
