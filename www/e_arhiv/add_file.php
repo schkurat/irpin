@@ -4,7 +4,9 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 include("../function.php");
 $katalog = $_POST['id_kat'];
-$inv = $_POST['inv'];
+$sz = $_POST['sz'];
+$nz = $_POST['nz'];
+$id_storage = $_POST['id_storage'];
 //$adres = $_POST['adres'];
 $page = (isset($_POST['page'])) ? $_POST['page'] : 0;
 $o_file = ($page > 0) ? $_POST['old_file'] : '';
@@ -72,7 +74,7 @@ if (isset($_FILES)) {
                                 $pdf->addPage();
                                 $pdf->useTemplate($templateID2);
                                 $pdf->setSourceFile($first_file_name);
-                            }else{
+                            } else {
                                 $templateID = $pdf->importPage($pageNo);
                                 $pdf->getTemplateSize($templateID);
                                 $pdf->addPage();
@@ -100,5 +102,4 @@ if (mysql_close($db)) {
     echo("Не можливо виконати закриття бази");
 }
 
-header("location: earhiv.php?filter=spr_view&inv_spr=" . $inv);
-?>
+header("location: earhiv.php?filter=spr_view&sz=" . $sz . "&nz=" . $nz . "&id_storage=" . $id_storage);
