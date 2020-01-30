@@ -12,20 +12,20 @@ $kvar=$_POST['kvar'];
 $flg=$_POST['flag'];
 $i=0;
 if($flg=="zm") {$vst="zamovlennya.SZ='$sz' AND zamovlennya.NZ='$nz'";}
-if($flg=="adres") {$vst="zamovlennya.NS='$nas_p' AND zamovlennya.VL='$vyl' AND zamovlennya.BUD='$byd' 
+if($flg=="adres") {$vst="zamovlennya.NS='$nas_p' AND zamovlennya.VL='$vyl' AND zamovlennya.BUD='$byd'
 							AND zamovlennya.KVAR='$kvar'";}
 
  $sql = "SELECT zamovlennya.SUM,zamovlennya.IDN, zamovlennya.KEY, zamovlennya.DOKVUT,zamovlennya.TUP_ZAM,
 	zamovlennya.PR, zamovlennya.IM, zamovlennya.PB, zamovlennya.D_NAR,zamovlennya.TEL,zamovlennya.DOR,
 	tup_nsp.TIP_NSP,nas_punktu.NSP,tup_vul.TIP_VUL,vulutsi.VUL,zamovlennya.BUD,zamovlennya.KVAR,
-	zamovlennya.DATA_GOT,zamovlennya.VUK,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PS,zamovlennya.SUM_KOR 
+	zamovlennya.DATA_GOT,zamovlennya.VUK,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PS,zamovlennya.SUM_KOR
 	FROM zamovlennya,tup_nsp,nas_punktu,tup_vul,vulutsi
-				WHERE 
-				".$vst." AND zamovlennya.DL='1' AND zamovlennya.VD='0'  
+				WHERE
+				".$vst." AND zamovlennya.DL='1' AND zamovlennya.VD='0'
 				AND nas_punktu.ID_NSP=zamovlennya.NS
 				AND vulutsi.ID_VUL=zamovlennya.VL
 				AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
-				AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL"; 
+				AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
 //echo $sql;
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
@@ -55,13 +55,13 @@ if($flg=="adres") {$vst="zamovlennya.NS='$nas_p' AND zamovlennya.VL='$vyl' AND z
 	$dokvut=$aut["DOKVUT"];
 	$sum_kor=$aut["SUM_KOR"];
 	$i=1;
-	} 
+	}
 mysql_free_result($atu);
 if($i==1){
-if($pidpus!='0'){ 
+if($pidpus!='0'){
 if($dokvut=='0000-00-00') $sum=0;
  ?>
-<form action="add_doplata_vudacha.php" name="myform" method="post">
+<form action="add_doplata.php" name="myform" method="post">
 <table align="" class="zmview">
 <tr><th colspan="4" style="font-size: 35px;"><b>Видача</b></th></tr>
 <tr>
@@ -128,13 +128,13 @@ if($dokvut=='0000-00-00') $sum=0;
 <?php
 $taks=0;
 $nds=0;
- $sql = "SELECT taks.SUM,taks.SUM_OKR,taks.NDS FROM taks WHERE taks.IDZM='$kl' AND DL='1'"; 
+ $sql = "SELECT taks.SUM,taks.SUM_OKR,taks.NDS FROM taks WHERE taks.IDZM='$kl' AND DL='1'";
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
  {
  	$taks=$aut["SUM"]+$aut["SUM_OKR"];
 	$nds=$aut["NDS"];
- 	} 
+ 	}
 mysql_free_result($atu);
 if($taks!=0){
 if($sum_kor!=0) $dopl=round($sum_kor,2);
@@ -149,7 +149,7 @@ else {$dopl='не такс.';
 <tr>
 <td>Дата готовності: </td>
 <td><input type="text" size="10" maxlength="10" name="datag" value="<?php echo $dat_g; ?>"/></td>
-<td colspan="2">Виконавець: 
+<td colspan="2">Виконавець:
 <input type="text" size="15" maxlength="15" name="vukon" value="<?php echo $vuk; ?>" />
 <input type="hidden" name="kl" value="<?php echo $kl; ?>" />
 </td>
