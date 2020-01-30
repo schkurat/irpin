@@ -1,4 +1,28 @@
 <?php
+session_start();
+$lg="";
+$pas="";
+
+if (!empty($_SESSION['LG'])) {  $lg=$_SESSION['LG'];}
+if (!empty($_SESSION['PAS'])){ $pas=$_SESSION['PAS'];}
+
+#echo $lg;
+#echo $pas;
+#var_dump($_SESSION);
+
+if(!empty($lg))
+{
+
+$db=mysql_connect("localhost",$lg,$pas);
+if(!$db) echo "Не вiдбулося зєднання з базою даних";
+
+ if(!@mysql_select_db(kpbti,$db))
+  {
+   echo("Не завантажена таблиця");
+   exit();
+   }
+  header("location: menu.php");
+}
 header('Content-Type: text/html; charset=utf-8');
 ?>
 <html>
