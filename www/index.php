@@ -6,10 +6,6 @@ $pas="";
 if (!empty($_SESSION['LG'])) {  $lg=$_SESSION['LG'];}
 if (!empty($_SESSION['PAS'])){ $pas=$_SESSION['PAS'];}
 
-#echo $lg;
-#echo $pas;
-#var_dump($_SESSION);
-
 if(!empty($lg))
 {
 
