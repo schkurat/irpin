@@ -15,7 +15,7 @@ header('Content-Type: text/html; charset=utf-8');
 <link rel="stylesheet" type="text/css" href="../js/autozap.css" />
 <link rel="stylesheet" type="text/css" href="../my.css" />
 <link rel="stylesheet" type="text/css" href="../menu.css" />
-
+  
 <script type="text/javascript" src="../js/scriptbreaker-multiple-accordion-1.js"></script>
 <script language="JavaScript">
 $(document).ready(function() {
@@ -34,11 +34,11 @@ $(document).ready(function() {
 <?php
 $db=mysql_connect("localhost",$lg,$pas);
 if(!$db) echo "Не вiдбулося зєднання з базою даних";
-
+  
  if(!@mysql_select_db(kpbti,$db))
   {
    echo("Не завантажена таблиця");
-   exit();
+   exit(); 
    }
 ?>
 <ul class="topnav">
@@ -74,14 +74,14 @@ if($temp=="")
 </td></tr>
 </table>
 <?php
-//Zakrutie bazu
+//Zakrutie bazu       
        if(mysql_close($db))
         {
         // echo("Закриття бази даних");
          }
          else
          {
-          echo("Не можливо виконати закриття бази");
+          echo("Не можливо виконати закриття бази"); 
           }
 ?>
 </body>

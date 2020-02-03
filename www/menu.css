@@ -55,8 +55,9 @@ ul.topnav ul li a:hover {
     color: black;
 }
 ul.topnav ul ul li a {
-    color: silver;
+    color: #3c3434;
     padding-left: 40px;
+    font-weight: 600;
 }
 ul.topnav ul ul li a:hover {
     background-color: rgb(0, 56, 103);

@@ -15,7 +15,7 @@ $p='<form action="add_vuk.php" name="myform" method="post">
 <th>Скл.</th>
 </tr>';
 
-$sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
+$sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.VUD_ROB,
 		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.KEY,rayonu.RAYON,nas_punktu.NSP,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.BUD,zamovlennya.KVAR,
 		dlya_oformlennya.document,zamovlennya.D_PR,zamovlennya.DATA_VUH,zamovlennya.DATA_GOT,

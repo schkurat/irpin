@@ -4,7 +4,7 @@ include_once "../function.php";
 $url = $_GET['url'];
 $parent_link = json_decode($_GET['parent_link']);
 $adr = unserialize($_GET['adr']);
-$back_link = 'taks.php?filter=zm_for_ea';
+$back_link = 'index.php?filter=pidpus_view&flag=nap';
 
 $dir = 'ea/' . $url;
 $rows = open_dir($dir, $adr);

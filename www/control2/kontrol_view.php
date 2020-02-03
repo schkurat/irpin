@@ -1,6 +1,6 @@
 <?php
 include_once "../function.php";
-
+$kr_fl = '';
 if (isset($_POST['flag'])){
 $flg=$_POST['flag'];
 if($flg=="zm"){ 

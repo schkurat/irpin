@@ -1,23 +1,24 @@
 <?php
-	include "../scriptu.php";
-	$krit=$_GET['krit'];
+include "../scriptu.php";
+$krit=$_GET['krit'];
 
-	if($krit=="zm"){
-		?>
-	<form action="pidpus.php" name="myform" method="get">
-	<table align="center" class="zmview">
-	<tr><th colspan="4" align="center">Пошук по номеру замовлення</th></tr>
-	<tr>
-	<td>Серія замовлення
-	<input name="flag" type="hidden" value="zm" />
-	</td>
-	<td style="width:100px"><input name="szam" type="text" size="6" maxlength="6" value="<?php echo date("dmy");?>"/></td>
-	</tr>
-	<tr>
-		<td>Номер замовлення</td>
-		<td style="width:100px"><input name="nzam" type="text" size="6" maxlength="6" /></td>
-	</tr>
-	<tr><td align="center">
+if($krit=="zm"){
+?>
+<form action="pidpus.php" name="myform" method="get">
+<table align="center" class="zmview">
+<tr><th colspan="4" align="center">Пошук по номеру замовлення</th></tr>
+<tr>
+<td>Серія замовлення
+<input name="flag" type="hidden" value="zm" />
+</td>
+<td style="width:100px"><input name="szam" type="text" size="6" maxlength="6" value="<?php echo date("dmy");?>"/></td>
+</tr>
+<tr>
+<td>Номер замовлення</td>
+<td style="width:100px"><input name="nzam" type="text" size="6" maxlength="6" />
+</td>
+</tr>
+<tr><td align="center">
 <input name="Ok" type="submit" value="Пошук" /></td>
 </form><form action="pidpus.php?filter=pidpus_view" name="myform" method="post">
 <td align="center">
@@ -63,9 +64,9 @@ if($krit=="adr"){
 <select class="sel_ad" id="nas_punkt" name="nsp" required>
 <option value="">Оберіть населений пункт</option>
 <?php
-$sql = "SELECT nas_punktu.ID_NSP,nas_punktu.NSP,tup_nsp.TIP_NSP
-		FROM nas_punktu,tup_nsp
-		WHERE nas_punktu.ID_TIP_NSP=tup_nsp.ID_TIP_NSP
+$sql = "SELECT nas_punktu.ID_NSP,nas_punktu.NSP,tup_nsp.TIP_NSP 
+		FROM nas_punktu,tup_nsp 
+		WHERE nas_punktu.ID_TIP_NSP=tup_nsp.ID_TIP_NSP 
 		ORDER BY nas_punktu.ID_NSP";
  $atu=mysql_query($sql);
  while($aut=mysql_fetch_array($atu))
@@ -87,7 +88,7 @@ mysql_free_result($atu);
 </td>
 </tr>
 <tr>
-<td>Будинок:
+<td>Будинок: 
 <input name="flag" type="hidden" value="adres" />
 </td>
 <td><input type="text" size="10" maxlength="10" name="bud" value=""/></td>
