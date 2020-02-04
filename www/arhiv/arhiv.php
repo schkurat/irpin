@@ -13,9 +13,12 @@ header('Content-Type: text/html; charset=utf-8');
 <title>
     Автоматизована система інвентаризації об'єктів нерухомості
 </title>
-<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>-->
+    <script src="../datp/external/jquery/jquery.js"></script>
+    <script src="../datp/jquery-ui.js"></script>
 <script type="text/javascript" src="../js/autozap.js"></script>
-<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>
+<!--<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="../datp/jquery-ui.css" />
 <link rel="stylesheet" type="text/css" href="../js/autozap.css" />
 <link rel="stylesheet" type="text/css" href="../my.css" />
 <link rel="stylesheet" type="text/css" href="../menu.css" />
@@ -28,6 +31,13 @@ $(document).ready(function() {
 		closedSign: '►',
 		openedSign: '▼'
 	});
+});
+$(function() {
+    $( ".datepicker" ).datepicker();
+    $( ".datepicker" ).datepicker( "option", "dateFormat", "dd.mm.yy" );
+    $( ".datepicker" ).datepicker( "option", "monthNames", ["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"]);
+    $( ".datepicker" ).datepicker( "option", "dayNamesMin", [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ] );
+    $( ".datepicker" ).datepicker( "option", "firstDay", 1 );
 });
 </script>
 </head>
@@ -63,6 +73,14 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
             <li><a href="arhiv.php?filter=">Пошук</a></li>
 	</ul>
     </li>-->
+    <li><a href="#">Обробка каси</a>
+        <ul>
+            <li><a href="arhiv.php?filter=oplata_info">Ручна розноска</a></li>
+            <li><a href="arhiv.php?filter=kasa_view_info">Перегляд</a></li>
+            <li><a href="arhiv.php?filter=protokol_info">Протокол обробки</a></li>
+            <li><a href="arhiv.php?filter=pov_info">Повернення коштів</a></li>
+        </ul>
+    </li>
     <li><a href="#">Архів інвентарний</a>
 	<ul>
             <li><a href="arhiv.php?filter=new_zap_info">Створити запис</a></li>
