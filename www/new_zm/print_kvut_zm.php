@@ -21,7 +21,7 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
 //$vstavka_new='';
 if($tz==2){
 
-$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP, tup_nsp.TIP_NSP,
+$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		yur_kl.ADRES,dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,
 		zamovlennya.SZ,zamovlennya.NZ,yur_kl.PILGA 
 		FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya,yur_kl 
@@ -36,7 +36,7 @@ $patterns1[1] = "[adresa]";
 $patterns1[2] = "[sbpdv]";				
 }
 else{
-$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP, tup_nsp.TIP_NSP,
+$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
 		FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE 
@@ -53,6 +53,7 @@ $atu=mysql_query($sql);
 while($aut=mysql_fetch_array($atu))
 {
 $b_rn=p_buk($aut["RAYON"]);
+    $kod_rn = $aut["ID_RAYONA"];
 $s_rah=0;
 $t_zak=$aut["TUP_ZAM"];
 $dtzak=german_date($aut["D_PR"]);
@@ -69,13 +70,13 @@ if($aut["SUM_D"]!=0) $s_rah=$aut["SUM_D"]; */
 $sum=number_format($aut["SUM"],2,'.','');
 if($t_zak==1){
 $zamovnuk=$aut["PR"].' '.p_buk($aut["IM"]).'.'.p_buk($aut["PB"]).'.';
-$zakaz=$aut["SZ"].'/'.$aut["NZ"].'/'.$b_rn;
+$zakaz=$aut["SZ"].'/'.$aut["NZ"].'/'.$kod_rn;
 $datavuh=german_date($aut["DATA_VUH"]);
 $datagot=german_date($aut["DATA_GOT"]);
 }
 else {
-$zakaz=$aut["SZ"].'/'.$aut["NZ"].'/'.$b_rn;
-$nrah=$aut["SZ"].'/'.$aut["NZ"].'/'.$b_rn;
+$zakaz=$aut["SZ"].'/'.$aut["NZ"].'/'.$kod_rn;
+$nrah=$aut["SZ"].'/'.$aut["NZ"].'/'.$kod_rn;
 $zamovnuk=$aut["PR"];
 $adr_reestr=$aut["ADRES"];
 $edrpou=$aut["EDRPOU"];
