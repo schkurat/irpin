@@ -30,10 +30,10 @@ fwrite($SMSFILE, "\n\n$ucs2text");
 fclose($SMSFILE);
 
 //**********************
-$zamena='<w:proofErr w:type="spellStart"/><w:tr wsp:rsidR="000E2E56" wsp:rsidRPr="00125377" wsp:rsidTr="00E56680"><w:trPr><w:cantSplit/><w:trHeight w:val="199"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="355" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr><w:t>nomer</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc><w:proofErr w:type="spellStart"/><w:tc><w:tcPr><w:tcW w:w="8820" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr><w:t>adresa</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc><w:proofErr w:type="spellStart"/><w:tc><w:tcPr><w:tcW w:w="1440" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:jc w:val="right"/><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr></w:pPr><w:r wsp:rsidRPr="00905240"><w:rPr><w:lang w:val="EN-US"/></w:rPr><w:t>sbpdv</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc></w:tr>';
-$zamena_new='';
-$vstavka='<w:p wsp:rsidR="00187487" wsp:rsidRPr="00C52EBC" wsp:rsidRDefault="00C52EBC" wsp:rsidP="00C52EBC"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr><w:t>     </w:t></w:r><w:proofErr w:type="spellStart"/><w:r wsp:rsidR="00187487" wsp:rsidRPr="00C52EBC"><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/></w:rPr><w:t>adresa</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p>';
-$vstavka_new='';
+//$zamena='<w:proofErr w:type="spellStart"/><w:tr wsp:rsidR="000E2E56" wsp:rsidRPr="00125377" wsp:rsidTr="00E56680"><w:trPr><w:cantSplit/><w:trHeight w:val="199"/></w:trPr><w:tc><w:tcPr><w:tcW w:w="355" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr><w:t>nomer</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc><w:proofErr w:type="spellStart"/><w:tc><w:tcPr><w:tcW w:w="8820" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="EN-US"/></w:rPr><w:t>adresa</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc><w:proofErr w:type="spellStart"/><w:tc><w:tcPr><w:tcW w:w="1440" w:type="dxa"/><w:vAlign w:val="center"/></w:tcPr><w:p wsp:rsidR="000E2E56" wsp:rsidRPr="000E2E56" wsp:rsidRDefault="000E2E56" wsp:rsidP="000E2E56"><w:pPr><w:jc w:val="right"/><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr></w:pPr><w:r wsp:rsidRPr="00905240"><w:rPr><w:lang w:val="EN-US"/></w:rPr><w:t>sbpdv</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p></w:tc></w:tr>';
+//$zamena_new='';
+//$vstavka='<w:p wsp:rsidR="00187487" wsp:rsidRPr="00C52EBC" wsp:rsidRDefault="00C52EBC" wsp:rsidP="00C52EBC"><w:pPr><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr></w:pPr><w:r><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/><w:lang w:val="UK"/></w:rPr><w:t>     </w:t></w:r><w:proofErr w:type="spellStart"/><w:r wsp:rsidR="00187487" wsp:rsidRPr="00C52EBC"><w:rPr><w:sz w:val="20"/><w:sz-cs w:val="20"/></w:rPr><w:t>adresa</w:t></w:r><w:proofErr w:type="spellEnd"/></w:p>';
+//$vstavka_new='';
 
 $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,nas_punktu.NSP, tup_nsp.TIP_NSP,zamovlennya.EMAIL,
 		dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL 
@@ -94,46 +94,46 @@ $smpr=$sumpr.' грн. '.$kop.' коп.';
 $prpdv='';
 }
 
-$file_fiz='raxfak_vudacha.xml';
-$file_fiz_new='kvit_new.xml';
-
-$rahunok="26002283741";
-
-$file = fopen($file_fiz, 'r');
-$text_kvut = fread($file, filesize($file_fiz));
-fclose($file);
-
-$patterns[0] = "[zakaz]";
-$patterns[1] = "[dtk]";
-$patterns[2] = "[kvut]";
-$patterns[3] = "[zamovnuk]";
-$patterns[4] = "[vidrob]";
-$patterns[5] = "[dodat]";
-$patterns[6] = "[adresa]";
-$patterns[7] = "[sum]";
-$patterns[8] = "[smpr]";
-$patterns[9] = "[rahunok]";
-$patterns[10] = "[datavuh]";
-$patterns[11] = "[datagot]";
-
-$replacements[0] = $zakaz;
-$replacements[1] = $dtk;
-$replacements[2] = $kvut;
-$replacements[3] = $zamovnuk;
-$replacements[4] = $vidrob;
-$replacements[5] = $dodat;
-$replacements[6] = $adresa;
-$replacements[7] = $sum;
-$replacements[8] = $smpr;
-$replacements[9] = $rahunok;
-$replacements[10] = $datavuh;
-$replacements[11] = $datagot;
-
-$text_kvut_new=preg_replace($patterns, $replacements,$text_kvut);
-
-$filez = fopen($file_fiz_new, 'w+');
-fwrite($filez,$text_kvut_new);
-fclose($filez);
+//$file_fiz='raxfak_vudacha.xml';
+//$file_fiz_new='kvit_new.xml';
+//
+//$rahunok="26002283741";
+//
+//$file = fopen($file_fiz, 'r');
+//$text_kvut = fread($file, filesize($file_fiz));
+//fclose($file);
+//
+//$patterns[0] = "[zakaz]";
+//$patterns[1] = "[dtk]";
+//$patterns[2] = "[kvut]";
+//$patterns[3] = "[zamovnuk]";
+//$patterns[4] = "[vidrob]";
+//$patterns[5] = "[dodat]";
+//$patterns[6] = "[adresa]";
+//$patterns[7] = "[sum]";
+//$patterns[8] = "[smpr]";
+//$patterns[9] = "[rahunok]";
+//$patterns[10] = "[datavuh]";
+//$patterns[11] = "[datagot]";
+//
+//$replacements[0] = $zakaz;
+//$replacements[1] = $dtk;
+//$replacements[2] = $kvut;
+//$replacements[3] = $zamovnuk;
+//$replacements[4] = $vidrob;
+//$replacements[5] = $dodat;
+//$replacements[6] = $adresa;
+//$replacements[7] = $sum;
+//$replacements[8] = $smpr;
+//$replacements[9] = $rahunok;
+//$replacements[10] = $datavuh;
+//$replacements[11] = $datagot;
+//
+//$text_kvut_new=preg_replace($patterns, $replacements,$text_kvut);
+//
+//$filez = fopen($file_fiz_new, 'w+');
+//fwrite($filez,$text_kvut_new);
+//fclose($filez);
 
 /* $download_size = filesize($file_fiz_new);
 header("Content-type: application/msexcel");
@@ -149,7 +149,7 @@ $povidomlennya2='Доброго дня! Ваше замовлення викон
 Запрошуємо отримати документи. Доплатна сума становить '.$dopl.' грн. 
 В дадатку міститься рахунок-фактура для оплати замовлення.
 Дякуємо, що звернулися!';
-send_mail($email,$tema,$povidomlennya2,"kvit_new.xml");
+//send_mail($email,$tema,$povidomlennya2,"kvit_new.xml");
 /* echo "Замовлення: ".$sz."/".$nz." успішно додане до БД!
 На вашу поштову скриньку ".$email." надіслано листа з договором та рахунком фактурою!"; */
 
