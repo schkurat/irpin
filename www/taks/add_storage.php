@@ -24,6 +24,7 @@ if (isset($_FILES)) {
 
         //Проверка расширений загружаемых изображений
         if ($_FILES['file']['type'][$k] == "image/gif" || $_FILES['file']['type'][$k] == "image/png" ||
+            $_FILES['file']['type'][$k] == "image/vnd.dwg" || $_FILES['file']['type'][$k] == "image/vnd.dxf" ||
             $_FILES['file']['type'][$k] == "image/jpg" || $_FILES['file']['type'][$k] == "image/jpeg" ||
             $_FILES['file']['type'][$k] == "application/pdf" || $_FILES['file']['type'][$k] == "application/msword" ||
             $_FILES['file']['type'][$k] == "application/excel" || $_FILES['file']['type'][$k] == "application/x-excel" ||
