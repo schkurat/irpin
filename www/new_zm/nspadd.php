@@ -3,7 +3,7 @@ session_start();
 $lg=$_SESSION['LG'];
 $pas=$_SESSION['PAS'];
 $rn=$_POST['rajon2'];
-$ns=$_POST['nsp2'];
+$ns=addslashes($_POST['nsp2']);
 $tip=$_POST['tup2'];
 
 $db=mysql_connect("localhost",$lg,$pas);

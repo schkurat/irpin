@@ -23,12 +23,15 @@ if (isset($_FILES)) {
         $uploadfile = "$uploaddir$apend";
 
         //Проверка расширений загружаемых изображений
-        if ($_FILES['file']['type'][$k] == "image/gif" || $_FILES['file']['type'][$k] == "image/png" ||
-            $_FILES['file']['type'][$k] == "image/vnd.dwg" || $_FILES['file']['type'][$k] == "image/vnd.dxf" ||
-            $_FILES['file']['type'][$k] == "image/jpg" || $_FILES['file']['type'][$k] == "image/jpeg" ||
-            $_FILES['file']['type'][$k] == "application/pdf" || $_FILES['file']['type'][$k] == "application/msword" ||
-            $_FILES['file']['type'][$k] == "application/excel" || $_FILES['file']['type'][$k] == "application/x-excel" ||
-            $_FILES['file']['type'][$k] == "application/x-msexcel" || $_FILES['file']['type'][$k] == "application/vnd.ms-excel") {
+//        if ($_FILES['file']['type'][$k] == "image/gif" || $_FILES['file']['type'][$k] == "image/png" ||
+//            $_FILES['file']['type'][$k] == "application/acad" || $_FILES['file']['type'][$k] == "image/x-dwg" ||
+//            $_FILES['file']['type'][$k] == "image/vnd.dwg" || $_FILES['file']['type'][$k] == "image/vnd.dxf" ||
+//            $_FILES['file']['type'][$k] == "image/jpg" || $_FILES['file']['type'][$k] == "image/jpeg" ||
+//            $_FILES['file']['type'][$k] == "application/pdf" || $_FILES['file']['type'][$k] == "application/msword" ||
+//            $_FILES['file']['type'][$k] == "application/excel" || $_FILES['file']['type'][$k] == "application/x-excel" ||
+//            $_FILES['file']['type'][$k] == "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" ||
+//            $_FILES['file']['type'][$k] == "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+//            $_FILES['file']['type'][$k] == "application/x-msexcel" || $_FILES['file']['type'][$k] == "application/vnd.ms-excel") {
             //черный список типов файлов
             $blacklist = array(".php", ".phtml", ".php3", ".php4");
             foreach ($blacklist as $item) {
@@ -43,8 +46,8 @@ if (isset($_FILES)) {
                 $size = getimagesize($uploadfile);
             } else
                 echo "<center><br>Файл не загружен, вернитесь и попробуйте еще раз.</center>";
-        } else
-            echo "<center><br>Можно загружать только изображения в форматах jpg, jpeg, gif и png.</center>";
+//        } else
+//            echo "<center><br>Можно загружать только изображения в форматах jpg, jpeg, gif и png.</center>";
     }
 }
 

@@ -174,6 +174,7 @@ else $ch_def='1';
 ?>   
 <tr>
 <td><select name="<?php echo 's'.$l; ?>">
+        <option></option>
 <?php
 $sql7 = "SELECT ID_ROB,ROBS FROM robitnuku WHERE BRUGADA!=9 AND DL='1' ORDER BY ROBS"; 
  $atu7=mysql_query($sql7);

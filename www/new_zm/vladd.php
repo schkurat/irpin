@@ -4,7 +4,7 @@ $lg=$_SESSION['LG'];
 $pas=$_SESSION['PAS'];
 $rn=$_POST['rajon3'];
 $ns=$_POST['nsp3'];
-$vl=$_POST['vul3'];
+$vl=addslashes($_POST['vul3']);
 $tip=$_POST['tup3'];
 
 $db=mysql_connect("localhost",$lg,$pas);
