@@ -11,7 +11,7 @@ $p = '<table align="center" class="zmview">
 <th>Виконавець</th>
 </tr>';
 
-$sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
+$sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
 	zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.BUD,zamovlennya.VUK,
 	zamovlennya.KVAR,dlya_oformlennya.document,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,
 	tup_vul.TIP_VUL,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
@@ -28,7 +28,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
-    $order = $aut["SZ"] . '/' .$aut["NZ"];
+    $order = get_num_order($aut["ID_RAYONA"],$aut["SZ"],$aut["NZ"]);
     $obj_ner = objekt_ner(0, $aut["BUD"], $aut["KVAR"]);
     $address = $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
     $adr_storage = urlencode(serialize($address));

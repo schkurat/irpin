@@ -60,8 +60,7 @@ $kly = 0;
 $p = '<table class="zmview">
 <tr>
 <th colspan="' . $cssp . '">#</th>
-<th>С.з.</th>
-<th>№.</th>
+<th>Замовлення</th>
 <th>Тип</th>
 <th>Тер.</th>
 <th>Вид робіт</th>
@@ -76,7 +75,7 @@ $p = '<table class="zmview">
 <th>Дата гот.</th>
 </tr>';
 
-$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
+$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.*,nas_punktu.NSP,tup_nsp.TIP_NSP,
 				vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY
 			 FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 				WHERE 
@@ -143,8 +142,7 @@ while ($aut = mysql_fetch_array($atu)) {
 <td align="center">' . $vst_print . '</td>	
 <td align="center">' . $kvut . '</td>
 <td align="center"><a href="index.php?filter=storage&url=' . $aut["EA"] . '/document&parent_link=' . $parent_link . '&adr=' . $adr_storage . '"><img src="../images/database.png" border="0"></a></td>	
-	<td align="center">' . $seriya . '</td>
-      <td align="center">' . $zam . '</td>
+      <td align="center">' . get_num_order($aut["ID_RAYONA"],$seriya,$zam) . '</td>
 	  <td align="center">' . $tz . '</td>
 	  <td align="center">' . $term . '</td>
       <td align="center" id="zal"><a href="index.php?filter=zmina_info&fl=vud_zm&kl=' . $aut["KEY"] . '">' . $aut["document"] . '</a></td>

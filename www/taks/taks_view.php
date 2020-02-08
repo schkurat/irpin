@@ -3,7 +3,7 @@ include_once "../function.php";
 ?>
     <script type="text/javascript">
         $(document).ready(function () {
-            $('#tax').on('click','.add_storage', addToStorage);
+            $('#tax').on('click', '.add_storage', addToStorage);
         });
     </script>
 <?php
@@ -45,8 +45,7 @@ if ($flag == "") {
 $p = '<table id="tax" align="center" class="zmview">
 <tr>
 <th colspan="4">#</th>
-<th>С.з.</th>
-<th>№.</th>
+<th>Замовлення</th>
 <th>Вид робіт</th>
 <th>ПІБ</th>
 <th>Адреса зам.</th>
@@ -56,7 +55,7 @@ $p = '<table id="tax" align="center" class="zmview">
 <th>Виконавець</th>
 <th>#</th>
 </tr>';
-$sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
+$sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
 	zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.BUD,taks.ID_TAKS,zamovlennya.VUK,
 	zamovlennya.KVAR,dlya_oformlennya.document,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,
 	tup_vul.TIP_VUL,taks.DATE_T,taks.SUM,taks.SUM_OKR,taks.NDS,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
@@ -76,7 +75,7 @@ $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
     if ($aut["KVAR"] != "") $kvar = "кв." . $aut["KVAR"]; else $kvar = "";
-    $zakaz = $aut["NZ"];
+    $zakaz = get_num_order($aut["ID_RAYONA"], $aut["SZ"], $aut["NZ"]);
 
     if ($aut["VD"] == 1) {
         $vst1 = '-';
@@ -92,7 +91,6 @@ while ($aut = mysql_fetch_array($atu)) {
 <td align="center">' . $vst3 . '</td>
 <td align="center"><a href="taks_print.php?idtaks=' . $aut["ID_TAKS"] . '&storage=0"><img src="../images/print.png"></a></td>
 <td align="center">' . $vst2 . '</td>
-	<td align="center">' . $aut["SZ"] . '</td>
       <td align="center">' . $zakaz . '</td>
       <td align="center">' . $aut["document"] . '</td>
       <td align="center">' . $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] . '</td>

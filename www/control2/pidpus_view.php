@@ -82,13 +82,14 @@ $(document).ready(
 <th>#</th>
 </tr>';
 
-$sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,
+$sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
 		zamovlennya.PS,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,nas_punktu.NSP,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,
 		zamovlennya.D_PR,zamovlennya.VUK,zamovlennya.DATA_GOT,zamovlennya.SUM,zamovlennya.SUM_KOR
-				FROM zamovlennya, nas_punktu, vulutsi, tup_nsp, tup_vul" . $vst_tbl . "
+				FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul" . $vst_tbl . "
 				WHERE
-					zamovlennya.DL='1' " . $kr_fl . "
+					zamovlennya.DL='1' " . $kr_fl . " 
+					AND rayonu.ID_RAYONA=zamovlennya.RN
 					AND nas_punktu.ID_NSP=zamovlennya.NS
 					AND vulutsi.ID_VUL=zamovlennya.VL
 					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
@@ -104,7 +105,8 @@ while ($aut = mysql_fetch_array($atu)) {
     $address = $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
     $adr_storage = urlencode(serialize($address));
 
-    $zakaz = $aut['SZ'] . '/' . $aut['NZ'];
+    $zakaz = get_num_order($aut["ID_RAYONA"], $aut["SZ"], $aut["NZ"]);
+    $aut['SZ'] . '/' . $aut['NZ'];
 
     $key_zm = $aut['KEY'];
     $dt_got = $aut['DATA_GOT'];

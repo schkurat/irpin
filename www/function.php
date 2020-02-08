@@ -354,3 +354,7 @@ function open_dir($dir, $adr)
     }
     return $files;
 }
+
+function get_num_order($rn,$dt_order,$nz){
+   return str_pad($rn, 2, 0, STR_PAD_LEFT) . $dt_order . str_pad($nz,2,'0',STR_PAD_LEFT);
+}

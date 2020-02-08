@@ -1,18 +1,17 @@
 <?php
 session_start();
-$lg=$_SESSION['LG'];
-$pas=$_SESSION['PAS'];
+$lg = $_SESSION['LG'];
+$pas = $_SESSION['PAS'];
 include_once "../function.php";
-$kl=$_GET['kl'];
+$kl = $_GET['kl'];
 
-$db=mysql_connect("localhost",$lg,$pas);
-if(!$db) echo "Не вiдбулося зєднання з базою даних";
-  
-if(!@mysql_select_db(kpbti,$db))
-  {
-   echo("Не завантажена таблиця");
-   exit(); 
-   }
+$db = mysql_connect("localhost", $lg, $pas);
+if (!$db) echo "Не вiдбулося зєднання з базою даних";
+
+if (!@mysql_select_db(kpbti, $db)) {
+    echo("Не завантажена таблиця");
+    exit();
+}
 
 $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP,rayonu.ID_RAYONA, tup_nsp.TIP_NSP,
 			dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
@@ -23,50 +22,48 @@ $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.N
 		AND rayonu.ID_RAYONA=RN AND nas_punktu.ID_NSP=NS AND vulutsi.ID_VUL=VL
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
-$atu=mysql_query($sql);
-while($aut=mysql_fetch_array($atu))
-{
-$b_rn=p_buk($aut["RAYON"]);
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $b_rn = p_buk($aut["RAYON"]);
     $kod_rn = $aut["ID_RAYONA"];
-$tup_zam=$aut["TUP_ZAM"];
-$ndog=$aut["SZ"].'/'.$aut["NZ"].'/'.$kod_rn;
-$dtzak=german_date($aut["D_PR"]);
-$vidrob=$aut["document"];
-$kod_rob=$aut["id_oform"];
-$edrpou=$aut["EDRPOU"];
-$idn=$aut["IDN"];
-$passport=$aut["PASPORT"];
-$zamovnuk=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
-$tel=$aut["TEL"];
-if($aut["BUD"]!="") $bud="буд.".$aut["BUD"]; else $bud="";
-if($aut["KVAR"]!="") $kvar="кв.".$aut["KVAR"]; else $kvar="";
-$adresa=$aut["TIP_NSP"].' '.$aut["NSP"].' '.$aut["TIP_VUL"].' '.$aut["VUL"].' '.$bud.' '.$kvar;
-/* if($aut["DOKVUT"]!='0000-00-00') $sma=$aut["SUM"];
-if($aut["DODOP"]!='0000-00-00') $smd=$aut["SUM_D"];
-$sum=number_format(($sma+$smd),2,'.','');  */
-$dtpidp=german_date($aut["DATA_VD"]);
+    $tup_zam = $aut["TUP_ZAM"];
+    $ndog = get_num_order($kod_rn, $aut["SZ"], $aut["NZ"]);
+    $dtzak = german_date($aut["D_PR"]);
+    $vidrob = $aut["document"];
+    $kod_rob = $aut["id_oform"];
+    $edrpou = $aut["EDRPOU"];
+    $idn = $aut["IDN"];
+    $passport = $aut["PASPORT"];
+    $zamovnuk = $aut["PR"] . ' ' . $aut["IM"] . ' ' . $aut["PB"];
+    $tel = $aut["TEL"];
+    if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
+    if ($aut["KVAR"] != "") $kvar = "кв." . $aut["KVAR"]; else $kvar = "";
+    $adresa = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ' ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ' ' . $bud . ' ' . $kvar;
+    /* if($aut["DOKVUT"]!='0000-00-00') $sma=$aut["SUM"];
+    if($aut["DODOP"]!='0000-00-00') $smd=$aut["SUM_D"];
+    $sum=number_format(($sma+$smd),2,'.','');  */
+    $dtpidp = german_date($aut["DATA_VD"]);
 }
-mysql_free_result($atu); 
-
- $taks=0;
-$nds=0;
- $sql = "SELECT taks.SUM,taks.SUM_OKR,taks.NDS FROM taks WHERE taks.IDZM='$kl' AND DL='1'"; 
- $atu=mysql_query($sql);
-  while($aut=mysql_fetch_array($atu))
- {
- 	$taks=$aut["SUM"]+$aut["SUM_OKR"];
-	$nds=$aut["NDS"];
- 	} 
 mysql_free_result($atu);
-if($taks!=0){
-$sum=round((($nds+100)*$taks)/100,2);
-} 
 
-$grn=(int)$sum;
-$kop=fract($sum);
-$sumpr=in_str($grn);
-$smpr=$sumpr.' грн. ';
-if($kop!=0) $smpr.=$kop.' коп.';
+$taks = 0;
+$nds = 0;
+$sql = "SELECT taks.SUM,taks.SUM_OKR,taks.NDS FROM taks WHERE taks.IDZM='$kl' AND DL='1'";
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $taks = $aut["SUM"] + $aut["SUM_OKR"];
+    $nds = $aut["NDS"];
+}
+mysql_free_result($atu);
+if ($taks != 0) {
+    $sum = round((($nds + 100) * $taks) / 100, 2);
+}
+
+$grn = (int)$sum;
+$kop = fract($sum);
+$sumpr = in_str($grn);
+$smpr = $sumpr . ' грн. ';
+if ($kop != 0) $smpr .= $kop . ' коп.';
 
 //$file_fiz='akt_fiz_vudacha.xml';
 //$file_fiz_new='akt_fiz_new.xml';
@@ -75,21 +72,20 @@ if($kop!=0) $smpr.=$kop.' коп.';
 //
 //$rahunok="26002283741";
 
-if($tup_zam==2){
-$sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.EDRPOU='$edrpou'";
-$atu=mysql_query($sql);
-while($aut=mysql_fetch_array($atu))
-{
-$zamovnuk=$aut["NAME"];
-$adrzamovn=$aut["ADRES"];
-$tel=$aut["TELEF"];
-$bank=$aut["BANK"];
-$mfo=$aut["MFO"];
-$rahzamovn=$aut["RR"];
-$svzamovn=$aut["SVID"];
-$pnzamovn=$aut["IPN"];
-}
-mysql_free_result($atu);
+if ($tup_zam == 2) {
+    $sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.EDRPOU='$edrpou'";
+    $atu = mysql_query($sql);
+    while ($aut = mysql_fetch_array($atu)) {
+        $zamovnuk = $aut["NAME"];
+        $adrzamovn = $aut["ADRES"];
+        $tel = $aut["TELEF"];
+        $bank = $aut["BANK"];
+        $mfo = $aut["MFO"];
+        $rahzamovn = $aut["RR"];
+        $svzamovn = $aut["SVID"];
+        $pnzamovn = $aut["IPN"];
+    }
+    mysql_free_result($atu);
 //
 //$file = fopen($file_ur, 'r');
 //$text_rah = fread($file, filesize($file_ur));
@@ -240,39 +236,39 @@ $pdf->Text(92, 64, 'від ' . $dtzak . ' року');
 
 $pdf->SetFont('dejavu', '', 10);
 $pdf->SetXY(14, 70);
-$pdf->MultiCell(190, 4, 'Ми, що нижче підписалися, ' . $zamovnuk .' з одного боку, та представник виконавця О.Я.Костиліна з іншого боку, склали цей акт про те, що на підставі наведених документів:
-Замовлення-зобов’язання: № '. $ndog .' від '. $dtzak .' р.
-Виконавцем були виконані наступні роботи (надані такі послуги):' , 0, 'L', 0);
+$pdf->MultiCell(190, 4, 'Ми, що нижче підписалися, ' . $zamovnuk . ' з одного боку, та представник виконавця О.Я.Костиліна з іншого боку, склали цей акт про те, що на підставі наведених документів:
+Замовлення-зобов’язання: № ' . $ndog . ' від ' . $dtzak . ' р.
+Виконавцем були виконані наступні роботи (надані такі послуги):', 0, 'L', 0);
 
 $pdf->SetXY(15, 90);
-$pdf->MultiCell(10, 5, '№ п/п' , 1, 'C', 0);
+$pdf->MultiCell(10, 5, '№ п/п', 1, 'C', 0);
 $pdf->SetXY(25, 90);
-$pdf->MultiCell(100, 10, 'Найменування робіт, послуг' , 1, 'C', 0);
+$pdf->MultiCell(100, 10, 'Найменування робіт, послуг', 1, 'C', 0);
 $pdf->SetXY(125, 90);
-$pdf->MultiCell(10, 5, 'Кіл- сть' , 1, 'C', 0);
+$pdf->MultiCell(10, 5, 'Кіл- сть', 1, 'C', 0);
 $pdf->SetXY(135, 90);
-$pdf->MultiCell(20, 10, 'Од.' , 1, 'C', 0);
+$pdf->MultiCell(20, 10, 'Од.', 1, 'C', 0);
 $pdf->SetXY(155, 90);
-$pdf->MultiCell(25, 10, 'Ціна' , 1, 'C', 0);
+$pdf->MultiCell(25, 10, 'Ціна', 1, 'C', 0);
 $pdf->SetXY(180, 90);
-$pdf->MultiCell(25, 10, 'Сума' , 1, 'C', 0);
+$pdf->MultiCell(25, 10, 'Сума', 1, 'C', 0);
 $pdf->SetXY(15, 100);
-$pdf->MultiCell(10, 10, '1' , 1, 'C', 0);
+$pdf->MultiCell(10, 10, '1', 1, 'C', 0);
 $pdf->SetXY(25, 100);
-$pdf->MultiCell(100, 5, $vidrob . ' за адресою ' . $adresa , 1, 'L', 0);
+$pdf->MultiCell(100, 5, $vidrob . ' за адресою ' . $adresa, 1, 'L', 0);
 $pdf->SetXY(125, 100);
-$pdf->MultiCell(10, 10, '1' , 1, 'C', 0);
+$pdf->MultiCell(10, 10, '1', 1, 'C', 0);
 $pdf->SetXY(135, 100);
-$pdf->MultiCell(20, 10, 'послуга' , 1, 'C', 0);
+$pdf->MultiCell(20, 10, 'послуга', 1, 'C', 0);
 $pdf->SetXY(155, 100);
-$pdf->MultiCell(25, 10, number_format($sum,2) , 1, 'R', 0);
+$pdf->MultiCell(25, 10, number_format($sum, 2), 1, 'R', 0);
 $pdf->SetXY(180, 100);
-$pdf->MultiCell(25, 10, number_format($sum,2) , 1, 'R', 0);
+$pdf->MultiCell(25, 10, number_format($sum, 2), 1, 'R', 0);
 $pdf->SetXY(155, 110);
 $pdf->SetFont('dejavub', '', 9);
-$pdf->MultiCell(25, 10, 'Всього:' , 0, 'R', 0);
+$pdf->MultiCell(25, 10, 'Всього:', 0, 'R', 0);
 $pdf->SetXY(180, 110);
-$pdf->MultiCell(25, 10, number_format($sum,2) , 0, 'R', 0);
+$pdf->MultiCell(25, 10, number_format($sum, 2), 0, 'R', 0);
 
 $pdf->SetFont('dejavub', '', 10);
 $pdf->Text(15, 125, 'Загальна вартість виконаних робіт:');
@@ -299,10 +295,10 @@ $pdf->MultiCell(85, 4, 'Поштова адреса: 08200, Київська о�
 Р/рахунок: UA703204780000026009924432768', 0, 'L', 0);
 
 $pdf->SetXY(110, 167);
-$pdf->MultiCell(85, 4, 'Адреса: '. $adresa .' 
-Телефон: '. $tel .'
-ІПН: '. $idn .'
-Паспорт: '. $pasport , 0, 'L', 0);
+$pdf->MultiCell(85, 4, 'Адреса: ' . $adresa . ' 
+Телефон: ' . $tel . '
+ІПН: ' . $idn . '
+Паспорт: ' . $pasport, 0, 'L', 0);
 
 
 $pdf->SetFont('dejavu', '', 10);
@@ -315,12 +311,9 @@ $pdf->Text(111, 222, $zamovnuk);
 $pdf->Text(16, 227, 'М.П.');
 
 //Zakrutie bazu       
-       if(mysql_close($db))
-        {
-        // echo("Закриття бази даних");
-         }
-         else
-         {
-          echo("Не можливо виконати закриття бази"); 
-          }
+if (mysql_close($db)) {
+    // echo("Закриття бази даних");
+} else {
+    echo("Не можливо виконати закриття бази");
+}
 $pdf->Output('akt.pdf', 'I');

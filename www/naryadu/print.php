@@ -57,14 +57,15 @@ if ($flg == "vk_date_g") {
 }
 
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
-			zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,
+			zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,rayonu.*,
 			tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,
 			zamovlennya.D_PR,zamovlennya.EDRPOU,zamovlennya.IPN,zamovlennya.SVID,
 			zamovlennya.DATA_GOT,zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.TUP_ZAM 
-		FROM zamovlennya,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
+		FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 		WHERE
 			zamovlennya.DL='1' 
 			" . $kr_fl . " 
+			AND rayonu.ID_RAYONA=zamovlennya.RN 
 			AND nas_punktu.ID_NSP=zamovlennya.NS
 			AND vulutsi.ID_VUL=zamovlennya.VL
 			AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
@@ -80,7 +81,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     $ser = $aut1['SZ'];
     $nom = $aut1['NZ'];
     $tup_zam = $aut1['TUP_ZAM'];
-    $zakaz = $ser . '/' . $nom;
+    $zakaz = get_num_order($aut1['ID_RAYONA'], $ser, $nom);
 
     $pr = $aut1["PR"];
     $im = $aut1["IM"];

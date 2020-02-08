@@ -58,14 +58,15 @@ if ($flg == "vk_date_g") {
 }
 
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
-		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,
+		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,rayonu.*,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,
 		dlya_oformlennya.document,zamovlennya.D_PR,zamovlennya.DATA_GOT,zamovlennya.PR_OS,zamovlennya.VUK,
 		zamovlennya.TEL
-		FROM zamovlennya, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
+		FROM zamovlennya,rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE
 		zamovlennya.DL='1'  
 		" . $kr_fl . " 
+		AND rayonu.ID_RAYONA=zamovlennya.RN
 		AND nas_punktu.ID_NSP=zamovlennya.NS
 		AND vulutsi.ID_VUL=zamovlennya.VL
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
@@ -81,7 +82,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     $ser = $aut1['SZ'];
     $nom = $aut1['NZ'];
 
-    $zakaz = $ser . '/' . $nom;
+    $zakaz = get_num_order($aut1["ID_RAYONA"], $ser, $nom);
 
     $pr = $aut1["PR"];
     $im = $aut1["IM"];
@@ -104,6 +105,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     else $pidpus = 'ні';
 
     $id_zm = $aut1["KEY"];
+    $sm_taks = 0;
     $sql2 = "SELECT taks.* FROM taks WHERE IDZM='$id_zm' AND DL='1'";
     $atu2 = mysql_query($sql2);
     while ($aut2 = mysql_fetch_array($atu2)) {
