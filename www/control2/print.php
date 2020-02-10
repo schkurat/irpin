@@ -17,24 +17,37 @@ if (!@mysql_select_db(kpbti, $db)) {
     echo("Не завантажена таблиця");
     exit();
 }
-
+?>
+<html>
+    <head>
+        <title>
+            Автоматизована система інвентаризації об'єктів нерухомості
+        </title>
+        <link rel="stylesheet" type="text/css" href="../my.css"/>
+    </head>
+    <body>
+<?php
 $p = '<b>Період: з  ' . german_date($bdat) . ' по ' . german_date($edat) . '</b>
-	<table border="1" cellpadding="0" cellspacing="0"><tr>
-	<th align="center"><font size="2">Замов лення</font></th>
-	<th align="center"><font size="2">Адреса</font></th>
-	<th align="center"><font size="2">Вид робіт</font></th>
-	<th align="center"><font size="2">ПІБ (назва)</font></th>
-	<th align="center"><font size="2">Дата прийому</font></th>
-	<th align="center"><font size="2">Дата готовності</font></th>
-	<th align="center"><font size="2">Дата авансу</font></th>
-	<th align="center"><font size="2">Дата доплати</font></th>
-	<th align="center"><font size="2">Таксування</font></th>
-	<th align="center"><font size="2">Сплачено</font></th>
-	<th align="center"><font size="2">Виконавець</font></th>
-	<th align="center"><font size="2">Прийом замовлення</font></th>
-	<th align="center"><font size="2">Телефон</font></th>
-	<th align="center"><font size="2">Дзвінок</font></th>
-	<th align="center"><font size="2">Підпис</font></th>
+	<table class="statistic"><tr>
+	<th align="center">Замов лення</th>
+	<th align="center">Адреса</th>
+	<th align="center">Вид робіт</th>
+	<th align="center">ПІБ (назва)</th>
+	<th align="center">Телефон</th>
+	<th align="center">Дата прийому</th>
+	<th align="center">Прийом замовлення</th>
+	<th align="center">Дата готовності</th>
+	<th align="center">Дзвінок</th>
+	<th align="center">Сума авансу</th>
+	<th align="center">Дата авансу</th>
+	<th align="center">Дата виходу</th>
+	<th align="center">Сума доплати</th>
+	<th align="center">Дата доплати</th>
+	<th align="center">Таксування</th>
+	<th align="center">Сплачено</th>
+	<th align="center">Виконавець</th>
+	<th align="center">Дата виконання</th>
+	<th align="center">Видача</th>
 	</tr>
 	';
 
@@ -57,7 +70,7 @@ if ($flg == "vk_date_g") {
     $kr_fl = "AND zamovlennya.DATA_GOT>='$bdat' AND zamovlennya.DATA_GOT<='$edat' AND zamovlennya.VUK='$vukonavets'";
 }
 
-$sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
+$sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,zamovlennya.SUM,zamovlennya.DATA_VUH,zamovlennya.SUM_D,zamovlennya.DATA_PS,zamovlennya.VD,
 		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,rayonu.*,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,
 		dlya_oformlennya.document,zamovlennya.D_PR,zamovlennya.DATA_GOT,zamovlennya.PR_OS,zamovlennya.VUK,
@@ -101,8 +114,8 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     $vukon = $aut1["VUK"];
     if ($vukon == "") $vukon = "-";
     if ($tel == "") $tel = "-";
-    if ($aut1["PS"] == '1') $pidpus = 'так';
-    else $pidpus = 'ні';
+    if ($aut1["PS"] == '1') $vudacha = 'так';
+    else $vudacha = 'ні';
 
     $id_zm = $aut1["KEY"];
     $sm_taks = 0;
@@ -122,21 +135,25 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     mysql_free_result($atu2);
 
     $p .= '<tr>
-	<td align="center"><font size="2">' . $zakaz . '</font></td>
-	<td><font size="2">' . $adres . '</td>
-	<td align="center"><font size="2">' . $vud_rob . '</font></td>
-	<td align="center"><font size="2">' . $fio . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["D_PR"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DATA_GOT"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DOKVUT"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DODOP"]) . '</font></td>
-	<td align="center"><font size="2">' . $sm_taks . '</font></td>
-	<td align="center"><font size="2">' . $sm_opl . '</font></td>
-	<td align="center"><font size="2">' . $vukon . '</font></td>
-	<td align="center"><font size="2">' . $aut1["PR_OS"] . '</font></td>
-	<td align="center"><font size="2">' . $tel . '</font></td>
-	<td align="center"><font size="2">' . $zv . '</font></td>
-	<td align="center"><font size="2">' . $pidpus . '</font></td>
+	<td align="center">' . $zakaz . '</td>
+	<td>' . $adres . '</td>
+	<td align="center">' . $vud_rob . '</td>
+	<td align="center">' . $fio . '</td>
+	<td align="center">' . $tel . '</td>
+	<td align="center">' . german_date($aut1["D_PR"]) . '</td>
+	<td align="center">' . $aut1["PR_OS"] . '</td>
+	<td align="center">' . german_date($aut1["DATA_GOT"]) . '</td>
+	<td align="center">' . $zv . '</td>
+	<td align="center">' . $aut1["SUM"] . '</td>
+	<td align="center">' . german_date($aut1["DOKVUT"]) . '</td>
+	<td align="center">' . german_date($aut1["DATA_VUH"]) . '</td>
+	<td align="center">' . $aut1["SUM_D"] . '</td>
+	<td align="center">' . german_date($aut1["DODOP"]) . '</td>
+	<td align="center">' . $sm_taks . '</td>
+	<td align="center">' . $sm_opl . '</td>
+	<td align="center">' . $vukon . '</td>
+	<td align="center">' . german_date($aut1["DATA_PS"]) . '</td>
+	<td align="center">' . $vudacha . '</td>
 	</tr>';
 }
 mysql_free_result($atu1);
@@ -148,3 +165,5 @@ if (mysql_close($db)) {
     echo("Не можливо виконати закриття бази");
 }
 ?>
+    </body>
+</html>

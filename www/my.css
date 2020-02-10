@@ -195,3 +195,23 @@ a.text-link:hover{
 	color: #fff;
 	background: #a7c2f4;
 }
+table.statistic{
+	border-collapse: collapse;
+}
+.statistic td{
+	border: 1px solid black;
+	font-size: 10px;
+	background: white;
+}
+.statistic th{
+	border: 1px solid black;
+	background: white;
+	color: black;
+	font-size: 12px;
+}
+.statistic tr.alt td {
+	background: #f0f0f0;
+}
+.statistic tr.over td {
+	background: #ffe860;
+}
