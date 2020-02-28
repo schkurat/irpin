@@ -152,8 +152,17 @@ $okug = number_format($sum_okr, 3);
 $razom = number_format($ssum, 2);
 $nalog = number_format($pdv, 2);
 $itogo = number_format($sm_spdv, 2);
+
+$n_god = 0;
+$sql = "SELECT ng FROM ng,zamovlennya WHERE ng.dl='1' AND zamovlennya.D_PR>=ng.dtstart ORDER BY ng.dtstart ASC LIMIT 1";
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $n_god = $aut["ng"];
+}
+mysql_free_result($atu);
+
 $p .= '<tr>
-<td colspan="2">Вартість 1 нормо-години: 132.00</br>
+<td colspan="2">Вартість 1 нормо-години: '. $n_god .'</br>
 Округлення до гривні</br>
 Разом по рахунку:</br>
 ПДВ-20%</br>

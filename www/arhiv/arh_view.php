@@ -94,9 +94,9 @@ $potochka='';
 mysql_free_result($atu1);
 
 $p.='<tr bgcolor="#FFFAF0">
-<td align="center"><a href="arhiv.php?filter=edit_info&id_zp='.$aut["ID"].'"><img src="../images/b_edit.png" border="0"></a></td>
+<td align="center"><a href="arhiv.php?filter=edit_zap_info&zap_id='.$aut["ID"].'"><img src="../images/b_edit.png" border="0"></a></td>
 <td align="center"><a href="arhiv.php?filter=delete_zap&id_zp='.$aut["ID"].'"><img src="../images/b_drop.png" border="0"></a></td>
-	<td align="center" id="zal"><a href="arhiv.php?filter=spr_view&inv_spr='.str_pad($aut["N_SPR"], 6, "0", STR_PAD_LEFT).'">'.str_pad($aut["N_SPR"], 6, "0", STR_PAD_LEFT).'</a></td>
+	<td align="center" id="zal"><a href="arhiv.php?filter=spr_view&inv_spr='.$aut["N_SPR"]/*str_pad($aut["N_SPR"], 7, "0", STR_PAD_LEFT)*/.'">'./*str_pad($aut["N_SPR"], 6, "0", STR_PAD_LEFT)*/$aut["N_SPR"].'</a></td>
 	<td>№'.$aut["NUMB_OBL"].'</br>'.german_date($aut["DT_OBL"]).'</td>
 	<td>'.$aut["TIP_NSP"].$aut["NSP"].' '.$aut["TIP_VUL"].$aut["VUL"].' '.$obj_ner.'</td>
 	<td align="center">'.$aut["PRIM"].'</td>

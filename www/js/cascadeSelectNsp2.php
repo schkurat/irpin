@@ -27,7 +27,7 @@ $nas=$_GET['ns_p'];
 					{
 					while($aut=mysql_fetch_array($ath))
 						{
-						$pr2.='{value:"'.$aut['ID_NSP'].'",text:"'.$aut['NSP'].' '.$aut['TIP_NSP'].'"}';
+						$pr2.='{"value":"'.$aut['ID_NSP'].'","text":"'.$aut['NSP'].' '.$aut['TIP_NSP'].'"}';
 						}
 					}
 					
@@ -41,7 +41,7 @@ $nas=$_GET['ns_p'];
 					{
 					while($aut=mysql_fetch_array($ath))
 						{
-						$pr3.=',{value:"'.$aut['ID_NSP'].'",text:"'.$aut['NSP'].' '.$aut['TIP_NSP'].'"}';
+						$pr3.=',{"value":"'.$aut['ID_NSP'].'","text":"'.$aut['NSP'].' '.$aut['TIP_NSP'].'"}';
 						}
 					}
 					

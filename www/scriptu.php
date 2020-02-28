@@ -297,7 +297,7 @@ $("#brug").autocomplete("../js/robitnuk.php", {
 $(document).ready(function(){
 
   // вибір населеного пункту
-/*   function adjustNaspunkt(){
+   function adjustNaspunktp(){
   	var rayonValue = $("#r_pd").val();
 	var nas_p = $("#idns").val();
   	var tmpSelect = $("#nas_p_pd");
@@ -306,10 +306,10 @@ $(document).ready(function(){
   		tmpSelect.clearSelect();
   		adjustVulutsya();
   	} else {
-  		$.getJSON("../js/cascadeSelectNsp2.php",{rayon:rayonValue,ns_p:nas_p},function(data) { tmpSelect.fillSelect(data).attr("disabled",false); adjustVulutsya(); });
+  		$.getJSON("../js/cascadeSelectNsp2.php",{rayon:rayonValue,ns_p:nas_p},function(data) { tmpSelect.fillSelect(data).attr("disabled",false); adjustVulutsyap(); });
   		
   	}
-  }; */
+  };
   // вибір вулиці
   function adjustVulutsyap(){
   	var nspValue = $("#nas_p_pd").val();
@@ -323,10 +323,10 @@ $(document).ready(function(){
 	}
   };
 	
-  $("#nas_p_pd").change(function(){
-  	adjustVulutsyap();
+  $("#r_pd").change(function(){
+      adjustNaspunktp();
   }).change();
-  //$("#nas_p_pd").change(adjustVulutsya);
+  $("#nas_p_pd").change(adjustVulutsyap);
 });
 //---------------------------End select adress podst--------------------------------------------
 //------------------------Begin masked input--------------------------------------

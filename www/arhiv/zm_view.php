@@ -16,8 +16,10 @@ $kv = $_GET['kvar'];
 //$pr=$_GET['priz'];
 if (isset($_GET['npr'])) {
     $npr = date_bd($_GET['npr']);
+	$npr1 = $_GET['npr'];
     if (isset($_GET['kpr'])) {
         $kpr = date_bd($_GET['kpr']);
+		$kpr1 = $_GET['kpr'];
 //$kr_zak=$_GET['vud_zam'];
         $posluga = $_GET['posluga'];
 //if($kr_zak==3) $fl_vst='';
@@ -72,18 +74,18 @@ $p = '<table class="zmview">
 <th>Дата пр.</th>
 </tr>';
 
-$sql = "SELECT arhiv_zakaz.*,arhiv_jobs.name,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
-				vulutsi.VUL,tup_vul.TIP_VUL
-			 FROM arhiv_zakaz, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, arhiv_jobs
+$sql = "SELECT arhiv_zakaz.*,arhiv_jobs.name/*,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
+				vulutsi.VUL,tup_vul.TIP_VUL*/
+			 FROM arhiv_zakaz,/* rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul,*/ arhiv_jobs
 				WHERE 
 					" . $flag . "
 					AND arhiv_zakaz.DL='1'  
 					AND arhiv_jobs.id=VUD_ROB
-					AND rayonu.ID_RAYONA=RN
+					/*AND rayonu.ID_RAYONA=RN
 					AND nas_punktu.ID_NSP=NS
 					AND vulutsi.ID_VUL=VL
 					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
-					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
+					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL*/
 					ORDER BY arhiv_zakaz.KEY DESC";
 //echo $sql;
 $atu = mysql_query($sql);
@@ -110,8 +112,8 @@ while ($aut = mysql_fetch_array($atu)) {
 
     $vst_bl2 = '<td align="center"><a href="print_akt_transfer.php?kl=' . $aut["KEY"] . '"><img src="../images/akt.png" border="0"></a></td>';
 
-    $kvut = '<a href="print_kvut.php?kl=' . $aut["KEY"] . '&tz=' . $aut["TUP_ZAM"] . '"><img src="../images/kvut.png" border="0"></a>';
-
+    $kvut = '<a href="print_kvut.php?kl=' . $aut["KEY"] . '"><img src="../images/kvut.png" border="0"></a>';
+/*
     $dop_adr = '';
     $sql1 = "SELECT arhiv_dop_adr.*,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
 				vulutsi.VUL,tup_vul.TIP_VUL
@@ -128,13 +130,18 @@ while ($aut = mysql_fetch_array($atu)) {
     $atu1 = mysql_query($sql1);
     while ($aut1 = mysql_fetch_array($atu1)) {
         $obj_ner_dop = objekt_ner(0, $aut1["bud"], $aut1["kvar"]);
-        $dop_adr .= '<div>' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div>';
+        $dop_adr .= '
+					<a href ="#" class="add_to_arh" alt="текст">
+					</a>
+					<a href ="#" class="back_zm" alt="текст">
+					</a>
+		<div>' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
     }
     mysql_free_result($atu1);
 
-    $address = '<div>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner . '</div>' . $dop_adr;
-
-
+    //$address = '<div>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner . '</div>' . $dop_adr;
+	$address = $dop_adr;
+*/
     $p .= '<tr bgcolor="#FFFAF0">
 ' . $vst_bl . $vst_bl2 . '
 <td align="center">' . $vst_print . '</td>	
@@ -147,7 +154,42 @@ while ($aut = mysql_fetch_array($atu)) {
 	<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">' . $aut["PRIM"] . '</a></td>
         <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=telefon&kl=' . $aut["KEY"] . '">' . $aut["TEL"] . '<br>' . $aut["EMAIL"] . '</a></td>
 	  <!--<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=email&kl=' . $aut["KEY"] . '">' . $mulo . '</a></td>-->
-      <td id="zal" style="font-size: 12px;"><a href="arhiv.php?filter=zmina_info&fl=adres&kl=' . $aut["KEY"] . '">' . $address . '</a></td>
+      <td id="zal" style="font-size: 12px;">';
+	  $dop_adr = '';
+ $sql1 = "SELECT arhiv_dop_adr.*, arhiv_dop_adr.id AS ID, rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
+			vulutsi.VUL,tup_vul.TIP_VUL
+			 FROM arhiv_dop_adr, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul
+				WHERE 
+					arhiv_dop_adr.id_zm='$zm_id' 
+					AND rayonu.ID_RAYONA=arhiv_dop_adr.rn
+					AND nas_punktu.ID_NSP=arhiv_dop_adr.ns
+					AND vulutsi.ID_VUL=arhiv_dop_adr.vl
+					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
+					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
+					ORDER BY arhiv_dop_adr.id DESC";
+    //echo $sql1;
+    $atu1 = mysql_query($sql1);
+    while ($aut1 = mysql_fetch_array($atu1)) {
+        $obj_ner_dop = objekt_ner(0, $aut1["bud"], $aut1["kvar"]);
+		//var_dump($aut1);
+		if  ($aut1["status"]=="0"){ 
+			$dop_adr .= '
+					<a href ="http://ibti.pp.ua/arhiv/arhiv.php?filter=edit_zap_info&adr_id='. $aut1["id"] .'" class="add_to_arh" alt="текст">
+					</a>
+					<a href ="http://ibti.pp.ua/arhiv/arhiv.php?filter=edit_status&adr_id='. $aut1["id"] .'&npr='.$npr1.'&kpr='.$kpr1 .'&posluga='.$pos.'" class="back_zm" alt="текст">
+					</a>
+		<div><a href="arhiv.php?filter=dop_adr_edit&kl='. $aut1["id"] .'">'. $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</a></div><div style="clear: both"></div>';
+		} 
+		else
+		{
+			$dop_adr .= '<div style="color:gray;">'. $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
+		}
+    }
+    mysql_free_result($atu1);
+	  $address = $dop_adr;
+	  
+	  
+	  $p .=  $address . '</td>
 	  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '"><img src="../images/plus.png"></a></td>
 	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . $aut["SUM"] . '</a></td>
 	  <td align="center">' . $d_pr . '</td>

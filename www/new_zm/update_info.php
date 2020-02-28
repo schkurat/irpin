@@ -15,7 +15,7 @@ $dn=$_POST['dnar'];
 $pasport=$_POST['pasport'];
 $tl=$_POST['tel'];
 $email=$_POST['email'];
-//$rn=$_POST['rajon'];
+$rn=$_POST['rjn'];
 $ns=$_POST['nsp'];
 $vl=$_POST['vyl'];
 $bd=$_POST['bud'];
@@ -43,7 +43,7 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
 
 $ath1=mysql_query("UPDATE zamovlennya SET TUP_ZAM='$v_zm',VUD_ROB='$id_vr',IDN='$idn',
 		PR='$pr',IM='$im',PB='$pb',PRIM='$prim',D_NAR='$dn',PASPORT='$pasport',TEL='$tl',EMAIL='$email',
-		NS='$ns',VL='$vl',BUD='$bd',KVAR='$kv',SUM='$sm',DATA_VUH='$d_vh',
+		RN='$rn',NS='$ns',VL='$vl',BUD='$bd',KVAR='$kv',SUM='$sm',DATA_VUH='$d_vh',
 		DATA_GOT='$dg' WHERE zamovlennya.KEY='$kl'");
 	
 	

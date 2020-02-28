@@ -19,7 +19,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
    $pr4=']';
 
    $rn=$_GET['rayon'];
-   
+  // $ns=$_GET['nsp'];
    if($rn!=""){
 				$ath=mysql_query("SELECT nas_punktu.ID_NSP,nas_punktu.NSP, nas_punktu.ID_TIP_NSP,tup_nsp.TIP_NSP 
 						FROM nas_punktu,tup_nsp WHERE nas_punktu.ID_RN='$rn' AND nas_punktu.ID_TIP_NSP=tup_nsp.ID_TIP_NSP ORDER BY NSP");

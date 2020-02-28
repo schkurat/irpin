@@ -55,7 +55,7 @@ $file_fiz='kvit_vudacha.xml';
 $file_fiz_new='kvit_new.xml';
 
 
-$rahunok="26002283741";
+$rahunok="UA81 321842 00000 26005053135536";
 
 
 $file = fopen($file_fiz, 'r');

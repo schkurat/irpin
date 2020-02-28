@@ -30,27 +30,27 @@ function net_fokusa(eventObj)
 <tr><td>
 <input name="1" type="checkbox" value="pr1"/>Прийом замовлення
 </td><td>
-<input name="2" type="checkbox" value="pr2"/>Канцелярія
+<input name="2" type="checkbox" value="pr2"/>Розподіл/контроль замовл.
 </td><td>
 <input name="3" type="checkbox" value="pr3"/>Адміністратор
 </td><td>
-<input name="4" type="checkbox" value="pr4"/>Розподіл/контроль замовл.
+<input name="4" type="checkbox" value="pr4"/>Таксування 
 </td></tr>
 <tr><td>
-<input name="5" type="checkbox" value="pr5"/>Видача замовлень
+<input name="5" type="checkbox" value="pr5"/>Ще не існуючий блок
 </td><td>
-<input name="6" type="checkbox" value="pr6"/>Підпис замовлення
+<input name="6" type="checkbox" value="pr6"/>Ще не існуючий блок
 </td><td>
-<input name="7" type="checkbox" value="pr7"/>Бухгалтерія
+<input name="7" type="checkbox" value="pr7"/>Зведення нарядів
 </td><td>
-<input name="8" type="checkbox" value="pr8"/>Архів
+<input name="8" type="checkbox" value="pr8"/>Електронний архів
 </td></tr>
 <tr><td>
 <input name="9" type="checkbox" value="pr9"/>Книга оліку самоч. буд.
 </td><td>
-<input name="10" type="checkbox" value="pr10"/>Електронний архів
+<input name="10" type="checkbox" value="pr10"/>Архів
 </td><td>
-<input name="11" type="checkbox" value="pr11"/>Таксування
+<input name="11" type="checkbox" value="pr11"/>Канцелярія
 </td><td>
 <input name="12" type="checkbox" value="pr12"/>Реєстрація
 </td>
@@ -65,7 +65,9 @@ function net_fokusa(eventObj)
 <input name="15" type="checkbox" value="pr15"/>Ще не існуючий блок
 </td>
 </tr>
-<!--<tr><th colspan="4">Доступ до філій</th></tr>-->
+<!--<tr><th colspan="4">Доступ до філій</th></tr>
+
+-->
 <?php
 /* $kk=0;
 $sql = "SELECT spr_nr.ID,spr_nr.NAS FROM spr_nr ORDER BY ID";

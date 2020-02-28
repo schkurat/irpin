@@ -33,6 +33,8 @@ $im = $_SESSION['IM'];
 $pb = $_SESSION['PB'];
 $pd = $_SESSION['PD'];
 
+
+
 if ($pr != "") {
     $privet = '<tr style="height: 50px;"><td colspan="7"><font size="5"> Доброго дня ' . $pr . ' ' . $im . ' ' . $pb . '</font><br></td></tr>';
     $filter = array("disabled", "disabled", "disabled", "disabled", "disabled", "disabled", "disabled",

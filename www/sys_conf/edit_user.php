@@ -39,27 +39,27 @@ $pidpus="checked";
 <tr><td>
 <input name="1" type="checkbox" value="pr1" <?php echo $mas1[0]; ?>/>Прийом замовлення
 </td><td>
-<input name="2" type="checkbox" value="pr2" <?php echo $mas1[1]; ?>/>Канцелярія
+<input name="2" type="checkbox" value="pr2" <?php echo $mas1[1]; ?>/>Розподіл/контроль замовл.
 </td><td>
 <input name="3" type="checkbox" value="pr3" <?php echo $mas1[2]; ?>/>Адміністратор
 </td><td>
-<input name="4" type="checkbox" value="pr4" <?php echo $mas1[3]; ?>/>Розподіл/контроль замовл.
+<input name="4" type="checkbox" value="pr4" <?php echo $mas1[3]; ?>/>Таксування
 </td></tr>
 <tr><td>
-<input name="5" type="checkbox" value="pr5" <?php echo $mas1[4]; ?>/>Видача замовлень
+<input name="5" type="checkbox" value="pr5" <?php echo $mas1[4]; ?>/>Ще не існуючий блок
 </td><td>
-<input name="6" type="checkbox" value="pr6" <?php echo $mas1[5]; ?>/>Підпис замовлення
+<input name="6" type="checkbox" value="pr6" <?php echo $mas1[5]; ?>/>Ще не існуючий блок
 </td><td>
-<input name="7" type="checkbox" value="pr7" <?php echo $mas1[6]; ?>/>Бухгалтерія
+<input name="7" type="checkbox" value="pr7" <?php echo $mas1[6]; ?>/>Зведення нарядів
 </td><td>
-<input name="8" type="checkbox" value="pr8" <?php echo $mas1[7]; ?>/>Архів
+<input name="8" type="checkbox" value="pr8" <?php echo $mas1[7]; ?>/>Електронний архів
 </td></tr>
 <tr><td>
 <input name="9" type="checkbox" value="pr9" <?php echo $mas1[8]; ?>/>Книга оліку самоч. буд.
 </td><td>
-<input name="10" type="checkbox" value="pr10" <?php echo $mas1[9]; ?>/>Електронний архів
+<input name="10" type="checkbox" value="pr10" <?php echo $mas1[9]; ?>/>Архів
 </td><td>
-<input name="11" type="checkbox" value="pr11" <?php echo $mas1[10]; ?>/>Таксування
+<input name="11" type="checkbox" value="pr11" <?php echo $mas1[10]; ?>/>Канцелярія
 </td><td>
 <input name="12" type="checkbox" value="pr12" <?php echo $mas1[11]; ?>/>Реєстрація
 </td></tr>

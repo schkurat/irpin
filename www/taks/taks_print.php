@@ -185,8 +185,16 @@ if ($text_skl != '') {
     $nadb = 10;
 }
 
+$n_god = 0;
+$sql = "SELECT ng FROM ng,zamovlennya WHERE ng.dl='1' AND zamovlennya.D_PR>=ng.dtstart ORDER BY ng.dtstart ASC LIMIT 1";
+$atu = mysql_query($sql);
+while ($aut = mysql_fetch_array($atu)) {
+    $n_god = $aut["ng"];
+}
+mysql_free_result($atu);
+
 $pdf->SetFont('dejavu', '', 10);
-$pdf->Text(19, 52 + $it + $nadb + 5, 'Вартість 1 нормо-години: 132,00');
+$pdf->Text(19, 52 + $it + $nadb + 5, 'Вартість 1 нормо-години: '. $n_god);
 $pdf->Text(19, 52 + $it + $nadb + 10, 'Округлення до гривні');
 $pdf->Text(182, 52 + $it + $nadb + 10, (string)number_format($sum_okr, 3));
 $pdf->Text(19, 52 + $it + $nadb + 15, 'Разом по рахунку:');
