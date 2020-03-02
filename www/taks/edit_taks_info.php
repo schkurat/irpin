@@ -80,20 +80,10 @@ mysql_free_result($atu);
                     data: 'nrob=' + $("#nov_rob").val() + '&nom=' + $("select:last").attr("name"),
                     dataType: "html",
                     success: function (html) {
-                        var reply = html.split(":", 9);
+                        var reply = html.split(":", 10);
                         if (reply[0] != '') {
                             $(".zmview").append('<tr>\
-<td><select name="s' + reply[8] + '">\
-<option value=""></option>\
-<option value="1">Бюро</option>\
-<option value="4">Голуб Г.О.</option>\
-<option value="8">Ільїн М.Ю.</option>\
-<option value="9">Величко Г.А.</option>\
-<option value="10">Соловей О.А.</option>\
-<option value="11">Ішутко В.Г.</option>\
-<option value="12">Петренко Г.А.</option>\
-</select>\
-</td>\
+<td>' + reply[9] + '</td>\
 <td>' + reply[1] + '</td>\
 <td>' + reply[2] + '</td>\
 <td>' + reply[3] + '</td>\
