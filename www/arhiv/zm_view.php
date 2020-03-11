@@ -62,8 +62,7 @@ $kly = 0;
 $p = '<table class="zmview">
 <tr>
 <th colspan="' . $cssp . '">#</th>
-<th>С.з.</th>
-<th>№.</th>
+<th>Замовлення</th>
 <th>Замовник</th>
 <th>Тип справи</th>
 <th>Сертифікована особа</th>
@@ -92,8 +91,8 @@ $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     $kly++;
     $d_pr = german_date($aut["D_PR"]);
-    $seriya = $aut["SZ"];
-    $zam = $aut["NZ"];
+//    $seriya = $aut["SZ"];
+//    $zam = $aut["NZ"];
     $zm_id = $aut["KEY"];
     $job_type = $aut["type"];
 
@@ -114,51 +113,8 @@ while ($aut = mysql_fetch_array($atu)) {
     $vst_bl2 = '<td align="center"><a href="print_akt_transfer.php?kl=' . $aut["KEY"] . '"><img src="../images/akt.png" border="0"></a></td>';
 
     $kvut = '<a href="print_kvut.php?kl=' . $aut["KEY"] . '"><img src="../images/kvut.png" border="0"></a>';
-    /*
-        $dop_adr = '';
-        $sql1 = "SELECT arhiv_dop_adr.*,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
-                    vulutsi.VUL,tup_vul.TIP_VUL
-                 FROM arhiv_dop_adr, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul
-                    WHERE
-                        arhiv_dop_adr.id_zm='$zm_id'
-                        AND rayonu.ID_RAYONA=arhiv_dop_adr.rn
-                        AND nas_punktu.ID_NSP=arhiv_dop_adr.ns
-                        AND vulutsi.ID_VUL=arhiv_dop_adr.vl
-                        AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
-                        AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
-                        ORDER BY arhiv_dop_adr.id DESC";
-        // echo $sql1;
-        $atu1 = mysql_query($sql1);
-        while ($aut1 = mysql_fetch_array($atu1)) {
-            $obj_ner_dop = objekt_ner(0, $aut1["bud"], $aut1["kvar"]);
-            $dop_adr .= '
-                        <a href ="#" class="add_to_arh" alt="текст">
-                        </a>
-                        <a href ="#" class="back_zm" alt="текст">
-                        </a>
-            <div>' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
-        }
-        mysql_free_result($atu1);
 
-        //$address = '<div>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner . '</div>' . $dop_adr;
-        $address = $dop_adr;
-    */
-    $customer = ($job_type != 2) ? $aut["SUBJ"] : $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"];
-    $srt_worker = ($job_type != 2) ? $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] : '';
-
-    $p .= '<tr bgcolor="#FFFAF0">
-' . $vst_bl . $vst_bl2 . '
-<td align="center">' . $vst_print . '</td>	
-<td align="center">' . $kvut . '</td>	
-	<td align="center">' . $seriya . '</td>
-      <td align="center">' . $zam . '</td>
-      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=subj&kl=' . $aut["KEY"] . '">' . $customer . '</a></td>    
-      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
-      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>
-	<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">' . $aut["PRIM"] . '</a></td>
-        <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=telefon&kl=' . $aut["KEY"] . '">' . $aut["TEL"] . '<br>' . $aut["EMAIL"] . '</a></td>
-	  <!--<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=email&kl=' . $aut["KEY"] . '">' . $mulo . '</a></td>-->
-      <td id="zal" style="font-size: 12px;">';
+    $rayon = 0;
     $dop_adr = '';
     $sql1 = "SELECT arhiv_dop_adr.*, arhiv_dop_adr.id AS ID, rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
 			vulutsi.VUL,tup_vul.TIP_VUL
@@ -174,6 +130,7 @@ while ($aut = mysql_fetch_array($atu)) {
     //echo $sql1;
     $atu1 = mysql_query($sql1);
     while ($aut1 = mysql_fetch_array($atu1)) {
+        $rayon = $aut1["rn"];
         $obj_ner_dop = objekt_ner(0, $aut1["bud"], $aut1["kvar"]);
         //var_dump($aut1);
         if ($aut1["status"] == "0") {
@@ -190,8 +147,23 @@ while ($aut = mysql_fetch_array($atu)) {
     mysql_free_result($atu1);
     $address = $dop_adr;
 
+    $order = get_num_order($rayon,$aut["SZ"],$aut["NZ"]);
 
-    $p .= $address . '</td>
+    $customer = ($job_type != 2) ? $aut["SUBJ"] : $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"];
+    $srt_worker = ($job_type != 2) ? $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] : '';
+
+    $p .= '<tr bgcolor="#FFFAF0">
+' . $vst_bl . $vst_bl2 . '
+<td align="center">' . $vst_print . '</td>	
+<td align="center">' . $kvut . '</td>	
+      <td align="center">' . $order . '</td>
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=subj&kl=' . $aut["KEY"] . '">' . $customer . '</a></td>    
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>
+	<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">' . $aut["PRIM"] . '</a></td>
+        <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=telefon&kl=' . $aut["KEY"] . '">' . $aut["TEL"] . '<br>' . $aut["EMAIL"] . '</a></td>
+	  <!--<td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=email&kl=' . $aut["KEY"] . '">' . $mulo . '</a></td>-->
+      <td id="zal" style="font-size: 12px;">' . $address . '</td>
 	  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '"><img src="../images/plus.png"></a></td>
 	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . $aut["SUM"] . '</a></td>
 	  <td align="center">' . $d_pr . '</td>
