@@ -5,8 +5,7 @@ $kly = 0;
 $p = '<table class="zmview">
 <tr>
 <!--<th>#</th>-->
-<th>С.з.</th>
-<th>№.</th>
+<th>Замовлення</th>
 <th>Замовник</th>
 <th>Тип справи</th>
 <th>Сертифікована особа</th>
@@ -42,11 +41,11 @@ while ($aut = mysql_fetch_array($atu)) {
     $kly++;
     $d_pr = german_date($aut["D_PR"]);
 
-    $seriya = $aut["SZ"];
-    $zam = $aut["NZ"];
+//    $seriya = $aut["SZ"];
+//    $zam = $aut["NZ"];
 
     //$obj_ner = objekt_ner(0, $aut["bud"], $aut["kvar"]);
-	
+    $rayon = 0;
 	$sql_adr = 'SELECT arhiv_dop_adr.*, rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		    vulutsi.VUL,tup_vul.TIP_VUL
 		FROM   rayonu, nas_punktu,  tup_nsp, vulutsi, tup_vul, arhiv_dop_adr
@@ -63,6 +62,7 @@ while ($aut = mysql_fetch_array($atu)) {
 	$atu2 = mysql_query($sql_adr);
 	$adr = '';
 	while ($aut2 = mysql_fetch_array($atu2)) {
+        $rayon = $aut2["rn"];
 		if ($aut2["VD"]==0)
 		{
 		$adr .= '<form action="vudacha.php" metod="GET" style="margin:3px 0;">
@@ -74,11 +74,11 @@ while ($aut = mysql_fetch_array($atu)) {
 			$adr .= $aut2["RAYON"] . ' ' . $aut2["TIP_NSP"] .' '. $aut2["NSP"] .' '. $aut2["TIP_VUL"] . $aut2["VUL"].' '.(!empty($aut2["bud"]) ? 'буд. '.$aut2["bud"] : '').' '.(!empty($aut2["kvar"]) ? 'кв. '.$aut2["kvar"] : '');
 		}
 	}
+    $order = get_num_order($rayon, $aut["SZ"], $aut["NZ"]);
 
     $p .= '<tr bgcolor="#FFFAF0">
         <!--<td align="center" id="zal"><a href="arhiv.php?filter=vudacha_info&kl=' . $aut["KEY"] . '">Видати</a></td>	-->
-        <td align="center">' . $seriya . '</td>
-        <td align="center">' . $zam . '</td>
+        <td align="center">' . $order . '</td>
         <td align="center">' . $aut["SUBJ"] . '</td>    
         <td align="center">' . $aut["name"] . '</td>
         <td align="center">' . $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] . '</a></td>
