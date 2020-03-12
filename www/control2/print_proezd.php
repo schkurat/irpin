@@ -9,6 +9,8 @@ include "../function.php";
 $bdat=date_bd($_POST['date1']);
 $edat=date_bd($_POST['date2']);
 $temp_vuk='';
+$rayon = intval($_POST['rayon']);
+//var_dump($_POST);
 
 $db=mysql_connect("localhost",$lg,$pas);
 if(!$db) echo "Не вiдбулося зєднання з базою даних";
@@ -19,19 +21,24 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
    exit(); 
    }
 $p='<table border="1" cellpadding="0" cellspacing="0">';
+
+if ($rayon > 0) $ray = " AND zamovlennya.RN = ".$rayon; else $ray = '';	
 	
 $sql1="SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 		nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,
 		zamovlennya.BUD,zamovlennya.KVAR,zamovlennya.D_PR,zamovlennya.DATA_GOT,zamovlennya.VUK  
 	FROM zamovlennya,nas_punktu,vulutsi,tup_nsp,tup_vul 
 	WHERE
-		zamovlennya.DL='1' AND zamovlennya.DATA_PS>='$bdat' AND zamovlennya.DATA_PS<='$edat'   
+		zamovlennya.DL='1' AND zamovlennya.DATA_PS>='$bdat' AND zamovlennya.DATA_PS<='$edat' 
+		" . $ray . "		
 		AND zamovlennya.VUK!='' AND zamovlennya.VUK!='Бюро' 
 		AND nas_punktu.ID_NSP=zamovlennya.NS  
 		AND vulutsi.ID_VUL=zamovlennya.VL  
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
-	ORDER BY zamovlennya.VUK,zamovlennya.SZ,zamovlennya.NZ";			
+	ORDER BY zamovlennya.VUK,zamovlennya.SZ,zamovlennya.NZ";	
+
+//echo $sql1;	
 
  $atu1=mysql_query($sql1);  
   while($aut1=mysql_fetch_array($atu1))
@@ -59,7 +66,7 @@ $temp_vuk=$vukon;
 $p.='<tr><td colspan="4"><font size="3"><b>'.$temp_vuk.' 
 період: з  '.german_date($bdat).' по '.german_date($edat).'</b></font></td></tr>
 <tr>
-	<th align="center"><font size="2">Замов лення</font></th>
+	<th align="center"><font size="2">Замовлення</font></th>
 	<th align="center"><font size="2">Адреса</font></th>
 	<th align="center"><font size="2">Дата прийому</font></th>
 	<th align="center"><font size="2">Дата готовності</font></th>

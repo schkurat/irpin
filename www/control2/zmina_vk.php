@@ -59,16 +59,17 @@ while ($aut = mysql_fetch_array($atu)) {
                         <option value=""></option>
                         <option value=1>Бюро</option>
                         <?php
-                        if ($aut["IDROB"] >= 19) {
+                        /*if ($aut["IDROB"] >= 19) {
                             $brug = 5;
                             $zagl = 'disabled';
                         } else {
                             $brug = 1;
                             $zagl = '';
-                        }
+                        }*/
+						$zagl = '';
 
 
-                        $sql1 = "SELECT ROBS,ID_ROB,BRUGADA FROM robitnuku WHERE BRUGADA='$brug' AND DL='1' ORDER BY ROBS";
+                        $sql1 = "SELECT ROBS,ID_ROB,BRUGADA FROM robitnuku WHERE BRUGADA<5 AND DL='1' ORDER BY ROBS";
                         $atu1 = mysql_query($sql1);
                         while ($aut1 = mysql_fetch_array($atu1)) {
                             if ($aut1["ROBS"] != $vk) $p .= '<option value=' . $aut1["ID_ROB"] . '>' . $aut1["ROBS"] . '</option>';

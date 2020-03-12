@@ -8,6 +8,7 @@ include "../function.php";
 
 $bdat=date_bd($_POST['date1']);
 $edat=date_bd($_POST['date2']);
+$rayon = intval($_POST['rayon']);
 //$flg=$_POST['flag'];
 
 $db=mysql_connect("localhost",$lg,$pas);
@@ -40,6 +41,7 @@ $p='<b>Період: з  '.german_date($bdat).' по '.german_date($edat).'</b>
 	</tr>
 	';
 
+if ($rayon > 0) $ray = " AND zamovlennya.RN = ".$rayon; else $ray = '';
 
 $sql1="SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.PS,
 					nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,
@@ -49,6 +51,7 @@ $sql1="SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovl
 				FROM zamovlennya,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 				WHERE
 					zamovlennya.DL='1' AND zamovlennya.D_PR>='$bdat' AND zamovlennya.D_PR<='$edat' 
+					" . $ray . "
 					AND zamovlennya.DOKVUT='0000-00-00'   
 					AND nas_punktu.ID_NSP=zamovlennya.NS
 					AND vulutsi.ID_VUL=zamovlennya.VL

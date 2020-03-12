@@ -9,6 +9,8 @@ include "../function.php";
 $bdat = date_bd($_POST['date1']);
 $edat = date_bd($_POST['date2']);
 $flg = $_POST['flag'];
+$rayon = intval($_POST['rayon']);
+//var_dump($_POST);
 
 $db = mysql_connect("localhost", $lg, $pas);
 if (!$db) echo "Не вiдбулося зєднання з базою даних";
@@ -29,7 +31,7 @@ if (!@mysql_select_db(kpbti, $db)) {
 <?php
 $p = '<b>Період: з  ' . german_date($bdat) . ' по ' . german_date($edat) . '</b>
 	<table class="statistic"><tr>
-	<th align="center">Замов лення</th>
+	<th align="center">Замовлення</th>
 	<th align="center">Адреса</th>
 	<th align="center">Вид робіт</th>
 	<th align="center">ПІБ (назва)</th>
@@ -69,6 +71,7 @@ if ($flg == "vk_date_g") {
     $vukonavets = $_POST['isp'];
     $kr_fl = "AND zamovlennya.DATA_GOT>='$bdat' AND zamovlennya.DATA_GOT<='$edat' AND zamovlennya.VUK='$vukonavets'";
 }
+if ($rayon > 0) $ray = " AND zamovlennya.RN = ".$rayon; else $ray = '';
 
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,zamovlennya.SUM,zamovlennya.DATA_VUH,zamovlennya.SUM_D,zamovlennya.DATA_PS,zamovlennya.VD,
 		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,rayonu.*,
@@ -79,6 +82,7 @@ $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZV
 		WHERE
 		zamovlennya.DL='1'  
 		" . $kr_fl . " 
+		" . $ray . " 
 		AND rayonu.ID_RAYONA=zamovlennya.RN
 		AND nas_punktu.ID_NSP=zamovlennya.NS
 		AND vulutsi.ID_VUL=zamovlennya.VL
@@ -86,7 +90,8 @@ $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZV
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 		AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB
 		ORDER BY zamovlennya.KEY";
-
+		
+//echo $sql1;
 $atu1 = mysql_query($sql1);
 while ($aut1 = mysql_fetch_array($atu1)) {
     if ($aut1["BUD"] != "") $bud = "буд." . $aut1["BUD"]; else $bud = "";

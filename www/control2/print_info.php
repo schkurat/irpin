@@ -13,10 +13,26 @@ if($krit=="got"){
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/>
 </td>
 </tr>
+<tr>
+<td colspan="2" >
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
+</td>
+</tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
 </form><form action="index.php?filter=kontrol_view" name="myform" method="post">
-<td align="center">
+<td align="center" >
 <input name="Cancel" type="submit" style="width:80px" value="Відміна" />
 </form>
 </td>
@@ -34,6 +50,22 @@ if($krit=="nevk"){
 <input name="flag" type="hidden" value="nevuk" />
 <input name="date1" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/></td>
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
 </td>
 </tr>
 <tr><td align="center">
@@ -93,6 +125,22 @@ if($krit=="pr_per"){
 <input name="flag" type="hidden" value="pr_period" />
 <input name="date1" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/></td>
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/>
+</td>
+</tr>
+<tr>
+<td colspan="2" >
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
 </td>
 </tr>
 <tr><td align="center">
@@ -180,6 +228,22 @@ if($krit=="d_vuh"){
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/>
 </td>
 </tr>
+<tr>
+<td colspan="2" >
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
+</td>
+</tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
 </form><form action="index.php?filter=kontrol_view" name="myform" method="post">
@@ -202,6 +266,22 @@ if($krit=="nespl"){
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y"); ?>" />
 </td>
 </tr>
+<tr>
+<td colspan="2" >
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
+</td>
+</tr>
 <tr><td align="center">
 <input name="Ok" type="submit" style="width:80px" value="Формувати" /></td>
 </form><form action="naryadu.php" name="myform" method="post">
@@ -222,6 +302,22 @@ if($krit=="vuhodu"){
 <td>Період з
 <input name="date1" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y"); ?>" /></td>
 <td>по <input name="date2" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y"); ?>" />
+</td>
+</tr>
+<tr>
+<td colspan="2" >
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
 </td>
 </tr>
 <tr><td align="center">
