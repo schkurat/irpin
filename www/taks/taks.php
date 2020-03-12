@@ -4,6 +4,9 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 /* $kodp=$_SESSION['KODP'];
 $kod_rn=$_SESSION['NR']; */
+$t_pr = $_SESSION['PR'];
+$t_im = $_SESSION['IM'];
+$t_pb = $_SESSION['PB'];
 
 header('Content-Type: text/html; charset=utf-8');
 ?>

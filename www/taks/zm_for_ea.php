@@ -1,6 +1,9 @@
 <?php
 include_once "../function.php";
 
+$user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
+$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.')? "": "AND zamovlennya.VUK='$user'";
+
 $p = '<table align="center" class="zmview">
 <tr>
 <th colspan="3">Документи</th>
@@ -17,7 +20,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 	tup_vul.TIP_VUL,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
 	FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 	WHERE 
-		zamovlennya.PS=0 AND zamovlennya.EA!=0 
+		zamovlennya.VD=0 AND zamovlennya.EA!=0 " . $flag . " 
 		AND zamovlennya.VUD_ROB=dlya_oformlennya.id_oform
 		AND rayonu.ID_RAYONA=zamovlennya.RN 
 		AND nas_punktu.ID_NSP=zamovlennya.NS
