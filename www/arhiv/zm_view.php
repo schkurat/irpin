@@ -47,9 +47,9 @@ if ($ns != "" and $vl != "") {
 //if($idn!=""){$flag="zamovlennya.IDN=".$idn;}
 if (isset($_GET['search'])) $search = $_GET['search']; else $search = '';
 if ($search != '') {
-    $flag = "(LOCATE('$search',arhiv_zakaz.SUBJ)!=0 OR LOCATE('$search',arhiv_zakaz.EDRPOU)!=0 OR "
-        . "LOCATE('$search',rayonu.RAYON)!=0 OR LOCATE('$search',nas_punktu.NSP)!=0 OR "
-        . "LOCATE('$search',vulutsi.VUL)!=0 OR LOCATE('$search',arhiv_zakaz.PR)!=0)";
+    $flag = "((arhiv_zakaz.SZ='".substr($search,2,6)."' AND arhiv_zakaz.NZ='".(int)substr($search,8,2)."') "
+        . " OR ((LOCATE('$search',arhiv_zakaz.SUBJ)!=0 OR LOCATE('$search',arhiv_zakaz.EDRPOU)!=0 OR "
+        .  "LOCATE('$search',arhiv_zakaz.PR)!=0)))";
 
 }
 
@@ -73,18 +73,12 @@ $p = '<table class="zmview">
 <th>Дата пр.</th>
 </tr>';
 
-$sql = "SELECT arhiv_zakaz.*,arhiv_jobs.name,arhiv_jobs.type/*,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,
-				vulutsi.VUL,tup_vul.TIP_VUL*/
-			 FROM arhiv_zakaz,/* rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul,*/ arhiv_jobs
+$sql = "SELECT arhiv_zakaz.*,arhiv_jobs.name,arhiv_jobs.type
+			 FROM arhiv_zakaz, arhiv_jobs
 				WHERE 
 					" . $flag . "
 					AND arhiv_zakaz.DL='1'  
-					AND arhiv_jobs.id=VUD_ROB
-					/*AND rayonu.ID_RAYONA=RN
-					AND nas_punktu.ID_NSP=NS
-					AND vulutsi.ID_VUL=VL
-					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
-					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL*/
+					AND arhiv_jobs.id=arhiv_zakaz.VUD_ROB
 					ORDER BY arhiv_zakaz.KEY DESC";
 //echo $sql;
 $atu = mysql_query($sql);

@@ -1,5 +1,5 @@
 <?php
-//include "../function.php";
+include "../function.php";
 include "scriptu.php";
 ?>
 <body>
@@ -89,7 +89,7 @@ if (!empty($_GET['adr_id'])) {
             $pldp = $aut2["PL_DOP"];
 
             $fdi = $aut2["FIRST_DT_INV"];
-            $fv = $aut2["FIRST_VUK"];
+            $fv = htmlspecialchars($aut2["FIRST_VUK"],ENT_QUOTES);
             $no = $aut2["NUMB_OBL"];
             $do = $aut2["DT_OBL"];
         }
@@ -137,7 +137,7 @@ if (!empty($_GET['adr_id'])) {
             $pldp = $aut2["PL_DOP"];
 
             $fdi = $aut2["FIRST_DT_INV"];
-            $fv = $aut2["FIRST_VUK"];
+            $fv = htmlspecialchars($aut2["FIRST_VUK"],ENT_QUOTES);
             $no = $aut2["NUMB_OBL"];
             $do = $aut2["DT_OBL"];
         }
@@ -252,7 +252,7 @@ if (!empty($_GET['adr_id'])) {
         </tr>
         <tr>
             <td>Дата</td>
-            <td><input type="text" size="10" maxlength="10" name="dt_perv" value="<?php echo $fdi; ?>"/></td>
+            <td><input type="text" size="10" maxlength="10" name="dt_perv" value="<?php echo german_date($fdi); ?>"/></td>
         </tr>
         <tr>
             <td>Виконавець</td>
@@ -267,7 +267,7 @@ if (!empty($_GET['adr_id'])) {
         </tr>
         <tr>
             <td>Дата</td>
-            <td><input type="text" size="10" maxlength="10" name="dt_obl" value="<?php echo $do; ?>"/></td>
+            <td><input type="text" size="10" maxlength="10" name="dt_obl" value="<?php echo german_date($do); ?>"/></td>
         </tr>
         <tr>
             <td colspan="2" align="center">

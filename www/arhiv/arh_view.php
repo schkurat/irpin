@@ -10,19 +10,19 @@ if ($rej == "seach") {
     $rjs = $_GET['rj_saech'];
     switch ($rjs) {
         case "n_spr":
-            $flag = "N_SPR=" . $_GET['n_spravu'];
+            $flag = "N_SPR=" . substr($_GET['n_spravu'],2,7) . " AND RN=". substr($_GET['n_spravu'],0,2);
             break;
         case "adr":
             if ($_GET['bud'] != "" AND $_GET['kv'] != "")
-                $flag = "NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND BD='" . $_GET['bud'] . "' AND KV='" . $_GET['kv'] . "'";
+                $flag = "RN='".$_GET['rajon']."' AND NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND BD='" . $_GET['bud'] . "' AND KV='" . $_GET['kv'] . "'";
             else {
                 if ($_GET['bud'] == "" AND $_GET['kv'] != "")
-                    $flag = "NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND KV='" . $_GET['kv'] . "'";
+                    $flag = "RN='".$_GET['rajon']."' AND NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND KV='" . $_GET['kv'] . "'";
                 else {
                     if ($_GET['bud'] == "" AND $_GET['kv'] == "")
-                        $flag = "NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "'";
+                        $flag = "RN='".$_GET['rajon']."' AND NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "'";
                     else
-                        $flag = "NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND BD='" . $_GET['bud'] . "'";
+                        $flag = "RN='".$_GET['rajon']."' AND NS='" . $_GET['nsp'] . "' AND VL='" . $_GET['vyl'] . "' AND BD='" . $_GET['bud'] . "'";
                 }
             }
             break;
@@ -92,7 +92,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $p .= '<tr bgcolor="#FFFAF0">
 <td align="center"><a href="arhiv.php?filter=edit_zap_info&zap_id=' . $aut["ID"] . '"><img src="../images/b_edit.png" border="0"></a></td>
 <td align="center"><a href="arhiv.php?filter=delete_zap&id_zp=' . $aut["ID"] . '"><img src="../images/b_drop.png" border="0"></a></td>
-	<td align="center" id="zal"><a href="arhiv.php?filter=spr_view&inv_spr=' . $aut["N_SPR"] . '">' . $archive_number . '</a></td>
+	<td align="center" id="zal"><!--<a href="arhiv.php?filter=spr_view&inv_spr=' . $aut["N_SPR"] . '">-->' . $archive_number . '<!--</a>--></td>
 	<td>№' . $aut["NUMB_OBL"] . '</br>' . german_date($aut["DT_OBL"]) . '</td>
 	<td>' . $aut["TIP_NSP"] . $aut["NSP"] . ' ' . $aut["TIP_VUL"] . $aut["VUL"] . ' ' . $obj_ner . '</td>
 	<td align="center">' . $aut["PRIM"] . '</td>

@@ -2,7 +2,38 @@
 include_once "../function.php";
 
 $user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
-$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.')? "": "AND zamovlennya.VUK='$user'";
+$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": "AND zamovlennya.VUK='$user'";
+
+
+
+if(!empty($_GET['search'])){
+	$s=trim($_GET['search']);
+	$nz=mb_substr($s,8,2);
+	$sz=mb_substr($s,2,6); 
+	if (strlen($s)==10){
+		$flag2 = " AND zamovlennya.SZ='$sz' AND zamovlennya.nz='$nz' ";
+	} else {
+		$flag2 = "";
+		echo " Невірный номер замовлення";
+	}
+}else{
+	$flag2 = "";
+}
+
+
+
+
+echo '
+<form metod="GER" action="taks.php">
+	<input type="text" name="search">
+	<input type="hidden" name="filter" value="zm_for_ea">
+	<button type="submit">Пошук</button>
+</form>
+
+
+
+';
+
 
 $p = '<table align="center" class="zmview">
 <tr>
@@ -20,7 +51,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 	tup_vul.TIP_VUL,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
 	FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 	WHERE 
-		zamovlennya.VD=0 AND zamovlennya.EA!=0 " . $flag . " 
+		zamovlennya.VD=0 AND zamovlennya.EA!=0 " . $flag . $flag2 ." 
 		AND zamovlennya.VUD_ROB=dlya_oformlennya.id_oform
 		AND rayonu.ID_RAYONA=zamovlennya.RN 
 		AND nas_punktu.ID_NSP=zamovlennya.NS
@@ -28,7 +59,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 		ORDER BY SZ, NZ DESC";
-
+		
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     $order = get_num_order($aut["ID_RAYONA"],$aut["SZ"],$aut["NZ"]);
