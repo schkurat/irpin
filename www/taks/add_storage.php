@@ -19,6 +19,7 @@ if (isset($_FILES)) {
 
         //новое имя изображения
         $apend = str_replace(" ", "_", $_FILES["file"]["name"][$k]);
+        $apend = str_replace(",", "_", $_FILES["file"]["name"][$k]);
         //путь к новому изображению
         $uploadfile = "$uploaddir$apend";
 
