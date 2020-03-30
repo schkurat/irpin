@@ -34,6 +34,7 @@ $(function() {
 	$( ".datepicker" ).datepicker( "option", "monthNames", ["Січень","Лютий","Березень","Квітень","Травень","Червень","Липень","Серпень","Вересень","Жовтень","Листопад","Грудень"]);
 	$( ".datepicker" ).datepicker( "option", "dayNamesMin", [ "Нд", "Пн", "Вт", "Ср", "Чт", "Пт", "Сб" ] );
 	$( ".datepicker" ).datepicker( "option", "firstDay", 1 );
+    $( ".datepicker" ).datepicker( "setDate", new Date() );
 	});
 </script>
 </head>
