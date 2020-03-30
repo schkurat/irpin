@@ -166,6 +166,20 @@ if($krit=="buro"){
 <input name="edate" class="datepicker" type="text" size="10" maxlength="10" value="<?php echo date("d.m.Y");?>"/>
 </td>
 </tr>
+<td colspan="2">
+Район 
+			<select style="float:right;" name="rayon">
+			<option value="0">Всі</option>
+			<?php
+			$sql = "SELECT * FROM `rayonu`";
+			echo $sql;
+			$atu=mysql_query($sql); 
+			while ($aut = mysql_fetch_array($atu)) {
+				echo '<option value="'.$aut['ID_RAYONA'].'">'.$aut['RAYON'].'</option>';
+			}
+			?>
+			</select>
+</td>
 <tr><td align="center">
 <input name="Ok" type="submit" value="Формувати" /></td>
 </form><form action="" name="myform" method="post">

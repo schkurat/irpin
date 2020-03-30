@@ -18,6 +18,17 @@ include_once "../function.php";
 
 if(isset($_GET['bdate'])) $bdate=date_bd($_GET['bdate']); else $bdate='';
 if(isset($_GET['edate'])) $edate=date_bd($_GET['edate']); else $edate='';
+if(!empty($_POST['rayon'])){
+	$rayon = intval($_POST['rayon']);
+	//var_dump($_POST);
+	if ($rayon > 0){
+		 $ray = " AND zamovlennya.RN = ".$rayon;
+	}else{
+		$ray = '';
+	}
+}else{
+	$ray = '';
+}
 
 $p='<table align="center" class="zmview">
 <tr>
@@ -33,6 +44,7 @@ vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.D_PR,zamovlennya.DATA_VUH,zamovlennya.SM
 zamovlennya.VUK FROM zamovlennya,nas_punktu,vulutsi,tup_nsp,tup_vul 
 	WHERE 
 		zamovlennya.DATA_VUH>='$bdate' AND zamovlennya.DATA_VUH<='$edate'
+		" . $ray . "
 		AND zamovlennya.VUD_ROB!=9 
 		AND nas_punktu.ID_NSP=zamovlennya.NS
 		AND vulutsi.ID_VUL=zamovlennya.VL

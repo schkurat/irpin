@@ -8,6 +8,17 @@ include "../function.php";
 $bdat=date_bd($_POST['bdate']);
 $edat=date_bd($_POST['edate']);
 
+if(!empty($_POST['rayon'])){
+	$rayon = intval($_POST['rayon']);
+	if ($rayon > 0){
+		 $ray = " AND zamovlennya.RN = ".$rayon;
+	}else{
+		$ray = '';
+	}
+}else{
+	$ray = '';
+}
+
 $db=mysql_connect("localhost",$lg,$pas);
 if(!$db) echo "Не вiдбулося зєднання з базою даних";
   

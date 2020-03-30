@@ -8,6 +8,17 @@ include "../function.php";
 $bdat = date_bd($_POST['date1']);
 $edat = date_bd($_POST['date2']);
 $flg = $_POST['flag'];
+if(!empty($_POST['rayon'])){
+	$rayon = intval($_POST['rayon']);
+	if ($rayon > 0){
+		 $ray = " AND zamovlennya.RN = ".$rayon;
+	}else{
+		$ray = '';
+	}
+}else{
+	$ray = '';
+}
+
 
 $db = mysql_connect("localhost", $lg, $pas);
 if (!$db) echo "Не вiдбулося зєднання з базою даних";
@@ -64,7 +75,8 @@ $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamo
 		FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 		WHERE
 			zamovlennya.DL='1' 
-			" . $kr_fl . " 
+			" . $kr_fl . "
+			" . $ray . "			
 			AND rayonu.ID_RAYONA=zamovlennya.RN 
 			AND nas_punktu.ID_NSP=zamovlennya.NS
 			AND vulutsi.ID_VUL=zamovlennya.VL
