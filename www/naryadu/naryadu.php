@@ -66,6 +66,7 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
 		<ul>
 			<li><a href="naryadu.php?filter=print_info&krit=got">Готовність на:</a></li>
 			<li><a href="naryadu.php?filter=print_info&krit=nevk">Невиконані</a></li>
+            <li><a href="naryadu.php?filter=print_info&krit=got_vuk">Виконані по виконавцю</a></li>
 			<li><a href="naryadu.php?filter=print_info&krit=nevk_vuk">Невиконані по виконавцю</a></li>
 			<li><a href="naryadu.php?filter=print_info&krit=pr_per">Прийняті за період</a></li>
 			<li><a href="naryadu.php?filter=print_info&krit=vk_d_got">По виконавцю та даті готовності</a></li>

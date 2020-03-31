@@ -59,6 +59,10 @@ if ($flg == "nevuk_vuk") {
     $kr_fl = "AND zamovlennya.DATA_GOT>='$bdat' AND zamovlennya.DATA_GOT<='$edat' AND zamovlennya.PS='0' AND zamovlennya.VD='0'
  AND zamovlennya.VUK='$vukonavets'";
 }
+if ($flg == "got_vuk") {
+    $vukonavets = $_POST['isp'];
+    $kr_fl = "AND zamovlennya.DATA_PS>='$bdat' AND zamovlennya.DATA_PS<='$edat' AND zamovlennya.PS='1' AND zamovlennya.VUK='$vukonavets'";
+}
 if ($flg == "pr_period") {
     $kr_fl = "AND zamovlennya.D_PR>='$bdat' AND zamovlennya.D_PR<='$edat'";
 }
