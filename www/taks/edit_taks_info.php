@@ -147,7 +147,7 @@ mysql_free_result($atu);
         </tr>
         <tr>
             <td colspan="9">
-                Вимірювач <input type="text" name="vum" value="<?php echo $v_vum; ?>" readonly/>
+                Вимірювач <input type="text" name="vum" value="<?php echo $v_vum; ?>" />
                 Таксувальник <input type="text" name="taksir" value="<?php echo $v_tks; ?>" readonly/>
                 Бригадир&nbsp <input type="text" id="brug" name="brug" value="<?php echo $v_brug; ?>"/>
             </td>

@@ -8,7 +8,9 @@ include_once "../function.php";
     </script>
 <?php
 $flag = "";
-$zm = $_GET['zam'];
+$zm = (isset($_GET['zam']))? (int)$_GET['zam']: 0;
+$szam = (isset($_GET['szam']))? $_GET['szam']: '';
+
 if (isset($_GET['szu'])) $szu = $_GET['szu']; else $szu = '';
 if (isset($_GET['zmu'])) $nzu = $_GET['zmu']; else $nzu = '';
 
@@ -25,8 +27,8 @@ $kpr = date_bd($_GET['kpr']);
 $d1 = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d"), date("Y")));
 $d2 = date("Y-m-d");
 
-if ($zm != "") {
-    $flag = "zamovlennya.NZ=" . $zm;
+if (!empty($zm) and !empty($szam)) {
+    $flag = "zamovlennya.NZ=" . $zm . " AND zamovlennya.SZ='" . $szam . "'";
 }
 //if($szu!=""){ $flag="zamovlennya.SZU=".$szu." AND zamovlennya.NZU=".$nzu;}
 if ($ns != "" and $vl != "" and $bd != "" and $kv != "") {
@@ -43,7 +45,7 @@ if ($flag == "") {
 }
 
 $user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
-$flag2 = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": "AND zamovlennya.VUK='$user'";
+$flag2 = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": " AND zamovlennya.VUK='$user'";
 
 $p = '<table id="tax" align="center" class="zmview">
 <tr>
@@ -73,7 +75,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 		ORDER BY SZ, NZ DESC";
-
+//echo $sql;
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
