@@ -12,36 +12,36 @@ include("../function.php");
 //if(isset($_POST['kod'])) $idn=$_POST['kod']; else $idn="";
 
 $id_vr=$_POST['vud_rob']; //вид робіт
-$pr=addslashes(trim($_POST['priz']));
-$im=addslashes(trim($_POST['imya']));
-$pb=addslashes(trim($_POST['pobat']));
+$pr=strip_tags(addslashes(trim($_POST['priz'])));
+$im=strip_tags(addslashes(trim($_POST['imya'])));
+$pb=strip_tags(addslashes(trim($_POST['pobat'])));
 //for($zz=1;$zz<=12;$zz++){
 //$doci.=$_POST['d'.$zz].' ';
 //}
 $prim=addslashes($_POST['prim']);
 //$dn=$_POST['dnar'];
-$sert=trim($_POST['ser_sert']).' '.trim($_POST['numb_sert']);
+$sert=strip_tags(trim($_POST['ser_sert'])).' '.strip_tags(trim($_POST['numb_sert']));
 
-$subj=addslashes(trim($_POST['subj']));
-$adrs_subj=addslashes(trim($_POST['adrs_subj']));
+$subj=strip_tags(addslashes(trim($_POST['subj'])));
+$adrs_subj=strip_tags(addslashes(trim($_POST['adrs_subj'])));
 //$pbvl=trim($_POST['pobatvl']);
 //$dnvl=$_POST['dnarvl'];
 //$pasportvl=trim($_POST['pasportvl']);
 
-$edrpou=$_POST['edrpou'];
-$ipn=$_POST['ipn'];
-$svid=$_POST['svid'];
-$prilad=addslashes($_POST['prilad']);
-$dover=addslashes($_POST['doruch']);
-$tl=trim($_POST['tel']);
-if(isset($_POST['email'])) $email=$_POST['email']; else $email="";
+$edrpou=strip_tags($_POST['edrpou']);
+$ipn=strip_tags($_POST['ipn']);
+$svid=strip_tags($_POST['svid']);
+$prilad=strip_tags(addslashes($_POST['prilad']));
+$dover=strip_tags(addslashes($_POST['doruch']));
+$tl=strip_tags(trim($_POST['tel']));
+if(isset($_POST['email'])) $email=strip_tags($_POST['email']); else $email="";
 $rn=$_POST['rajon'];
 $ns=$_POST['nsp'];
 $vl=$_POST['vyl'];
-$bd=trim($_POST['bud']);
-$kva=trim($_POST['kvar']);
-$sm=$_POST['sum'];
-$d_pr=date_bd($_POST['d_pr']);
+$bd=strip_tags(trim($_POST['bud']));
+$kva=strip_tags(trim($_POST['kvar']));
+$sm=strip_tags($_POST['sum']);
+$d_pr=strip_tags(date_bd($_POST['d_pr']));
 //$dg=$_POST['datag'];
 //$priyom=$_POST['pr_osob'];
 
