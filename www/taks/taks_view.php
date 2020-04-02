@@ -42,6 +42,9 @@ if ($flag == "") {
     $flag = "taks.DATE_T>='" . $d1 . "'";
 }
 
+$user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
+$flag2 = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": "AND zamovlennya.VUK='$user'";
+
 $p = '<table id="tax" align="center" class="zmview">
 <tr>
 <th colspan="4">#</th>
@@ -61,7 +64,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
 	tup_vul.TIP_VUL,taks.DATE_T,taks.SUM,taks.SUM_OKR,taks.NDS,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
 	FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya,taks 
 	WHERE 
-		" . $flag . "
+		" . $flag . $flag2 . "
 		AND taks.DL='1' AND zamovlennya.KEY=taks.IDZM  
 		AND zamovlennya.VUD_ROB=dlya_oformlennya.id_oform
 		AND rayonu.ID_RAYONA=zamovlennya.RN AND taks.KODP=zamovlennya.KODP
