@@ -115,12 +115,23 @@ include "../scriptu.php";
                     mysql_free_result($atu);
                     ?>
                 </select>
-<!--                <input type="text" id="brug" size="25" name="brug" value="Голуб Г.О."/>-->
             </td>
         </tr>
         <tr>
             <td>Таксувальник</td>
-            <td colspan="3"><input type="text" id="taks" size="25" maxlength="25" name="taks" value="Дєтковська В.І."/>
+            <td colspan="3">
+                <select name="taks" class="sel_ad">
+                    <option value=""></option>
+                    <?php
+                    $sql = "SELECT ROBS FROM robitnuku WHERE DL='1' AND BRUGADA=1 ORDER BY ROBS";
+                    $atu = mysql_query($sql);
+                    while ($aut = mysql_fetch_array($atu)) {
+                        echo '<option value="' . $aut["ROBS"] . '">' . $aut["ROBS"] . '</option>';
+                    }
+                    mysql_free_result($atu);
+                    ?>
+                </select>
+<!--                <input type="text" id="taks" size="25" maxlength="25" name="taks" value="Дєтковська В.І."/>-->
                 <input type="hidden" id="idzm" name="idzm" value=""/>
                 <input type="hidden" id="term" name="term" value=""/>
                 <input type="hidden" id="skl" name="skl" value=""/>
