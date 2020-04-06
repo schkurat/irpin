@@ -76,12 +76,12 @@ if (!empty($_GET['adr_id'])) {
             }
 
 
-            $prim = $aut2["PRIM"];
+            $prim = htmlspecialchars($aut2["PRIM"], ENT_QUOTES);
 
-            $name = $aut2["NAME"];
-            $vlas = $aut2["VLASN"];
-            $sklchast = $aut2["SKL_CHAST"];
-            $kadnam = $aut2["KAD_NOM"];
+            $name = htmlspecialchars($aut2["NAME"], ENT_QUOTES);
+            $vlas = htmlspecialchars($aut2["VLASN"], ENT_QUOTES);
+            $sklchast = htmlspecialchars($aut2["SKL_CHAST"], ENT_QUOTES);
+            $kadnam = htmlspecialchars($aut2["KAD_NOM"], ENT_QUOTES);
 
             $plzm = $aut2["PL_ZEM"];
             $plzg = $aut2["PL_ZAG"];
@@ -89,7 +89,7 @@ if (!empty($_GET['adr_id'])) {
             $pldp = $aut2["PL_DOP"];
 
             $fdi = $aut2["FIRST_DT_INV"];
-            $fv = htmlspecialchars($aut2["FIRST_VUK"],ENT_QUOTES);
+            $fv = htmlspecialchars($aut2["FIRST_VUK"], ENT_QUOTES);
             $no = $aut2["NUMB_OBL"];
             $do = $aut2["DT_OBL"];
         }
@@ -124,12 +124,12 @@ if (!empty($_GET['adr_id'])) {
             $kv = $aut2["KV"];
 
             $nspr = $aut2["N_SPR"];
-            $prim = $aut2["PRIM"];
+            $prim = htmlspecialchars($aut2["PRIM"], ENT_QUOTES);
 
-            $name = $aut2["NAME"];
-            $vlas = $aut2["VLASN"];
-            $sklchast = $aut2["SKL_CHAST"];
-            $kadnam = $aut2["KAD_NOM"];
+            $name = htmlspecialchars($aut2["NAME"], ENT_QUOTES);
+            $vlas = htmlspecialchars($aut2["VLASN"], ENT_QUOTES);
+            $sklchast = htmlspecialchars($aut2["SKL_CHAST"], ENT_QUOTES);
+            $kadnam = htmlspecialchars($aut2["KAD_NOM"], ENT_QUOTES);
 
             $plzm = $aut2["PL_ZEM"];
             $plzg = $aut2["PL_ZAG"];
@@ -137,7 +137,7 @@ if (!empty($_GET['adr_id'])) {
             $pldp = $aut2["PL_DOP"];
 
             $fdi = $aut2["FIRST_DT_INV"];
-            $fv = htmlspecialchars($aut2["FIRST_VUK"],ENT_QUOTES);
+            $fv = htmlspecialchars($aut2["FIRST_VUK"], ENT_QUOTES);
             $no = $aut2["NUMB_OBL"];
             $do = $aut2["DT_OBL"];
         }
@@ -252,7 +252,8 @@ if (!empty($_GET['adr_id'])) {
         </tr>
         <tr>
             <td>Дата</td>
-            <td><input type="text" size="10" maxlength="10" name="dt_perv" value="<?php echo german_date($fdi); ?>"/></td>
+            <td><input type="text" size="10" maxlength="10" name="dt_perv" value="<?php echo german_date($fdi); ?>"/>
+            </td>
         </tr>
         <tr>
             <td>Виконавець</td>

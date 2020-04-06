@@ -33,7 +33,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $tup_zam = $aut["TUP_ZAM"];
     $ser_z = $aut["SZ"];
     $nom_z = $aut["NZ"];
-    $sum = $aut["SUM"];
+//    $sum = $aut["SUM"];
     $kvut = $aut["KVUT"];
     $idn = $aut["IDN"];
     $pr = htmlspecialchars($aut["PR"], ENT_QUOTES);
@@ -60,7 +60,7 @@ while ($aut = mysql_fetch_array($atu)) {
 mysql_free_result($atu);
 if ($i == 1) {
     if ($pidpus != '0') {
-        if ($dokvut == '0000-00-00') $sum = 0;
+//        if ($dokvut == '0000-00-00') $sum = 0;
         ?>
         <form action="add_doplata.php" name="myform" method="post">
             <table align="" class="zmview">
@@ -136,6 +136,15 @@ if ($i == 1) {
                 </tr>
                 <tr>
                     <td>Сума аванса</td>
+                    <?php
+                    $sum = 0;
+                    $sql = "SELECT SUM(SM) AS SM, SUM(SM_KM) AS SM_KM FROM kasa WHERE kasa.SZ='$ser_z' AND kasa.NZ='$nom_z' AND DL='1'";
+                    $atu = mysql_query($sql);
+                    while ($aut = mysql_fetch_array($atu)) {
+                        $sum = $aut["SM"] + $aut["SM_KM"];
+                    }
+                    mysql_free_result($atu);
+                    ?>
                     <td><input type="text" size="7" name="avan" value="<?php echo $sum; ?>"/></td>
                     <?php
                     $taks = 0;
