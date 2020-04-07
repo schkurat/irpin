@@ -49,6 +49,8 @@ while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
     if ($aut["KVAR"] != "") $kvar = ", кв." . $aut["KVAR"]; else $kvar = "";
     $adresa = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . $bud . $kvar;
+    $adresa_title1 = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ',';
+    $adresa_title2 = $bud . $kvar;
     $vart = $aut["SUM"];/* +$aut["SUM_D"] */
     $tel = $aut["TEL"];
     $term = $aut["TERM"];
@@ -99,16 +101,17 @@ $pdf->Text(130, 15, $zamovnuk);
 $pdf->SetFont('dejavu', '', 8);
 $pdf->Text(120, 19, $pasport);
 if (!empty($idn)) $pdf->Text(136, 19, ', ІПН:' . $idn);
-$pdf->Text(120, 23, $adresa);
-$pdf->Text(120, 27, 'Телефон: ' . $tel);
+$pdf->Text(120, 23, $adresa_title1);
+$pdf->Text(120, 27, $adresa_title2);
+$pdf->Text(120, 31, 'Телефон: ' . $tel);
 
 if ($zamovnuk != $vlasnuk) {
-    $pdf->Text(188, 31, 'Власник:');
-    $pdf->Text(120, 36, 'Гром.');
+    $pdf->Text(188, 35, 'Власник:');
+    $pdf->Text(120, 40, 'Гром.');
     $pdf->SetFont('dejavub', '', 8);
-    $pdf->Text(130, 36, $vlasnuk);
+    $pdf->Text(130, 40, $vlasnuk);
     $pdf->SetFont('dejavu', '', 8);
-    $pdf->Text(120, 40, $passport_vl);
+    $pdf->Text(120, 44, $passport_vl);
 }
 
 $pdf->SetFont('dejavu', '', 10);
@@ -121,7 +124,8 @@ $pdf->Text(95, 44 + $y, 'від ' . $dtdog . 'р.');
 $pdf->Text(15, 48 + $y, 'Вид робіт: ' . $vidrob);
 $pdf->SetFont('dejavub', '', 8);
 $pdf->Text(15, 52 + $y, 'далі за текстом Об`єкту, що знаходиться за адресою:');
-$pdf->Text(105, 52 + $y, $adresa);
+$y += 4;
+$pdf->Text(15, 52 + $y, $adresa);
 $pdf->SetFont('dejavu', '', 8);
 $pdf->Text(15, 56 + $y, 'Зобов`язання та гарантії:');
 $pdf->SetXY(15, 57 + $y);
