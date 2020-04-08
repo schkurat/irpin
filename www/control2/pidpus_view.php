@@ -51,26 +51,56 @@ if (isset($_GET['flag'])) {
     $kr_fl = "AND zamovlennya.SZ='" . date("dmy") . "'";
     $vi = "view";
 }
+?>
 
-$p = '
-<script type="text/javascript">
-$(document).ready(
-  function()
-  {
-  	$(".zmview tr").mouseover(function() {
-  		$(this).addClass("over");
-  	});
+    <script type="text/javascript">
+        $(document).ready(
+            function () {
+                $(".zmview tr").mouseover(function () {
+                    $(this).addClass("over");
+                });
 
-  	$(".zmview tr").mouseout(function() {
-  		$(this).removeClass("over");
-  	});
-	$(".zmview tr:even").addClass("alt");
-  }
-);
-</script>
-<form action="otmetka.php" name="myform" method="get">
+                $(".zmview tr").mouseout(function () {
+                    $(this).removeClass("over");
+                });
+                $(".zmview tr:even").addClass("alt");
+
+                $(".zmview").on("click", ".status-link", changeStatus);
+            }
+        );
+        function changeStatus() {
+            let element = $(this);
+            let zm_kl = $(this).data("kl");
+            let status = $(this).data("status");
+            $.ajax({
+                type: "POST",
+                url: "changeStatus.php",
+                data: 'kl=' + zm_kl + '&status=' + status,
+                dataType: "html",
+                success: function (html) {
+                    if (html === '1') {
+                        element.parent().css("background-color","#ffd391");
+                        element.parent().siblings().css("background-color","#ffd391");
+                    }
+                    if (html === '2') {
+                        element.parent().css("background-color","#ff838e");
+                        element.parent().siblings().css("background-color","#ff838e");
+                    }
+                },
+                error: function (html) {
+                    alert(html.error);
+                }
+            });
+        }
+    </script>
+    <div style="background-color: #ffd391; display: inline-block; padding: 5px;">На перевірці</div>
+    <div style="background-color: #ff838e; display: inline-block; padding: 5px;">На доопрацюванні</div>
+    <div style="background-color: #7afd84; display: inline-block; padding: 5px;">На друк</div>
+<?php
+$p = '<form action="otmetka.php" name="myform" method="get">
 <table align="center" class="zmview">
-<tr bgcolor="#B5B5B5">
+<tr>
+<th colspan="2">Статус</th>
 <th colspan="3">Документи</th>
 <th>Підписано</th>
 <th>Дата пр.</th>
@@ -82,7 +112,7 @@ $(document).ready(
 <th>#</th>
 </tr>';
 
-$sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,rayonu.*,
+$sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.STATUS,rayonu.*,
 		zamovlennya.PS,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,nas_punktu.NSP,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,
 		zamovlennya.D_PR,zamovlennya.VUK,zamovlennya.DATA_GOT,zamovlennya.SUM,zamovlennya.SUM_KOR
@@ -113,6 +143,21 @@ while ($aut = mysql_fetch_array($atu)) {
     $sum_kor = $aut['SUM_KOR'];
     $vartist = 0;
     $sum_taks = 0;
+    if($aut['STATUS'] == 1){
+        $status_css = 'style="background-color: #ffd391;"';
+    }elseif ($aut['STATUS'] == 2){
+        $status_css = 'style="background-color: #ff838e;"';
+    }elseif ($aut['PS'] == 1) {
+        $status_css = 'style="background-color: #7afd84;"';
+    }else{
+        $status_css = '';
+    }
+    if($aut['PS'] == 1){
+        $html_status = '<td colspan="2" align="center">-</td>';
+    }else{
+        $html_status = '<td ' . $status_css . ' align="center"><img class="status-link" data-kl="' . $key_zm . '" data-status="1" src="../images/b_select.png" alt="На перевірці"></td>
+                    <td ' . $status_css . ' align="center"><img class="status-link" data-kl="' . $key_zm . '" data-status="2" src="../images/s_process.png" alt="На доопрацюванні"></td>';
+    }
 
     $sql1 = "SELECT * FROM taks WHERE taks.IDZM='$key_zm' AND DL='1'";
     $atu1 = mysql_query($sql1);
@@ -139,30 +184,30 @@ while ($aut = mysql_fetch_array($atu)) {
         if ($ch == "checked") $res = "підписано";
         else $res = "не підписано";
     } else $res = $gal;
-    $p .= '<tr bgcolor="#FFFAF0">
-<td align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/document&parent_link=&adr=' . $adr_storage . '">Вхідні</a></td>
-<td align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/technical&parent_link=&adr=' . $adr_storage . '">Техніка</a></td>
-<td align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/inventory&parent_link=&adr=' . $adr_storage . '">Справа</a></td>
-<td align="center">
+    $p .= '<tr>' . $html_status . '
+<td ' . $status_css . ' align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/document&parent_link=&adr=' . $adr_storage . '">Вхідні</a></td>
+<td ' . $status_css . ' align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/technical&parent_link=&adr=' . $adr_storage . '">Техніка</a></td>
+<td ' . $status_css . ' align="center"><a class="text-link" href="index.php?filter=storage&url=' . $aut["EA"] . '/inventory&parent_link=&adr=' . $adr_storage . '">Справа</a></td>
+<td ' . $status_css . ' align="center">
 ' . $res . '
 </td>
-	<td align="center">' . german_date($aut["D_PR"]) . '</td>
-      <td align="center">' . $zakaz . '
+	<td ' . $status_css . ' align="center">' . german_date($aut["D_PR"]) . '</td>
+      <td ' . $status_css . ' align="center">' . $zakaz . '
 	  <input type="hidden" name="z' . $i . '" size="9" value="' . $key_zm . '"/>
 	  <!--<input type="hidden" name="dt' . $i . '" size="9" value="' . $dt_got . '"/>-->
 	  <input type="hidden" name="spr' . $i . '" size="9" value="' . $aut["SUM"] . '"/>
 	  </td>
-	  <td>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $bud . " " . $kvar . '</td>
-	  <td>' . $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] . '</td>
-      <td>' . $aut["VUK"] . '</td>
-	  <td align="right">' . $vartist . ' грн.</td>
-	  <td><a href="index.php?filter=edit_sum&idzak=' . $key_zm . '&smt=' . $sum_taks . '&smk=' . $sum_kor . '"><img src="../images/b_edit.png"></a></td>
+	  <td ' . $status_css . '>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $bud . " " . $kvar . '</td>
+	  <td ' . $status_css . '>' . $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] . '</td>
+      <td ' . $status_css . '>' . $aut["VUK"] . '</td>
+	  <td ' . $status_css . ' align="right">' . $vartist . ' грн.</td>
+	  <td ' . $status_css . '><a href="index.php?filter=edit_sum&idzak=' . $key_zm . '&smt=' . $sum_taks . '&smk=' . $sum_kor . '"><img src="../images/b_edit.png"></a></td>
       </tr>';
     $i++;
 }
 mysql_free_result($atu);
 if ($flg == "nap") {
-    $p .= '<tr bgcolor="#B5B5B5"><td colspan="11" align="center"><input name="ok" type="submit" value="Зберегти відмітки" /></td></tr>
+    $p .= '<tr bgcolor="#B5B5B5"><td colspan="13" align="center"><input name="ok" type="submit" value="Зберегти відмітки" /></td></tr>
 		</table><input name="i" type="hidden" value="' . $i . '" /></form>';
 } else {
     $p .= '</table></form>';
@@ -176,4 +221,4 @@ if ($i > 1) {
     echo "2 - Замовленню не призначений виконавець<br>";
     echo "3 - Замовлення не оплачене<br>";
 }
-?>
+

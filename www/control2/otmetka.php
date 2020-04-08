@@ -27,7 +27,7 @@ $ath1=mysql_query("UPDATE zamovlennya SET PS='1',DATA_PS='$dt_ps',VD='1',DATA_VD
 	if(!$ath1){echo "Відмітка про підпис не внесена до БД";}
 }
 else{ */
-$ath1=mysql_query("UPDATE zamovlennya SET PS='1', DATA_PS='$dt_ps' WHERE zamovlennya.KEY='$key_zm' AND DL='1'");
+$ath1=mysql_query("UPDATE zamovlennya SET PS='1', DATA_PS='$dt_ps', STATUS=0 WHERE zamovlennya.KEY='$key_zm' AND DL='1'");
 	if(!$ath1){echo "Відмітка про підпис не внесена до БД";}
 //}
 }

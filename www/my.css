@@ -240,3 +240,9 @@ table.statistic{
 	background-size: contain; 
 	margin-right:3px;
 }
+.status-link{
+	padding: 0 10px;
+}
+.status-link:hover{
+	cursor: pointer;
+}

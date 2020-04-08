@@ -83,3 +83,28 @@ function addToStorage() {
         });
     }
 }
+
+// function changeStatus() {
+//     let element = $(this);
+//     let zm_kl = $(this).data("kl");
+//     let status = $(this).data("status");
+//     $.ajax({
+//         type: "POST",
+//         url: "changeStatus.php",
+//         data: 'kl=' + zm_kl + '&status=' + status,
+//         dataType: "html",
+//         success: function (html) {
+//             if (html === '1') {
+//                 element.parent().css("background-color","#ffd391");
+//                 element.parent().siblings().css("background-color","#ffd391");
+//             }
+//             if (html === '2') {
+//                 element.parent().css("background-color","#ff838e");
+//                 element.parent().siblings().css("background-color","#ff838e");
+//             }
+//         },
+//         error: function (html) {
+//             alert(html.error);
+//         }
+//     });
+// }
