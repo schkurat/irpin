@@ -78,12 +78,12 @@ $ddl = $_SESSION['DDL'];
                         <li><a href="index.php?filter=vudacha_view">Видані за сьогодні</a></li>
                         <li><a href="index.php?filter=seach_vud_pr">Видані за період</a></li>
                         <li><a href="index.php?filter=vudacha_view&fl=nav">На видачу</a></li>
-<!--                        <li><a href="#">Пошук</a>-->
-<!--                            <ul>-->
-<!--                                <li><a href="index.php?filter=seach&krit=zm">Замовлення</a></li>-->
-<!--                                <li><a href="index.php?filter=seach&krit=adr">Адреса</a></li>-->
-<!--                            </ul>-->
-<!--                        </li>-->
+                        <li><a href="#">Пошук</a>
+                            <ul>
+                                <li><a href="index.php?filter=seach&krit=zm">Замовлення</a></li>
+                                <li><a href="index.php?filter=seach&krit=adr">Адреса</a></li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
 

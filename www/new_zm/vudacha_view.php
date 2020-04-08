@@ -5,18 +5,41 @@ $dt_vd = date("Y-m-d");
 $for_client = (isset($_GET["fl"])) ? $_GET["fl"] : '';
 if (isset($_GET["npr"])) $npr = date_bd($_GET["npr"]); else $npr = '';
 if (isset($_GET["kpr"])) $kpr = date_bd($_GET["kpr"]); else $kpr = '';
+$flag = (isset($_GET["flag"])) ? $_GET["flag"] : '';
+$filter2 = "";
+if ($flag == 'zm') {
+    $s = (isset($_GET["n_zam"])) ? trim($_GET["n_zam"]) : '';
+    $sz = mb_substr($s, 2, 6);
+    $nz = mb_substr($s, 8, 2);
+    if (strlen($s) == 10) {
+        $filter2 = " AND zamovlennya.SZ='$sz' AND zamovlennya.nz='$nz' ";
+    } else {
+        $filter2 = "";
+        echo " Невірний номер замовлення";
+    }
+} elseif ($flag == 'adres') {
+    $s_rn = (isset($_GET["rajon"])) ? $_GET["rajon"] : '';
+    $s_nsp = (isset($_GET["nsp"])) ? $_GET["nsp"] : '';
+    $s_vl = (isset($_GET["vyl"])) ? $_GET["vyl"] : '';
+    $s_bd = (isset($_GET["bud"])) ? $_GET["bud"] : '';
+    $s_kv = (isset($_GET["kvar"])) ? $_GET["kvar"] : '';
+    $filter2 = " AND zamovlennya.RN='$s_rn' AND zamovlennya.NS='$s_nsp' AND zamovlennya.VL='$s_vl' AND zamovlennya.BUD='$s_bd' AND zamovlennya.KVAR='$s_kv' ";
+}
+
 $vud_zam = $_GET["vud_zam"];
 if ($npr != '' and $kpr != '') {
     if ($vud_zam == '3') {
-        $filter = "zamovlennya.DATA_VD>='$npr' AND zamovlennya.DATA_VD<='$kpr' AND zamovlennya.VD='1'";
+        $filter = " AND zamovlennya.DATA_VD>='$npr' AND zamovlennya.DATA_VD<='$kpr' AND zamovlennya.VD='1'";
     } else {
-        $filter = "zamovlennya.DATA_VD>='$npr' AND zamovlennya.DATA_VD<='$kpr' AND zamovlennya.TUP_ZAM='$vud_zam' AND zamovlennya.VD='1'";
+        $filter = " AND zamovlennya.DATA_VD>='$npr' AND zamovlennya.DATA_VD<='$kpr' AND zamovlennya.TUP_ZAM='$vud_zam' AND zamovlennya.VD='1'";
     }
+} elseif (!empty($filter2)) {
+    $filter = "";
 } else {
-    $filter = "zamovlennya.DATA_VD='$dt_vd' AND zamovlennya.VD='1'";
+    $filter = " AND zamovlennya.DATA_VD='$dt_vd' AND zamovlennya.VD='1'";
 }
 if (!empty($for_client)) {
-    $filter = "zamovlennya.PS='1' AND zamovlennya.VD='0'";
+    $filter = " AND zamovlennya.PS='1' AND zamovlennya.VD='0'";
 }
 
 $p = '<table align="center" class="zmview">
@@ -39,7 +62,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.PRI
 	nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY
 	FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 	WHERE
-		zamovlennya.DL='1' AND " . $filter . " 
+		zamovlennya.DL='1' " . $filter . $filter2 . " 
 		AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB
 		AND rayonu.ID_RAYONA=zamovlennya.RN
 		AND nas_punktu.ID_NSP=zamovlennya.NS
@@ -47,7 +70,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.PRI
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 		ORDER BY zamovlennya.KEY DESC";
-
+//echo $sql;
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
@@ -89,4 +112,3 @@ $p .= '</table>';
 
 if ($lich > 0) echo $p;
 else echo '<table class="zmview" align="center"><tr><th style="font-size: 35px;"><b>Замовлень не знайдено.</b></th></tr></table>';
-?>
