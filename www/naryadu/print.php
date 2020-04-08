@@ -90,6 +90,7 @@ $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamo
 			ORDER BY SZ, NZ";
 
 $atu1 = mysql_query($sql1);
+$num_rows = mysql_num_rows($atu1);
 while ($aut1 = mysql_fetch_array($atu1)) {
     if ($aut1["BUD"] != "") $bud = "буд. " . $aut1["BUD"]; else $bud = "";
     if ($aut1["KVAR"] != "") $kvar = "кв. " . $aut1["KVAR"]; else $kvar = "";
@@ -161,6 +162,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 mysql_free_result($atu1);
 $p .= '</table>';
 echo $p;
+echo '<br>Всього замовлень: ' . $num_rows;
 if (mysql_close($db)) {
     // echo("Закриття бази даних");
 } else {
