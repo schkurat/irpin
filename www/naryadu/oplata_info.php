@@ -8,6 +8,12 @@ include("../function.php");
             /*$('#nzam').bind('blur',net_fokusa);*/
             $('#nzam').keyup(net_fokusa);
             $('#prz').keyup(net_fokusa);
+            $('body').on('click','.search-nz', function () {
+                $("#szam").val($(this).data("sz"));
+                $("#nzam").val($(this).data("nz"));
+            }).on('mouseover','.search-nz', function () {
+                $(this).css('cursor', 'pointer');
+            });
 
             function net_fokusa(eventObj) {
                 $.ajax({

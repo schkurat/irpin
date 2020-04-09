@@ -43,7 +43,7 @@ if (isset($_POST['szam']) and isset($_POST['nzam'])) {
                 $sumd = $aut["SUM_D"];
                 $zak = $aut["SZ"] . "/" . $aut["NZ"];
 
-                $p .= '<tr><td>' . $zak . '</td><td>' . $fio . '</td><td>' . $adr . '</td><td>' . $sum . '</td><td>' . $sumd . '</td></tr>';
+                $p .= '<tr><td class="search-nz" data-sz="' . $aut["SZ"] . '" data-nz="' . $aut["NZ"] . '">' . $zak . '</td><td>' . $fio . '</td><td>' . $adr . '</td><td>' . $sum . '</td><td>' . $sumd . '</td></tr>';
             }
             mysql_free_result($ath);
         }
