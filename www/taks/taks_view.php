@@ -45,8 +45,8 @@ if ($flag == "") {
 }
 
 $user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
-$flag2 = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": " AND zamovlennya.VUK='$user'";
-
+//$flag2 = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.')? "": " AND zamovlennya.VUK='$user'";
+$flag2 = ($brigada == 8 || $brigada == 9)? "": " AND zamovlennya.VUK='$user'";
 $p = '<table id="tax" align="center" class="zmview">
 <tr>
 <th colspan="4">#</th>
