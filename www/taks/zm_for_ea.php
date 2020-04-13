@@ -22,7 +22,7 @@ if (!empty($_GET['search'])) {
 
 echo '
 <div style="display: inline-block; padding: 5px;">
-<form metod="GER" action="taks.php">
+<form metod="GET" action="taks.php">
 	<input type="text" name="search">
 	<input type="hidden" name="filter" value="zm_for_ea">
 	<button type="submit">Пошук</button>

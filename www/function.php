@@ -375,3 +375,34 @@ function zm_for_bd($zm){
     }
     return $response;
 }
+
+function get_adr($url,$lg,$pas){
+    $id_ea = array_shift(explode('/',$url));
+    $address ='';
+
+    $db = mysql_connect("localhost", $lg, $pas);
+    if (!$db) echo "Не вiдбулося зєднання з базою даних";
+
+    if (!@mysql_select_db(kpbti, $db)) {
+        echo("Не завантажена таблиця");
+        exit();
+    }
+
+    $sql = "SELECT rayonu.RAYON,arhiv.BD,arhiv.KV,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL    
+	FROM arhiv,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul  
+	WHERE 
+		arhiv.DL='1' AND arhiv.ID='$id_ea'
+		AND rayonu.ID_RAYONA=arhiv.RN 
+		AND nas_punktu.ID_NSP=arhiv.NS
+		AND vulutsi.ID_VUL=arhiv.VL
+		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
+		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
+    $atu = mysql_query($sql);
+    while ($aut = mysql_fetch_array($atu)) {
+        $obj_ner = objekt_ner(0, $aut["BD"], $aut["KV"]);
+        $address = $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
+    }
+    mysql_free_result($atu);
+
+    return $address;
+}

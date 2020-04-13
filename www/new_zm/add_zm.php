@@ -159,6 +159,8 @@ if ($error == 0) {
             mkdir($katalog . '/document');
             mkdir($katalog . '/technical');
             mkdir($katalog . '/inventory');
+            mkdir($katalog . '/correspondence');
+            mkdir($katalog . '/keeper');
         }
         $katalog .= '/document';
 
