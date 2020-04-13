@@ -60,6 +60,7 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
 			<li><a href="naryadu.php?filter=vuborka&krit=naryad_br">Наряд бригадира</a></li>
 			<li><a href="naryadu.php?filter=vuborka&krit=all_t">Місячний звіт по всім технікам</a></li>-->
 			<li><a href="naryadu.php?filter=vuborka&krit=buro">Надходження</a></li>
+            <li><a href="naryadu.php?filter=print_info&krit=zm_info">По замовленню</a></li>
 		</ul>
 	</li>
 	<li><a href="#">Контроль</a>

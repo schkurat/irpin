@@ -362,3 +362,16 @@ function open_dir($dir, $adr)
 function get_num_order($rn,$dt_order,$nz){
    return str_pad($rn, 2, 0, STR_PAD_LEFT) . $dt_order . str_pad($nz,2,'0',STR_PAD_LEFT);
 }
+
+function zm_for_bd($zm){
+    $response = "";
+    if (!empty($zm)){
+        $s = trim($zm);
+        if (strlen($s) == 10) {
+            $sz = mb_substr($s, 2, 6);
+            $nz = mb_substr($s, 8, 2);
+            $response = " AND zamovlennya.SZ='$sz' AND zamovlennya.nz='$nz' ";
+        }
+    }
+    return $response;
+}

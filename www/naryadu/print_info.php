@@ -1,6 +1,27 @@
 <?php
 include "../scriptu.php";
 $krit = $_GET['krit'];
+if ($krit == "zm_info") {
+    ?>
+    <form action="naryadu.php" name="myform" method="get">
+        <table align="center" class="zmview">
+            <tr>
+                <th colspan="4" align="center">Пошук інформації по замовленню:</th>
+            </tr>
+            <tr>
+                <td>Номер:</td>
+                <td>
+                    <input name="filter" type="hidden" value="zm_info_view"/>
+                    <input name="zm" type="text" value=""/></td>
+            </tr>
+            <tr>
+                <td align="center" colspan="2">
+                    <input name="Ok" type="submit" style="width:80px" value="Формувати"/></td>
+            </tr>
+        </table>
+    </form>
+    <?php
+}
 if ($krit == "got") {
     ?>
     <form action="print.php" name="myform" method="post">
@@ -138,10 +159,6 @@ if ($krit == "nevk_vuk") {
 }
 
 
-
-
-
-
 if ($krit == "got_vuk") {
     ?>
     <form action="print.php" name="myform" method="post">
@@ -187,7 +204,6 @@ if ($krit == "got_vuk") {
     </table>
     <?php
 }
-
 
 
 if ($krit == "pr_per") {
