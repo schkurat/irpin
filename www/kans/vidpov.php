@@ -4,7 +4,7 @@ include "function.php";
 $n_vhid=$_POST['nom_vh'];
 $d1=date("Y-m-d",mktime(0,0,0,1,1,date("Y")));
 
-$sql = "SELECT DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
+$sql = "SELECT EA,DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
 		WHERE DATAV>='$d1' AND NV='$n_vhid'"; 
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
@@ -16,6 +16,7 @@ $sql = "SELECT DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
 	$boss=$aut["BOSS"];
 	$zmist=$aut["ZMIST"];
 	$tip=$aut["TIP"];
+	$ea_id = $aut["EA"];
  }
  mysql_free_result($atu); 
 
@@ -30,7 +31,7 @@ if ($n_vuh==''){
 $n_vuh=1;
 }
 
-$pr='<form action="vidadd.php" name="myform" method="post">
+$pr='<form action="vidadd.php" name="myform" method="post" enctype="multipart/form-data">
 <table align="center" class="zmview">
 <tr bgcolor="#B5B5B5"><th colspan="5" align="center">Вихiдна документацiя</th></tr>
 <tr bgcolor="#FFFAF0">
@@ -108,17 +109,20 @@ $pr='<form action="vidadd.php" name="myform" method="post">
 <input type="text" size="10" maxlength="10" name="data_vuh" value="'.date("d.m.Y").'"/>
 </td>
 </tr>
-<tr bgcolor="#FFFAF0"><td align="center" colspan="2">
+<tr>
+                <td colspan="2">Файли для електронного архіву</td>
+                <td colspan="2">
+                    <input type="hidden" name="ea_id" value="'. $ea_id .'">
+                    <input type="file" name="file[]" size="40" multiple>
+                </td>
+            </tr>
+<tr bgcolor="#FFFAF0">
+<td align="center" colspan="4">
 <input type="submit" name="ok" style="width:70px;" value="Ок">
-</form>
 </td>
-<td align="center" colspan="2">
-<form action="vhidna.php" name="myform" method="post">
-<input type="submit" name="cans" style="width:70px;" value="Вiдмiна">
-</form>
-</td></tr>';
+</tr>
+</form>';
 
 $pr.='</table>';
 echo $pr;   
 require('bottom.php');
-?>

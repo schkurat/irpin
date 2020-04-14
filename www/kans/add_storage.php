@@ -20,6 +20,7 @@ if (isset($_FILES)) {
         //новое имя изображения
         $apend = str_replace(" ", "_", $_FILES["file"]["name"][$k]);
         $apend = str_replace(",", "_", $_FILES["file"]["name"][$k]);
+        $apend = date("d_m_Y") . '_' . $apend;
         //путь к новому изображению
         $uploadfile = "$uploaddir$apend";
 

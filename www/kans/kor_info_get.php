@@ -28,7 +28,7 @@ $sql = "SELECT DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP,NI,DATAI FROM kans
  }
  mysql_free_result($atu); 
 
-$pr='<form action="kor_vh.php" name="myform" method="post">
+$pr='<form action="kor_vh.php" name="myform" method="post" enctype="multipart/form-data">
 <table align="center" class="zmview">
 <tr bgcolor="#B5B5B5"><th colspan="5" align="center">Вихiдна документацiя</th></tr>
 <tr bgcolor="#FFFAF0">
@@ -82,15 +82,18 @@ $pr='<form action="kor_vh.php" name="myform" method="post">
 <input type="text" readonly size="10" maxlength="10" name="data_vuh" value="'.$datvuh.'"/>
 </td>
 </tr>
-<tr bgcolor="#FFFAF0"><td align="center" colspan="2">
+<tr>
+                <td colspan="2">Файли для електронного архіву</td>
+                <td colspan="2">
+                    <input type="file" name="file[]" size="40" multiple>
+                </td>
+            </tr>
+<tr bgcolor="#FFFAF0">
+<td align="center" colspan="4">
 <input type="submit" name="ok" style="width:70px;" value="Ок">
-</form>
 </td>
-<td align="center" colspan="2">
-<form action="vhidna.php" name="myform" method="post">
-<input type="submit" name="cans" style="width:70px;" value="Вiдмiна">
-</form>
-</td></tr>'; 
+</tr>
+</form>';
 
 }
 if($perekl=='vuhid'){
