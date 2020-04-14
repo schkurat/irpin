@@ -237,7 +237,7 @@ $pdf->Text(65, 60, 'АКТ виконаних робіт № ');
 $pdf->SetFont('dejavub', '', 10);
 $pdf->Text(125, 60, $ndog);
 $pdf->SetFont('dejavu', '', 8);
-$pdf->Text(92, 64, 'від ' . $dtzak . ' року');
+$pdf->Text(92, 64, 'від ' . $dtpidp . ' року');
 
 $pdf->SetFont('dejavu', '', 10);
 $pdf->SetXY(14, 70);
