@@ -181,13 +181,20 @@ include "../scriptu.php";
             data: 'edrpou=' + $("#edrpou").val(),
             dataType: "html",
             success: function (html) {
-                var reply = html.split(":", 6);
+                var reply = html.split(":", 13);
                 $("#subj").val(reply[0]);
                 $("#ipn").val(reply[1]);
                 $("#svid").val(reply[2]);
                 $("#tel").val(reply[3]);
                 $("#email").val(reply[4]);
                 $("#adrs_subj").val(reply[5]);
+                $("#prilad").val(reply[6]);
+                $("#ser_sert").val(reply[7]);
+                $("#numb_sert").val(reply[8]);
+                $("#idn").val(reply[9]);
+                $("#pr").val(reply[10]);
+                $("#im").val(reply[11]);
+                $("#pb").val(reply[12]);
             },
             error: function (html) {
                 alert(html.error);

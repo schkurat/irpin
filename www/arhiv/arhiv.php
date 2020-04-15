@@ -84,6 +84,12 @@ $dt_now = date("d.m.Y");
                         <li><a href="arhiv.php?filter=pov_info">Повернення коштів</a></li>
                     </ul>
                 </li>
+                <li><a href="#">Юридичні клієнти</a>
+                    <ul>
+                        <li><a href="arhiv.php?filter=yur_view">Перегляд</a></li>
+                        <li><a href="arhiv.php?filter=new_yur_info">Додати</a></li>
+                    </ul>
+                </li>
                 <li><a href="#">Архів інвентарний</a>
                     <ul>
 <!--                        <li><a href="arhiv.php?filter=new_zap_info">Створити запис</a></li>-->
