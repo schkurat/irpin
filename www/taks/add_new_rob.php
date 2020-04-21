@@ -51,7 +51,7 @@ if (isset($_POST['nrob'])) {
 }
 $n_sel = substr($_POST['nom'], 1) + 1;
 $select_item = '<select name="s' . $n_sel . '"><option value=""></option>' . $sl_construct . '</select>';
-echo $id . ':' . $nom . ':' . $naim . ':' . $od_vum . ':' . $vum . ':' . $vuk . ':' . $kontr . ':' . $vud . ':' . $n_sel . ':' . $select_item;
+echo $id . 'Z' . $nom . 'Z' . $naim . 'Z' . $od_vum . 'Z' . $vum . 'Z' . $vuk . 'Z' . $kontr . 'Z' . $vud . 'Z' . $n_sel . 'Z' . $select_item;
 
 //echo 'Текст:вася:петя';
 if (mysql_close($db)) {

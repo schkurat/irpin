@@ -20,7 +20,7 @@ if (!@mysql_select_db(kpbti, $db)) {
 //$vstavka_new='';
 if ($tz == 2) {
 
-    $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
+    $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		yur_kl.ADRES,dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,
 		zamovlennya.SZ,zamovlennya.NZ,yur_kl.PILGA 
 		FROM zamovlennya,rayonu,nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya,yur_kl 
@@ -34,7 +34,7 @@ if ($tz == 2) {
 //$patterns1[1] = "[adresa]";
 //$patterns1[2] = "[sbpdv]";
 } else {
-    $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
+    $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
 		FROM zamovlennya, rayonu,nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE 
@@ -60,7 +60,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $t_zak = $aut["TUP_ZAM"];
     $dtzak = german_date($aut["D_PR"]);
     $dtk = $dtzak;//date("d.m.Y");
-    $vidrob = $aut["document"];
+    $vidrob = $aut["name_for_dog"];
     $kod_rob = $aut["id_oform"];
     $namerob = 'Виконання робіт з технічної інвентаризації об`єктів нерухомого майна:';
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";

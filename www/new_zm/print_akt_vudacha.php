@@ -13,7 +13,7 @@ if (!@mysql_select_db(kpbti, $db)) {
     exit();
 }
 
-$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.RAYON,nas_punktu.NSP,rayonu.ID_RAYONA, tup_nsp.TIP_NSP,
+$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,rayonu.RAYON,nas_punktu.NSP,rayonu.ID_RAYONA, tup_nsp.TIP_NSP,
 			dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
 				FROM zamovlennya, rayonu,nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE 
@@ -34,7 +34,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $tup_zam = $aut["TUP_ZAM"];
     $ndog = get_num_order($kod_rn, $aut["SZ"], $aut["NZ"]);
     $dtzak = german_date($aut["D_PR"]);
-    $vidrob = $aut["document"];
+    $vidrob = $aut["name_for_dog"];
     $kod_rob = $aut["id_oform"];
     $edrpou = $aut["EDRPOU"];
     $idn = $aut["IDN"];

@@ -80,7 +80,7 @@ mysql_free_result($atu);
                     data: 'nrob=' + $("#nov_rob").val() + '&nom=' + $("select:last").attr("name"),
                     dataType: "html",
                     success: function (html) {
-                        var reply = html.split(":", 10);
+                        var reply = html.split("Z", 10);
                         if (reply[0] != '') {
                             $(".zmview").append('<tr>\
 <td>' + reply[9] + '</td>\
