@@ -4,7 +4,7 @@ include "function.php";
 $n_vhid=$_POST['nom_vh'];
 $d1=date("Y-m-d",mktime(0,0,0,1,1,date("Y")));
 
-$sql = "SELECT EA,DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
+$sql = "SELECT ID,EA,DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
 		WHERE DATAV>='$d1' AND NV='$n_vhid'"; 
  $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
@@ -17,6 +17,7 @@ $sql = "SELECT EA,DATAV,NKL,DATAKL,NAIM,BOSS,ZMIST,TIP FROM kans
 	$zmist=$aut["ZMIST"];
 	$tip=$aut["TIP"];
 	$ea_id = $aut["EA"];
+	$kl = $aut["ID"];
  }
  mysql_free_result($atu); 
 
@@ -113,6 +114,7 @@ $pr='<form action="vidadd.php" name="myform" method="post" enctype="multipart/fo
                 <td colspan="2">Файли для електронного архіву</td>
                 <td colspan="2">
                     <input type="hidden" name="ea_id" value="'. $ea_id .'">
+                    <input type="hidden" name="kl" value="' . $kl . '">
                     <input type="file" name="file[]" size="40" multiple>
                 </td>
             </tr>

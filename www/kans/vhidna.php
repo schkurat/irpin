@@ -36,13 +36,14 @@ include "function.php";
         $d2 = date("Y-m-d");
 
 
-        $sql = "SELECT EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK FROM kans
+        $sql = "SELECT ID,EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK FROM kans
 		WHERE DATAV>='$d1' AND DATAV<='$d2' AND PR='1' ORDER BY NV DESC";
         $atu = mysql_query($sql);
         while ($aut = mysql_fetch_array($atu)) {
+            $url = ($aut["EA"] != 0)? $aut["EA"] . '/correspondence': 'correspondence/' . $aut["ID"];
             ?>
             <tr>
-                <td align="center"><a class="text-link" href="storage.php?url=<?= $aut["EA"] ?>/correspondence&parent_link=&adr=">ЕА</a></td>
+                <td align="center"><a class="text-link" href="storage.php?url=<?= $url ?>&parent_link=&adr=">ЕА</a></td>
                 <td align="center"><?= german_date($aut["DATAKL"]) ?></td>
                 <td align="center"><?= german_date($aut["DATAV"]) ?></td>
                 <td align="center"><?= $aut["NI"] ?></td>

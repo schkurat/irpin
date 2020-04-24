@@ -10,6 +10,9 @@ $parent_link = $_POST['parent_link'];
 $adr = $_POST['adr'];
 
 $katalog = 'ea/' . $url;
+if (!is_dir($katalog)) {
+    mkdir($katalog);
+}
 
 if (isset($_FILES)) {
     //пролистываем весь массив изображений по одному $_FILES['file']['name'] as $k=>$v

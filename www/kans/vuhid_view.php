@@ -42,17 +42,18 @@ include "../function.php";
             $d2 = date("Y-m-d");
         }
 
-        $sql = "SELECT EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK,KONVERT,SEKR FROM kans
+        $sql = "SELECT ID,EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK,KONVERT,SEKR FROM kans
 		WHERE DATAI>='$d1' AND DATAI<='$d2' AND PR='2' ORDER BY NI DESC";
         //echo $sql;
         $atu = mysql_query($sql);
         while ($aut = mysql_fetch_array($atu)) {
             if ($aut["KONVERT"] == 1) $konv = 'так';
             else $konv = 'ні';
+            $url = ($aut["EA"] != 0)? $aut["EA"] . '/correspondence': 'correspondence/' . $aut["ID"];
             ?>
             <tr>
                 <td align="center"><a class="text-link"
-                                      href="storage.php?url=<?= $aut["EA"] ?>/correspondence&parent_link=&adr=">ЕА</a>
+                                      href="storage.php?url=<?= $url ?>&parent_link=&adr=">ЕА</a>
                 </td>
                 <td align="center"><?= german_date($aut["DATAKL"]) ?></td>
                 <td align="center"><?= german_date($aut["DATAV"]) ?></td>
