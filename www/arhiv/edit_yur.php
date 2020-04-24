@@ -1,4 +1,5 @@
 <?php
+include_once "../function.php";
 $kl = $_GET['kl'];
 
 $sql = "SELECT * FROM yur_kl WHERE yur_kl.ID='$kl' AND yur_kl.DL='1'";
@@ -111,11 +112,25 @@ while ($aut = mysql_fetch_array($atu)) {
                 </td>
             </tr>
             <tr>
+                <th colspan="4">Договір</th>
+            </tr>
+            <tr>
+                <td>Номер:</td>
+                <td><input name="ndog" type="text" size="20" value="<?= htmlspecialchars($aut["N_DOG"], ENT_QUOTES) ?>"/></td>
+                <td>Дата:</td>
+                <td><input name="dtdog" type="text"  size="20" class="datepicker" value=""/></td>
+            </tr>
+            <tr>
                 <td align="center" colspan="4">
                     <input name="Ok" type="submit" style="width:80px" value="Змінити"/></td>
             </tr>
         </table>
     </form>
+    <script language="JavaScript">
+        $(function () {
+            $(".datepicker").datepicker("setDate",'<?= german_date($aut["DT_DOG"]) ?>');
+        });
+    </script>
     <?php
 }
 mysql_free_result($atu);

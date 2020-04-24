@@ -27,6 +27,9 @@ $so_pr = (isset($_GET["so_pr"])) ? addslashes(trim($_GET["so_pr"])) : '';
 $so_im = (isset($_GET["so_im"])) ? addslashes(trim($_GET["so_im"])) : '';
 $so_pb = (isset($_GET["so_pb"])) ? addslashes(trim($_GET["so_pb"])) : '';
 
+$n_dog = (isset($_GET["ndog"])) ? addslashes(trim($_GET["ndog"])) : '';
+$dt_dog = (isset($_GET["dtdog"])) ? date_bd($_GET["dtdog"]) : '';
+
 $db = mysql_connect("localhost", $lg, $pas);
 if (!$db) echo "Не вiдбулося зєднання з базою даних";
 
@@ -35,7 +38,7 @@ if (!@mysql_select_db(kpbti, $db)) {
     exit();
 }
 
-$ath1 = mysql_query("UPDATE yur_kl SET NAME='$name',EDRPOU='$edrpou',SVID='$svid',IPN='$ipn',ADRES='$adres',
+$ath1 = mysql_query("UPDATE yur_kl SET N_DOG='$n_dog',DT_DOG='$dt_dog',NAME='$name',EDRPOU='$edrpou',SVID='$svid',IPN='$ipn',ADRES='$adres',
 	TELEF='$telef',NAME_F='$namef',RR='$rr',BANK='$bank',MFO='$mfo',EMAIL='$email',ED_POD='$pdv',PRILAD='$prilad',
 	SERT_S='$ser_sert',SERT_N='$numb_sert',SO_IPN='$so_ipn',SO_PR='$so_pr',SO_IM='$so_im',SO_PB='$so_pb' 
 	WHERE yur_kl.ID='$kl' AND yur_kl.DL='1'");

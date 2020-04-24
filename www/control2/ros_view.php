@@ -37,13 +37,6 @@ while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
     if ($aut["KVAR"] != "") $kvar = "кв." . $aut["KVAR"]; else $kvar = "";
     $zakaz = get_num_order($aut["ID_RAYONA"], $aut["SZ"], $aut["NZ"]);
-    if ($aut["VUD_ROB"] > 19) {
-        $brug = 5;
-        $zagl = 'disabled';
-    } else {
-        $brug = 1;
-        $zagl = '';
-    }
     $p .= '<tr>
 	<td align="center">' . $zakaz . '</td>
 	<td>' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $bud . " " . $kvar . '</td>
@@ -53,7 +46,7 @@ while ($aut = mysql_fetch_array($atu)) {
 	<td align="center">
 	<select name="a' . $aut["KEY"] . '">
 	<option value=""></option>';
-    $sql1 = "SELECT ROBS,ID_ROB,BRUGADA FROM robitnuku WHERE BRUGADA='$brug' AND DL='1' ORDER BY ROBS";
+    $sql1 = "SELECT ROBS,ID_ROB,BRUGADA FROM robitnuku WHERE BRUGADA='1' AND DL='1' ORDER BY ROBS";
     $atu1 = mysql_query($sql1);
     while ($aut1 = mysql_fetch_array($atu1)) {
         $p .= '<option value=' . $aut1["ID_ROB"] . '>' . $aut1["ROBS"] . '</option>';
@@ -62,7 +55,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $p .= '</select>
 	</td>
 	<td align="center"><input type="text" class="datepicker" name="b' . $aut["KEY"] . '" value="' . german_date($aut["DATA_VUH"]) . '" size="10" ' . $zagl . '></td>
-    <td align="center"><input name="c' . $aut["KEY"] . '" type="checkbox" value="g' . $aut["KEY"] . '" ' . $zagl . '></td>	
+    <td align="center"><input name="c' . $aut["KEY"] . '" type="checkbox" value="g' . $aut["KEY"] . '"></td>	
 	</tr>';
 }
 mysql_free_result($atu);

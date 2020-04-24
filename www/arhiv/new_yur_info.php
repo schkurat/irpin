@@ -90,6 +90,15 @@
             </td>
         </tr>
         <tr>
+            <th colspan="4">Договір</th>
+        </tr>
+        <tr>
+            <td>Номер:</td>
+            <td><input name="ndog" type="text" size="20" value=""/></td>
+            <td>Дата:</td>
+            <td><input name="dtdog" type="text"  size="20" class="datepicker" value=""/></td>
+        </tr>
+        <tr>
             <td align="center" colspan="4">
                 <input name="Ok" type="submit" style="width:80px" value="Додати"/></td>
         </tr>

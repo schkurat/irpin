@@ -26,6 +26,8 @@ $so_pr = (isset($_GET["so_pr"])) ? addslashes(trim($_GET["so_pr"])) : '';
 $so_im = (isset($_GET["so_im"])) ? addslashes(trim($_GET["so_im"])) : '';
 $so_pb = (isset($_GET["so_pb"])) ? addslashes(trim($_GET["so_pb"])) : '';
 
+$n_dog = (isset($_GET["ndog"])) ? addslashes(trim($_GET["ndog"])) : '';
+$dt_dog = (isset($_GET["dtdog"])) ? date_bd($_GET["dtdog"]) : '';
 
 $db = mysql_connect("localhost", $lg, $pas);
 if (!$db) echo "Не вiдбулося зєднання з базою даних";
@@ -35,8 +37,8 @@ if (!@mysql_select_db(kpbti, $db)) {
     exit();
 }
 
-$ath1 = mysql_query("INSERT INTO yur_kl(NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,RR,BANK,MFO,EMAIL,ED_POD,PRILAD,SERT_S,SERT_N,SO_IPN,SO_PR,SO_IM,SO_PB) 
-	VALUES('$name','$edrpou','$svid','$ipn','$adres','$telef','$namef','$rr','$bank','$mfo','$email','$pdv','$prilad','$ser_sert','$numb_sert','$so_ipn','$so_pr','$so_im','$so_pb');");
+$ath1 = mysql_query("INSERT INTO yur_kl(N_DOG,DT_DOG,NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,RR,BANK,MFO,EMAIL,ED_POD,PRILAD,SERT_S,SERT_N,SO_IPN,SO_PR,SO_IM,SO_PB) 
+	VALUES('$n_dog','$dt_dog','$name','$edrpou','$svid','$ipn','$adres','$telef','$namef','$rr','$bank','$mfo','$email','$pdv','$prilad','$ser_sert','$numb_sert','$so_ipn','$so_pr','$so_im','$so_pb');");
 if (!$ath1) {
     echo "Клієнт не внесений до БД";
 }
