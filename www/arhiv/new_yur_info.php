@@ -12,6 +12,18 @@
             <td colspan="3"><input name="namef" type="text" size="60" value=""/></td>
         </tr>
         <tr>
+            <td>Керівник(скор.):</td>
+            <td colspan="3"><input name="boss" type="text" size="60" value=""/></td>
+        </tr>
+        <tr>
+            <td>Керівник(повністю):</td>
+            <td colspan="3"><input name="boss_f" type="text" size="60" value=""/></td>
+        </tr>
+        <tr>
+            <td>Діє на підставі:</td>
+            <td colspan="3"><input name="pidstava" type="text" size="60" value=""/></td>
+        </tr>
+        <tr>
             <td>Адреса:</td>
             <td colspan="3"><input name="adres" type="text" size="60" value=""/></td>
         </tr>

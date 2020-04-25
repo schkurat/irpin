@@ -29,6 +29,21 @@ while ($aut = mysql_fetch_array($atu)) {
                                        value="<?php echo htmlspecialchars($aut["NAME_F"], ENT_QUOTES); ?>"/></td>
             </tr>
             <tr>
+                <td>Керівник(скор.):</td>
+                <td colspan="3"><input name="boss" type="text" size="60"
+                                       value="<?php echo htmlspecialchars($aut["BOSS"], ENT_QUOTES); ?>"/></td>
+            </tr>
+            <tr>
+                <td>Керівник(повністю):</td>
+                <td colspan="3"><input name="boss_f" type="text" size="60"
+                                       value="<?php echo htmlspecialchars($aut["BOSS_F"], ENT_QUOTES); ?>"/></td>
+            </tr>
+            <tr>
+                <td>Діє на підставі:</td>
+                <td colspan="3"><input name="pidstava" type="text" size="60"
+                                       value="<?php echo htmlspecialchars($aut["PIDSTAVA"], ENT_QUOTES); ?>"/></td>
+            </tr>
+            <tr>
                 <td>Адреса:</td>
                 <td colspan="3"><input name="adres" type="text" size="60"
                                        value="<?php echo htmlspecialchars($aut["ADRES"], ENT_QUOTES); ?>"/></td>

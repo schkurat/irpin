@@ -23,6 +23,7 @@ $dt_now = date("d.m.Y");
     <link rel="stylesheet" type="text/css" href="../js/autozap.css"/>
     <link rel="stylesheet" type="text/css" href="../my.css"/>
     <link rel="stylesheet" type="text/css" href="../menu.css"/>
+    <link href="../fontawesome/css/all.css" rel="stylesheet">
     <script type="text/javascript" src="../js/scriptbreaker-multiple-accordion-1.js"></script>
     <script language="JavaScript">
         $(document).ready(function () {

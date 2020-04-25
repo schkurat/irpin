@@ -24,7 +24,7 @@ include "./scriptu.php";
                     <option value=""></option>
                     <?php
                     $p = '';
-                    $sql = "SELECT * FROM arhiv_jobs ORDER BY name";
+                    $sql = "SELECT * FROM arhiv_jobs WHERE DL='1' ORDER BY name";
                     $atu = mysql_query($sql);
                     while ($aut = mysql_fetch_array($atu)) {
                         $p .= '<option value="' . $aut["id"] . '">' . $aut["name"] . '</option>';

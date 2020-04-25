@@ -8,6 +8,9 @@ include("../function.php");
 $kl = $_GET['kl'];
 $name = addslashes($_GET['name']);
 $namef = addslashes($_GET['namef']);
+$boss = addslashes($_GET['boss']);
+$boss_f = addslashes($_GET['boss_f']);
+$pidstava = addslashes($_GET['pidstava']);
 $adres = addslashes($_GET['adres']);
 $telef = $_GET['telef'];
 $email = $_GET['email'];
@@ -39,7 +42,7 @@ if (!@mysql_select_db(kpbti, $db)) {
 }
 
 $ath1 = mysql_query("UPDATE yur_kl SET N_DOG='$n_dog',DT_DOG='$dt_dog',NAME='$name',EDRPOU='$edrpou',SVID='$svid',IPN='$ipn',ADRES='$adres',
-	TELEF='$telef',NAME_F='$namef',RR='$rr',BANK='$bank',MFO='$mfo',EMAIL='$email',ED_POD='$pdv',PRILAD='$prilad',
+	TELEF='$telef',NAME_F='$namef',BOSS='$boss',BOSS_F='$boss_f',PIDSTAVA='$pidstava',RR='$rr',BANK='$bank',MFO='$mfo',EMAIL='$email',ED_POD='$pdv',PRILAD='$prilad',
 	SERT_S='$ser_sert',SERT_N='$numb_sert',SO_IPN='$so_ipn',SO_PR='$so_pr',SO_IM='$so_im',SO_PB='$so_pb' 
 	WHERE yur_kl.ID='$kl' AND yur_kl.DL='1'");
 if (!$ath1) {
