@@ -135,13 +135,16 @@ while ($aut = mysql_fetch_array($atu)) {
     if($code_job>5) {
         $vst_print = '<a href="print_dog.php?kl=' . $aut["KEY"] . '"><i class="fal fa-file-contract"></i></a>';
     }else{
-        $vst_print = '<a href="print_dog.php?kl=' . $aut["KEY"] . '"><i class="fal fa-file-contract"></i></a><br>
-        <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=1" class="text-link"><i class="fal fa-paperclip">1</i></a>
+        $vst_print = '<a href="print_dog.php?kl=' . $aut["KEY"] . '"><i class="fal fa-file-contract"></i></a><br>';
+        if($job_type == 3){
+            $vst_print .= '<a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=1" class="text-link"><i class="fal fa-paperclip">1</i></a>
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=2" class="text-link"><i class="fal fa-paperclip">2</i></a>
-        <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=3" class="text-link"><i class="fal fa-paperclip">3</i></a>
-        <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=4" class="text-link"><i class="fal fa-paperclip">4</i></a>
+        <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=3" class="text-link"><i class="fal fa-paperclip">3</i></a>';
+        }elseif ($job_type == 1){
+            $vst_print .= '<a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=4" class="text-link"><i class="fal fa-paperclip">4</i></a>
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=5" class="text-link"><i class="fal fa-paperclip">5</i></a>
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=6" class="text-link"><i class="fal fa-paperclip">6</i></a>';
+        }
     }
     $vst_bl2 = '<td align="center"><a href="print_akt_transfer.php?kl=' . $aut["KEY"] . '"><i class="fal fa-file-certificate"></i></a></td>';
 
