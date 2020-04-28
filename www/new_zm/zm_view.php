@@ -123,7 +123,8 @@ while ($aut = mysql_fetch_array($atu)) {
         $vst_print = '<a href="print_dog.php?kl=' . $aut["KEY"] . '"><img src="../images/print.png" border="0"></a>';
     } else {
         if ($aut["PS"] != '0') {
-            $vst_bl2 = '<td align="center"><a href="print_akt_zm.php?kl=' . $aut["KEY"] . '"><img src="../images/akt.png" border="0"></a></td>';
+//            $vst_bl2 = '<td align="center"><a href="print_akt_zm.php?kl=' . $aut["KEY"] . '"><img src="../images/akt.png" border="0"></a></td>';
+            $vst_bl2 = '<td align="center">-</td>';
         } else {
             $vst_bl2 = '<td align="center"><a href="index.php?filter=dop_vl_view&kl=' . $aut["KEY"] . '&sz=' . $aut["SZ"] . '&nz=' . $aut["NZ"] . '"><img src="../images/active.gif" border="0"></a></td>';
         }

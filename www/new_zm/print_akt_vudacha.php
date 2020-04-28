@@ -13,13 +13,14 @@ if (!@mysql_select_db(kpbti, $db)) {
     exit();
 }
 
-$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,rayonu.RAYON,nas_punktu.NSP,rayonu.ID_RAYONA, tup_nsp.TIP_NSP,
+$sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,
+            rayonu.RAYON,nas_punktu.NSP,rayonu.ID_RAYONA, tup_nsp.TIP_NSP,arhiv.N_SPR, 
 			dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
-				FROM zamovlennya, rayonu,nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
+				FROM zamovlennya, rayonu,nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya, arhiv 
 		WHERE 
-		zamovlennya.KEY='$kl'
+		zamovlennya.KEY='$kl' AND zamovlennya.EA=arhiv.ID 
 		AND zamovlennya.DL='1' AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB
-		AND rayonu.ID_RAYONA=RN AND nas_punktu.ID_NSP=NS AND vulutsi.ID_VUL=VL
+		AND rayonu.ID_RAYONA=zamovlennya.RN AND nas_punktu.ID_NSP=zamovlennya.NS AND vulutsi.ID_VUL=zamovlennya.VL
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
 $atu = mysql_query($sql);
@@ -44,12 +45,19 @@ while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";
     if ($aut["KVAR"] != "") $kvar = "кв." . $aut["KVAR"]; else $kvar = "";
     $adresa = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ' ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ' ' . $bud . ' ' . $kvar;
-    /* if($aut["DOKVUT"]!='0000-00-00') $sma=$aut["SUM"];
-    if($aut["DODOP"]!='0000-00-00') $smd=$aut["SUM_D"];
-    $sum=number_format(($sma+$smd),2,'.','');  */
     $dtpidp = german_date($aut["DATA_VD"]);
+    $n_spr = $aut["N_SPR"];
+    if(empty($n_spr)){
+        $vidrob .= ' з присвоєнням інвентаризаційного номера в КР КОР "ЗБЕРІГАЧ"';
+    }
+    else{
+        $vidrob .= ' та здача матеріалів технічної інвентаризації в КР КОР "ЗБЕРІГАЧ"';
+    }
 }
 mysql_free_result($atu);
+    $job = $vidrob . ' за адресою ' . $adresa;
+    $len_str = mb_strlen($job);
+    $count_job_str = ceil(($len_str/48));
 
 $taks = 0;
 $nds = 0;
@@ -258,40 +266,41 @@ $pdf->MultiCell(25, 10, 'Ціна', 1, 'C', 0);
 $pdf->SetXY(180, 90);
 $pdf->MultiCell(25, 10, 'Сума', 1, 'C', 0);
 $pdf->SetXY(15, 100);
-$pdf->MultiCell(10, 10, '1', 1, 'C', 0);
+$pdf->MultiCell(10, 5 * $count_job_str, '1', 1, 'C', 0);
 $pdf->SetXY(25, 100);
-$pdf->MultiCell(100, 5, $vidrob . ' за адресою ' . $adresa, 1, 'L', 0);
+$pdf->MultiCell(100, 5, $job , 1, 'L', 0);
 $pdf->SetXY(125, 100);
-$pdf->MultiCell(10, 10, '1', 1, 'C', 0);
+$pdf->MultiCell(10, 5 * $count_job_str, '1', 1, 'C', 0);
 $pdf->SetXY(135, 100);
-$pdf->MultiCell(20, 10, 'послуга', 1, 'C', 0);
+$pdf->MultiCell(20, 5 * $count_job_str, 'послуга', 1, 'C', 0);
 $pdf->SetXY(155, 100);
-$pdf->MultiCell(25, 10, number_format($sum, 2), 1, 'R', 0);
+$pdf->MultiCell(25, 5 * $count_job_str, number_format($sum, 2), 1, 'R', 0);
 $pdf->SetXY(180, 100);
-$pdf->MultiCell(25, 10, number_format($sum, 2), 1, 'R', 0);
-$pdf->SetXY(155, 110);
+$pdf->MultiCell(25, 5 * $count_job_str, number_format($sum, 2), 1, 'R', 0);
+$pdf->SetXY(155, 100 + 5 * $count_job_str);
 $pdf->SetFont('dejavub', '', 9);
 $pdf->MultiCell(25, 10, 'Всього:', 0, 'R', 0);
-$pdf->SetXY(180, 110);
+$pdf->SetXY(180, 100 + 5 * $count_job_str);
 $pdf->MultiCell(25, 10, number_format($sum, 2), 0, 'R', 0);
 
+$y = 3 * $count_job_str;
 $pdf->SetFont('dejavub', '', 10);
-$pdf->Text(15, 125, 'Загальна вартість виконаних робіт:');
-$pdf->Text(15, 130, $smpr);
+$pdf->Text(15, 125 + $y, 'Загальна вартість виконаних робіт:');
+$pdf->Text(15, 130 + $y, $smpr);
 
 $pdf->SetFont('dejavu', '', 10);
-$pdf->Text(15, 140, 'Замовник претензій по об’єму, якості та строкам виконання робіт (надання послуг) не має.');
+$pdf->Text(15, 140 + $y, 'Замовник претензій по об’єму, якості та строкам виконання робіт (надання послуг) не має.');
 
 $pdf->SetFont('dejavu', '', 12);
-$pdf->Text(40, 155, 'ВИКОНАВЕЦЬ');
-$pdf->Text(130, 155, 'ЗАМОВНИК');
+$pdf->Text(40, 155 + $y, 'ВИКОНАВЕЦЬ');
+$pdf->Text(130, 155 + $y, 'ЗАМОВНИК');
 
 $pdf->SetFont('dejavub', '', 10);
-$pdf->Text(16, 165, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
-$pdf->Text(111, 165, $zamovnuk);
+$pdf->Text(16, 165 + $y, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
+$pdf->Text(111, 165 + $y, $zamovnuk);
 
 $pdf->SetFont('dejavu', '', 10);
-$pdf->SetXY(15, 167);
+$pdf->SetXY(15, 167 + $y);
 $pdf->MultiCell(85, 4, 'Поштова адреса:  07400 Київська обл.,
 м.Бровари, вул.Шевченка, 8а, 
 Тел.: (045) 944-13-21
@@ -299,7 +308,7 @@ $pdf->MultiCell(85, 4, 'Поштова адреса:  07400 Київська о�
 Банк: КИЇВСЬКЕ ГРУ ПАТ КБ"ПРИВАТБАНК"
 п/р ' . $rahunok, 0, 'L', 0);
 
-$pdf->SetXY(110, 167);
+$pdf->SetXY(110, 167 + $y);
 $pdf->MultiCell(85, 4, 'Адреса: ' . $adresa . ' 
 Телефон: ' . $tel . '
 ІПН: ' . $idn . '
@@ -307,13 +316,13 @@ $pdf->MultiCell(85, 4, 'Адреса: ' . $adresa . '
 
 
 $pdf->SetFont('dejavu', '', 10);
-$pdf->Text(16, 205, 'В.о. генерального директора');
-$pdf->Text(16, 210, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
-$pdf->Text(16, 217, '___________________________');
-$pdf->Text(111, 217, '___________________________');
-$pdf->Text(16, 222, 'О.Є. Кондратенко');
-$pdf->Text(111, 222, $zamovnuk);
-$pdf->Text(16, 227, 'М.П.');
+$pdf->Text(16, 205 + $y, 'В.о. генерального директора');
+$pdf->Text(16, 210 + $y, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
+$pdf->Text(16, 217 + $y, '___________________________');
+$pdf->Text(111, 217 + $y, '___________________________');
+$pdf->Text(16, 222 + $y, 'О.Є. Кондратенко');
+$pdf->Text(111, 222 + $y, $zamovnuk);
+$pdf->Text(16, 227 + $y, 'М.П.');
 
 //Zakrutie bazu       
 if (mysql_close($db)) {
