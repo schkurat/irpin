@@ -4,19 +4,32 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 
 include "../function.php";
+?>
+<style>
+    .report{
+        border: 1px solid black;
+        border-collapse: collapse;
+        font-size: 0.75em;
+    }
+    .report th,.report td{
+        border: 1px solid black;
+        padding: 2px 3px;
+    }
+</style>
+<?php
 
 $bdat = date_bd($_POST['date1']);
 $edat = date_bd($_POST['date2']);
 $flg = $_POST['flag'];
-if(!empty($_POST['rayon'])){
-	$rayon = intval($_POST['rayon']);
-	if ($rayon > 0){
-		 $ray = " AND zamovlennya.RN = ".$rayon;
-	}else{
-		$ray = '';
-	}
-}else{
-	$ray = '';
+if (!empty($_POST['rayon'])) {
+    $rayon = intval($_POST['rayon']);
+    if ($rayon > 0) {
+        $ray = " AND zamovlennya.RN = " . $rayon;
+    } else {
+        $ray = '';
+    }
+} else {
+    $ray = '';
 }
 
 
@@ -29,23 +42,18 @@ if (!@mysql_select_db(kpbti, $db)) {
 }
 
 $p = '<b>Період: з  ' . german_date($bdat) . ' по ' . german_date($edat) . '</b>
-	<table border="1" cellpadding="0" cellspacing="0"><tr>
-	<th align="center"><font size="2">Замов лення</font></th>
-	<th align="center"><font size="2">Адреса</font></th>
-	<th align="center"><font size="2">Вид робіт</font></th>
-	<th align="center"><font size="2">ПІБ (назва)</font></th>
-	<th align="center"><font size="2">Дата прийому</font></th>
-	<th align="center"><font size="2">Дата готовності</font></th>
-	<th align="center"><font size="2">Дата авансу</font></th>
-	<th align="center"><font size="2">Дата доплати</font></th>
-	<th align="center"><font size="2">Таксування</font></th>
-	<th align="center"><font size="2">Сплачено</font></th>
-	<th align="center"><font size="2">Виконавець</font></th>
-	<th align="center"><font size="2">Прийом замовлення</font></th>
-	<th align="center"><font size="2">Телефон</font></th>
-	<th align="center"><font size="2">Дзвінок</font></th>
-	<th align="center"><font size="2">Підпис</font></th>
+	<table class="report"><tr>
+	<th align="center" rowspan="2">Замов лення</th>
+	<th align="center" rowspan="2">Адреса</th>
+	<th align="center" rowspan="2">Вид робіт</th>
+	<th align="center" rowspan="2">ПІБ (назва)</th>
+	<th align="center" rowspan="2">Дата прийому</th>
+	<th align="center" rowspan="2">Таксування<br>без ПДВ</th>
+	<th align="center" rowspan="2">Таксування<br>з ПДВ</th>
+	<th align="center" colspan="2">Сплачено</th>
+	<th align="center" rowspan="2">Виконавець</th>
 	</tr>
+	<tr><th>Сума</th><th>Дата</th></tr>
 	';
 
 if ($flg == "got") {
@@ -71,6 +79,9 @@ if ($flg == "vk_date_g") {
     $kr_fl = "AND zamovlennya.DATA_GOT>='$bdat' AND zamovlennya.DATA_GOT<='$edat' AND zamovlennya.VUK='$vukonavets'";
 }
 
+$s_sm_opl = 0;
+$s_sm_taks = 0;
+$s_taks_not_pdv = 0;
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
 			zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,rayonu.*,
 			tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,
@@ -124,43 +135,66 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     else $pidpus = 'ні';
 
     $sm_taks = 0;
+    $taks_not_pdv = 0;
     $id_zm = $aut1["KEY"];
     $sql2 = "SELECT taks.* FROM taks WHERE IDZM='$id_zm' AND DL='1'";
     $atu2 = mysql_query($sql2);
     while ($aut2 = mysql_fetch_array($atu2)) {
-        $sm_taks = round((($aut2["SUM"] + $aut2["SUM_OKR"]) * (($aut2["NDS"] / 100) + 1)), 2);
+        $sm_taks = (float)round((($aut2["SUM"] + $aut2["SUM_OKR"]) * (($aut2["NDS"] / 100) + 1)), 2);
+        $taks_not_pdv = (float)round(($aut2["SUM"] + $aut2["SUM_OKR"]), 2);
+        $s_sm_taks += $sm_taks;
+        $s_taks_not_pdv += $taks_not_pdv;
     }
     mysql_free_result($atu2);
 
     $sm_opl = 0;
-    $sql2 = "SELECT SUM(SM) AS SM FROM kasa WHERE SZ='$ser' AND NZ='$nom' AND DL='1'";
+    $pay_insert_one = '';
+    $pay_insert_more = '';
+    $sql2 = "SELECT SM,DT FROM kasa WHERE SZ='$ser' AND NZ='$nom' AND DL='1'";
     $atu2 = mysql_query($sql2);
+    $cunt_pay = mysql_num_rows($atu2);
+    $i=0;
     while ($aut2 = mysql_fetch_array($atu2)) {
-        $sm_opl = round($aut2["SM"], 2);
+        $i++;
+        $sm_opl = (float)round($aut2["SM"], 2);
+        $s_sm_opl += $sm_opl;
+        if($cunt_pay == 1){
+            $pay_insert_one = '<td align="right">' . number_format($sm_opl,2) . '</td><td align="center">' . german_date($aut2["DT"]) . '</td>';
+        }else{
+            if($i == 1){
+                $pay_insert_one = '<td align="right">' . number_format($sm_opl,2) . '</td><td align="center">' . german_date($aut2["DT"]) . '</td>';
+            }else{
+                $pay_insert_more .= '<tr><td align="right">' . number_format($sm_opl,2) . '</td><td align="center">' . german_date($aut2["DT"]) . '</td></tr>';
+            }
+        }
     }
     mysql_free_result($atu2);
-
+    if($cunt_pay == 0){
+        $pay_insert_one = '<td align="right">-</td><td align="center">-</td>';
+        $cunt_pay = 1;
+    }
 
     $p .= '<tr>
-	<td align="center"><font size="2">' . $zakaz . '</font></td>
-	<td><font size="2">' . $adres . '</td>
-	<td align="center"><font size="2">' . $vud_rob . '</font></td>
-	<td align="center"><font size="2">' . $fio . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["D_PR"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DATA_GOT"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DOKVUT"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DODOP"]) . '</font></td>
-	<td align="center"><font size="2">' . $sm_taks . '</font></td>
-	<td align="center"><font size="2">' . $sm_opl . '</font></td>
-	<td align="center"><font size="2">' . $vukon . '</font></td>
-	<td align="center"><font size="2">' . $aut1["PR_OS"] . '</font></td>
-	<td align="center"><font size="2">' . $tel . '</font></td>
-	<td align="center"><font size="2">' . $zv . '</font></td>
-	<td align="center"><font size="2">' . $pidpus . '</font></td>
-	</tr>';
+	<td align="center" rowspan="' . $cunt_pay . '">' . $zakaz . '</td>
+	<td rowspan="' . $cunt_pay . '">' . $adres . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . $vud_rob . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . $fio . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . german_date($aut1["D_PR"]) . '</td>
+	<td align="right" rowspan="' . $cunt_pay . '">' . number_format($taks_not_pdv,2) . '</td>
+	<td align="right" rowspan="' . $cunt_pay . '">' . number_format($sm_taks,2) . '</td>
+	'. $pay_insert_one .'
+	<td align="center" rowspan="' . $cunt_pay . '">' . $vukon . '</td>
+	</tr>'.$pay_insert_more;
 }
 mysql_free_result($atu1);
-$p .= '</table>';
+$p .= '<tr>
+    <th colspan="5" align="left">Всього:</th>
+    <th>' . number_format($s_taks_not_pdv,2) . '</th>
+    <th>' . number_format($s_sm_taks,2) . '</th>
+    <th>' . number_format($s_sm_opl,2) . '</th>
+    <th colspan="2"></th>
+    </tr></table>';
+
 echo $p;
 echo '<br>Всього замовлень: ' . $num_rows;
 if (mysql_close($db)) {
@@ -168,4 +202,3 @@ if (mysql_close($db)) {
 } else {
     echo("Не можливо виконати закриття бази");
 }
-?>
