@@ -67,8 +67,8 @@ $dt_now = date("d.m.Y");
                         <li><a href="arhiv.php?filter=seach_zm_info">Пошук</a></li>
                     </ul>
                 </li>
-                <li><a href="arhiv.php?filter=vudacha_view">Видача справи</a></li>
-                <li><a href="arhiv.php?filter=vozvrat_view">Повернення справи</a></li>
+                <li><a href="arhiv.php?filter=history_info">Історія по суб'єкту(в розробці)</a></li>
+<!--                <li><a href="arhiv.php?filter=vozvrat_view">Повернення справи</a></li>-->
                 <!--   <li><a href="#">Повернення</a>
                    <ul>
                            <li><a href="arhiv.php?filter=">Створити</a></li>

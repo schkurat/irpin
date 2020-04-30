@@ -3,25 +3,32 @@ $tp=$_GET['tip'];
 $kl=$_GET['kl'];
 $taks=0;
 
-$sql = "SELECT DOKVUT,SZ,NZ FROM zamovlennya WHERE zamovlennya.KEY='$kl'";
+$sql = "SELECT SZ,NZ FROM zamovlennya WHERE zamovlennya.KEY='$kl'";
 $atu=mysql_query($sql);
-while($aut=mysql_fetch_array($atu))
-	{	$kvut=$aut["DOKVUT"];
+while($aut=mysql_fetch_array($atu)){
 		$sz=$aut["SZ"];
 		$nz=$aut["NZ"];
 	}
 mysql_free_result($atu);
 
-$sql = "SELECT * FROM taks WHERE taks.IDZM='$kl'";
+$sql = "SELECT * FROM taks WHERE taks.IDZM='$kl' AND taks.DL='1'";
 $atu=mysql_query($sql);
 $taks=mysql_num_rows($atu);
+mysql_free_result($atu);
+
+$sql = "SELECT SUM(SM) AS SM FROM kasa WHERE kasa.SZ='$sz' AND kasa.NZ='$nz' AND kasa.DL='1'";
+$atu=mysql_query($sql);
+while($aut=mysql_fetch_array($atu))
+{
+    $sm=$aut["SM"];
+}
 mysql_free_result($atu);
  
 $p='<table class="zmview">
 <tr bgcolor="#B5B5B5">
 <th>Видалення замовлення</th>
 </tr>';
-if($kvut!='0000-00-00' or $taks!=0){
+if(!empty($taks) or $sm > 0){
 $p.='<tr bgcolor="#FFFAF0">
 <td>Замовлення '.$sz.'/'.$nz.' неможливо видалити!</td>
 </tr>

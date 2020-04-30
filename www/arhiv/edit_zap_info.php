@@ -54,7 +54,7 @@ if (!empty($_GET['adr_id'])) {
         $id = mysql_insert_id();
 
     } else {
-        $sql5 = "UPDATE `kpbti`.`arhiv_dop_adr` SET `status` = 1, `comment` = '" . $com . "' WHERE id = " . $id;
+        $sql5 = "UPDATE `kpbti`.`arhiv_dop_adr` SET `status` = 1, PV='1', PV_DATE=NOW(), `comment` = '" . $com . "' WHERE id = " . $id;
         $atu5 = mysql_query($sql5);
         $sql2 = "SELECT * FROM `arhiv` WHERE `RN`=$id_rn AND `NS` = $id_nsp AND `VL` = $id_vl AND `KV` = '$kv' AND `BD` = '$bd' AND DL = 1";
         $atu2 = mysql_query($sql2);

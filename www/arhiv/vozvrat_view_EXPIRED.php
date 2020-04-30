@@ -59,14 +59,14 @@ while ($aut = mysql_fetch_array($atu)) {
         $rayon = $aut2["rn"];
         if ($aut2["VD"] == 1 && $aut2["PV"] == 0) {
             $pt = True;
-            echo "!";
-            $adr .= '<form action="vozvrat.php" metod="GET" style="margin:3px 0;">
+            $adr .= '<form action="vozvrat_EXPIRED.php" metod="GET" style="margin:3px 0;">
 			<input id="kl" name="kl" type="hidden" value="' . $aut2["id"] . '">
 			<button type="submit" value="Отправить" style="border:none;  background-color: #fff;"><img src="../images/prij.png" width="10px"></button>
 		' . $aut2["RAYON"] . ' ' . $aut2["TIP_NSP"] . ' ' . $aut2["NSP"] . ' ' . $aut2["TIP_VUL"] . $aut2["VUL"] . ' ' . (!empty($aut2["bud"]) ? 'буд. ' . $aut2["bud"] : '') . ' ' . (!empty($aut2["kvar"]) ? 'кв. ' . $aut2["kvar"] : '') . '
 		</form>';
         }
     }
+    mysql_free_result($atu2);
     $order = get_num_order($rayon, $aut["SZ"], $aut["NZ"]);
 
 
@@ -77,8 +77,8 @@ while ($aut = mysql_fetch_array($atu)) {
 
     $obj_ner = objekt_ner(0, $aut["BUD"], $aut["KVAR"]);
 
-    $temp .= '<tr bgcolor="#FFFAF0">
-        <!--<td align="center" id="zal"><a href="arhiv.php?filter=vozvrat_info&kl=' . $aut["KEY"] . '&inv=' . $aut["ARH_NUMB"] . '&ns=' . $aut["NS"] . '&vl=' . $aut["VL"] . '">Повернути</a></td>	-->
+    //<!--<td align="center" id="zal"><a href="arhiv.php?filter=vozvrat_info&kl=' . $aut["KEY"] . '&inv=' . $aut["ARH_NUMB"] . '&ns=' . $aut["NS"] . '&vl=' . $aut["VL"] . '">Повернути</a></td>	-->
+    $temp .= '<tr>
         <td align="center">' . $order . '</td>
         <td align="center">' . $aut["SUBJ"] . '</td>    
         <td align="center">' . $aut["name"] . '</td>

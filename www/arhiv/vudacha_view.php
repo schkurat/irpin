@@ -32,7 +32,7 @@ $sql  = "SELECT  arhiv_zakaz.*, arhiv_jobs.name, arhiv_jobs.id
 		FROM arhiv_zakaz, arhiv_jobs
 		WHERE 
 			arhiv_zakaz.VUD_ROB=arhiv_jobs.id 	
-			AND arhiv_zakaz.DL = 1
+			AND arhiv_zakaz.DL = 1 AND arhiv_jobs.type = 1 AND arhiv_jobs.dl = '1' 
 			AND  TO_DAYS(NOW()) - TO_DAYS(D_PR) > 4 			";
 
 //echo $sql;

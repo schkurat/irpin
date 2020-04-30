@@ -8,7 +8,7 @@ $user = $_SESSION['PR'] . ' ' . p_buk($_SESSION['IM']) . '.' . p_buk($_SESSION['
 
 $kl = (int)$_GET['kl'];
 $dod = (int)$_GET['dod'];
-
+$kl_adr = (isset($_GET['kl_adr']))? (int)$_GET['kl_adr']: 0;
 $db = mysql_connect("localhost", $lg, $pas);
 if (!$db) echo "Не вiдбулося зєднання з базою даних";
 
@@ -19,7 +19,7 @@ if (!@mysql_select_db(kpbti, $db)) {
 $count = 0;
 $address = [];
 $sql = "SELECT arhiv_zakaz.*,arhiv_jobs.name,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
-		    arhiv_jobs.id,vulutsi.VUL,tup_vul.TIP_VUL,arhiv_dop_adr.bud,arhiv_dop_adr.kvar 
+		    arhiv_jobs.id,vulutsi.VUL,tup_vul.TIP_VUL,arhiv_dop_adr.bud,arhiv_dop_adr.kvar,arhiv_dop_adr.status,arhiv_dop_adr.VD,arhiv_dop_adr.id   
 		FROM arhiv_zakaz 
             LEFT JOIN arhiv_jobs ON arhiv_zakaz.VUD_ROB=arhiv_jobs.id 
             LEFT JOIN arhiv_dop_adr ON arhiv_zakaz.KEY=arhiv_dop_adr.id_zm 
@@ -44,14 +44,20 @@ while ($aut = mysql_fetch_array($atu)) {
         $kod_rob = $aut["id"];
 
         $address[] = [
+            'id' => (int)$aut["id"],
             'npp' => $count,
             'address' => $aut["RAYON"] . ' ' . $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]),
+            'status' => $aut["status"],
+            'vudacha' => $aut["VD"],
             'type' => (!empty($aut["kvar"])) ? 'квартира' : 'будинок'
         ];
     } else {
         $address[] = [
+            'id' => (int)$aut["id"],
             'npp' => $count,
             'address' => $aut["RAYON"] . ' ' . $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]),
+            'status' => $aut["status"],
+            'vudacha' => $aut["VD"],
             'type' => (!empty($aut["kvar"])) ? 'квартира' : 'будинок'
         ];
     }
@@ -165,13 +171,15 @@ if ($dod == 1) {
     $y = 0;
 //    $adr_cost = number_format(($sum / $count_address), 2);
     foreach ($address as $adr) {
-        $pdf->SetXY(20, 95 + $y);
-        $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
-        $pdf->SetXY(30, 95 + $y);
-        $pdf->MultiCell(22, 5, $adr['type'], 1, 'C', 0);
-        $pdf->SetXY(52, 95 + $y);
-        $pdf->MultiCell(152, 5, $adr['address'], 1, 'L', 0);
-        $y += 5;
+        if($adr['status'] == 1){
+            $pdf->SetXY(20, 95 + $y);
+            $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
+            $pdf->SetXY(30, 95 + $y);
+            $pdf->MultiCell(22, 5, $adr['type'], 1, 'C', 0);
+            $pdf->SetXY(52, 95 + $y);
+            $pdf->MultiCell(152, 5, $adr['address'], 1, 'L', 0);
+            $y += 5;
+        }
     }
     $pdf->SetFont('dejavu', '', 10);
     $pdf->SetXY(20, 95 + $y);
@@ -200,15 +208,17 @@ if ($dod == 1) {
     $y = 0;
     $adr_cost = number_format(($sum / $count_address), 2);
     foreach ($address as $adr) {
-        $pdf->SetXY(20, 95 + $y);
-        $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
-        $pdf->SetXY(30, 95 + $y);
-        $pdf->MultiCell(113, 5, $adr['address'], 1, 'L', 0);
-        $pdf->SetXY(143, 95 + $y);
-        $pdf->MultiCell(19, 5, $adr['type'], 1, 'C', 0);
-        $pdf->SetXY(162, 95 + $y);
-        $pdf->MultiCell(42, 5, '', 1, 'R', 0);
-        $y += 5;
+        if($adr['status'] == 2) {
+            $pdf->SetXY(20, 95 + $y);
+            $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
+            $pdf->SetXY(30, 95 + $y);
+            $pdf->MultiCell(113, 5, $adr['address'], 1, 'L', 0);
+            $pdf->SetXY(143, 95 + $y);
+            $pdf->MultiCell(19, 5, $adr['type'], 1, 'C', 0);
+            $pdf->SetXY(162, 95 + $y);
+            $pdf->MultiCell(42, 5, '', 1, 'R', 0);
+            $y += 5;
+        }
     }
     $pdf->SetFont('dejavu', '', 10);
     $pdf->Text(20, 105 + $y, 'Сторони одна до одної претензій не мають.');
@@ -273,15 +283,17 @@ if ($dod == 1) {
     $y = 0;
     $adr_cost = number_format(($sum / $count_address), 2);
     foreach ($address as $adr) {
-        $pdf->SetXY(20, 95 + $y);
-        $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
-        $pdf->SetXY(30, 95 + $y);
-        $pdf->MultiCell(130, 5, $adr['address'], 1, 'L', 0);
-        $pdf->SetXY(160, 95 + $y);
-        $pdf->MultiCell(22, 5, $adr['type'], 1, 'C', 0);
-        $pdf->SetXY(182, 95 + $y);
-        $pdf->MultiCell(22, 5, $adr_cost, 1, 'R', 0);
-        $y += 5;
+        if($adr['vudacha'] == '1') {
+            $pdf->SetXY(20, 95 + $y);
+            $pdf->MultiCell(10, 5, $adr['npp'], 1, 'C', 0);
+            $pdf->SetXY(30, 95 + $y);
+            $pdf->MultiCell(130, 5, $adr['address'], 1, 'L', 0);
+            $pdf->SetXY(160, 95 + $y);
+            $pdf->MultiCell(22, 5, $adr['type'], 1, 'C', 0);
+            $pdf->SetXY(182, 95 + $y);
+            $pdf->MultiCell(22, 5, $adr_cost, 1, 'R', 0);
+            $y += 5;
+        }
     }
     $pdf->SetFont('dejavu', '', 10);
     $pdf->SetXY(20, 95 + $y);
@@ -312,7 +324,13 @@ if ($dod == 1) {
 на запит від ' . $dt_serial . ' року Серія ' . $serial, 0, 'C', 0);
     $pdf->SetFont('dejavu', '', 10);
     $pdf->SetXY(19, 130);
-    $pdf->MultiCell(188, 5, 'Комунальне підприємство Київської обласної ради «Зберігач» повідомляє, що станом на ' . $dt_serial . 'р. на об’єкт нерухомого майна, що знаходиться за адресою: ' . $address[0]['address'] . ', матеріали технічної інвентаризації відсутні.', 0, 'L', 0);
+    $dod_six_adr = '';
+    foreach ($address as $adr){
+        if($adr['id'] == $kl_adr){
+            $dod_six_adr = $adr['address'];
+        }
+    }
+    $pdf->MultiCell(188, 5, 'Комунальне підприємство Київської обласної ради «Зберігач» повідомляє, що станом на ' . $dt_serial . 'р. на об’єкт нерухомого майна, що знаходиться за адресою: ' . $dod_six_adr . ', матеріали технічної інвентаризації відсутні.', 0, 'L', 0);
     $pdf->Text(20, 160, 'Генеральний директор');
     $pdf->Text(20, 170, 'КП КОР «ЗБЕРІГАЧ»                     ___________________  О.Я. Костиліна');
 }
