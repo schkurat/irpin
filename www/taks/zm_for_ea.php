@@ -2,7 +2,8 @@
 include_once "../function.php";
 
 $user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
-$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.') ? "" : "AND zamovlennya.VUK='$user'";
+//$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.') ? "" : "AND zamovlennya.VUK='$user'";
+$flag = ($brigada == 8 || $brigada == 9)? "": " AND zamovlennya.VUK='$user'";
 
 
 if (!empty($_GET['search'])) {

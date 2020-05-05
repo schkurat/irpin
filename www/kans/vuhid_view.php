@@ -43,7 +43,7 @@ include "../function.php";
         }
 
         $sql = "SELECT ID,EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK,KONVERT,SEKR FROM kans
-		WHERE DATAI>='$d1' AND DATAI<='$d2' AND PR='2' ORDER BY NI DESC";
+		WHERE DATAI>='$d1' AND DATAI<='$d2' AND NI!=0 ORDER BY NI DESC";
         //echo $sql;
         $atu = mysql_query($sql);
         while ($aut = mysql_fetch_array($atu)) {
