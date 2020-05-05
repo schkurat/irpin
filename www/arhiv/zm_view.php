@@ -16,7 +16,11 @@ include_once "../function.php";
         padding: 5px 2px;
     }
 
-    .fa-paperclip, .fa-inbox-out {
+    .spr-icon{
+        display: block;
+    }
+
+    .fa-paperclip, .fa-inbox-out, .fa-file-user, .fa-file-spreadsheet, .fa-file-excel {
         color: #009aff;
     }
 
@@ -147,6 +151,10 @@ while ($aut = mysql_fetch_array($atu)) {
             $vst_bl2 .= '<a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=4" class="text-link" title="Додаток 4 до договору"><i class="fal fa-paperclip">4</i></a>
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=5" class="text-link" title="Додаток 5 до договору"><i class="fal fa-paperclip">5</i></a>';
         }
+    }elseif ($code_job == 6){
+        $vst_bl2 .= '<a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=1" class="spr-icon" title="Додаток звичайна"><i class="fal fa-file-user"></i></a>
+        <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=2" class="spr-icon" title="Довідка з технічними показниками"><i class="fal fa-file-spreadsheet"></i></a>
+        <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=3" class="spr-icon" title="Довідка про відсутність"><i class="fal fa-file-excel"></i></a>';
     }
 //    $vst_bl2 = '<td align="center"><a href="print_akt_transfer.php?kl=' . $aut["KEY"] . '" title="Акт виконаних робіт"><i class="fal fa-file-certificate"></i></a></td>';
 

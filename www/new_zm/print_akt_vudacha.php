@@ -81,7 +81,7 @@ if ($kop != 0) $smpr .= $kop . ' коп.';
 //$file_fiz='akt_fiz_vudacha.xml';
 //$file_fiz_new='akt_fiz_new.xml';
 //$file_ur='akt.xml';
-//$file_ur_new='akt_new.xml';
+//$file_ur_new='dovidka_new.xml';
 //
 //$rahunok="26002283741";
 
