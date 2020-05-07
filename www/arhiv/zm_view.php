@@ -40,7 +40,7 @@ include_once "../function.php";
         font-size: 18px;
     }
 
-    .fa-trash {
+    .fa-trash, .fa-trash-alt {
         color: #ff0000;
     }
 
@@ -131,8 +131,8 @@ while ($aut = mysql_fetch_array($atu)) {
     $obj_ner = objekt_ner(0, $aut["BUD"], $aut["KVAR"]);
 
     if ($ddl == '1') {
-        if ($aut["PS"] == '0') {
-            $vst_bl = '<td align="center"><a href="arhiv.php?filter=delete_info&tip=zakaz&kl=' . $aut["KEY"] . '"><img src="../images/b_drop.png" border="0"></a></td>';
+        if ($aut["DOKVUT"] == '0000-00-00') {
+            $vst_bl = '<td align="center"><a href="arhiv.php?filter=delete_info&tip=zakaz&kl=' . $aut["KEY"] . '" title="Видалення замовлення"><i class="fal fa-trash-alt"></i></a></td>';
         } else {
             $vst_bl = '<td align="center">-</td>';
         }
@@ -238,7 +238,7 @@ while ($aut = mysql_fetch_array($atu)) {
                 $dop_adr .= '<div style="color:red;">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
             }
         } elseif ($job_type == 2) {
-            $dop_adr .= '<div>' . $vst_ea . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
+            $dop_adr .= '<div>' . $vst_ea . '<a href="arhiv.php?filter=dop_adr_edit&kl=' . $aut1["id"] . '" class="text-link" title="Редагування адреси">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</a></div><div style="clear: both"></div>';
             $col_hidden = 'style="display:none;"';
         }
 
