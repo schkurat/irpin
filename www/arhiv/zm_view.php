@@ -44,7 +44,7 @@ include_once "../function.php";
         color: #ff0000;
     }
 
-    .fa-inbox-out, .fa-paperclip, .fa-inbox-in {
+    .fa-inbox-out, .fa-paperclip, .fa-inbox-in, .fa-file-archive{
         float: left;
     }
 </style>

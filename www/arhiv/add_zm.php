@@ -7,28 +7,22 @@ $pas = $_SESSION['PAS'];
 include("../function.php");
 
 $v_zm = (int)$_POST['vud_zam'];
-//$pdv=$_POST['pdv'];
-//$term=$_POST['term'];
-if(isset($_POST['kod'])) $idn=$_POST['kod']; else $idn="";
+
+if (isset($_POST['kod'])) $idn = $_POST['kod']; else $idn = "";
 
 $id_vr = $_POST['vud_rob']; //вид робіт
 $pr = strip_tags(addslashes(trim($_POST['priz'])));
 $im = strip_tags(addslashes(trim($_POST['imya'])));
 $pb = strip_tags(addslashes(trim($_POST['pobat'])));
-//for($zz=1;$zz<=12;$zz++){
-//$doci.=$_POST['d'.$zz].' ';
-//}
+
 $prim = addslashes($_POST['prim']);
-//$dn=$_POST['dnar'];
+
 $sert_s = strip_tags(addslashes(trim($_POST['ser_sert'])));
 $sert_n = strip_tags(addslashes(trim($_POST['numb_sert'])));
 $sert = $sert_s . ' ' . $sert_n;
 
 $subj = strip_tags(addslashes(trim($_POST['subj'])));
 $adrs_subj = strip_tags(addslashes(trim($_POST['adrs_subj'])));
-//$pbvl=trim($_POST['pobatvl']);
-//$dnvl=$_POST['dnarvl'];
-//$pasportvl=trim($_POST['pasportvl']);
 
 $edrpou = strip_tags($_POST['edrpou']);
 $ipn = strip_tags($_POST['ipn']);
@@ -44,8 +38,6 @@ $bd = strip_tags(trim($_POST['bud']));
 $kva = strip_tags(trim($_POST['kvar']));
 $sm = strip_tags($_POST['sum']);
 $d_pr = strip_tags(date_bd($_POST['d_pr']));
-//$dg=$_POST['datag'];
-//$priyom=$_POST['pr_osob'];
 
 
 $db = mysql_connect("localhost", $lg, $pas);
@@ -70,32 +62,9 @@ if ($v_zm == "2") {
         $text_error .= 'Не вірно вказана кількість символів поля ЄДРПОУ!!!<br>';
     }
 
-//if(!ctype_digit($ipn)){
-//$error++;
-//$text_error.='Не вірний формат поля ІПН!!!<br>';
-//}
-//if(!ctype_digit($svid)){
-//$error++;
-//$text_error.='Не вірний формат поля Свідоцтво!!!<br>';
-//}
-//$kl_ipn=strlen($ipn);
-//$kl_svid=strlen($svid);
-//if($kl_ipn<8){
-//$error++;
-//$text_error.='Не вірно вказана кількість символів поля ІПН!!!<br>';
-//}
-//if($kl_svid<8){
-//$error++;
-//$text_error.='Не вірно вказана кількість символів поля Свідоцтво!!!<br>';
-//}
-
 }
 
 if ($error == 0) {
-// $dn=date_bd($dn);
-// $dnvl=date_bd($dnvl);
-// $d_vh=date_bd($d_vh);
-// $dg=date_bd($dg);
     $d_pr = date("Y-m-d");
 
     $sz = date("dmy");
@@ -113,10 +82,6 @@ if ($error == 0) {
     }
 
     if ($id_vr != "" and $pr != "" and $rn != "" and $ns != "" and $vl != "" and $bd != "" and $sm != "") {
-        /*$ath1=mysql_query("INSERT INTO arhiv_zakaz (SZ,NZ,VUD_ROB,EDRPOU,IPN,SVID,SUBJ,ADR_SUBJ,PRILAD,PR,IM,PB,PRIM,
-           SERT,TEL,EMAIL,DOR,RN,NS,VL,BUD,KVAR,SUM,D_PR)
-           VALUES('$sz','$nz','$id_vr','$edrpou','$ipn','$svid','$subj','$adrs_subj','$prilad','$pr','$im','$pb','$prim',
-           '$sert','$tl','$email','$dover','$rn','$ns','$vl','$bd','$kva','$sm','$d_pr');");*/
         $ath1 = mysql_query("INSERT INTO arhiv_zakaz (SZ,NZ,VUD_ROB,EDRPOU,IPN,SVID,SUBJ,ADR_SUBJ,PRILAD,PR,IM,PB,PRIM,
 	SERT,TEL,EMAIL,DOR,SUM,D_PR)
 	VALUES('$sz','$nz','$id_vr','$edrpou','$ipn','$svid','$subj','$adrs_subj','$prilad','$pr','$im','$pb','$prim',
@@ -125,19 +90,35 @@ if ($error == 0) {
         if (!$ath1) {
             echo "Замовлення не внесене до БД";
         } else {
+
+            $id_el_arh = 0;
+            $sql = "SELECT ID FROM arhiv WHERE RN='$rn' AND NS='$ns' AND VL='$vl' AND BD='$bd' AND KV='$kva' AND DL='1'";
+            $atu = mysql_query($sql);
+            while ($aut = mysql_fetch_array($atu)) {
+                $id_el_arh = $aut["ID"];
+            }
+            mysql_free_result($atu);
+
+            if ($id_el_arh == 0) {
+                $ath3 = mysql_query("INSERT INTO arhiv (RN,NS,VL,BD,KV) VALUES('$rn','$ns','$vl','$bd','$kva');");
+                $id_el_arh = mysql_insert_id();
+            }
+
             $ath2 = mysql_query("INSERT INTO `arhiv_dop_adr` (`id_zm`,`id_arh`,`rn`,`ns`,`vl`,`bud`,`kvar`,`status`) 
-	VALUES ('$l_id','0','$rn','$ns','$vl','$bd','$kva','0')");
+	VALUES ('$l_id','$id_el_arh','$rn','$ns','$vl','$bd','$kva','0')");
         }
 
         if ($v_zm == 2) {
-            $ed_pod = ($svid != '')? '0': '1';
+            $ed_pod = ($svid != '') ? '0' : '1';
 
             $sql5 = "SELECT EDRPOU FROM yur_kl WHERE EDRPOU='$edrpou'";
             $atu5 = mysql_query($sql5);
             if (!mysql_fetch_array($atu5)) {
                 $ath5 = mysql_query("INSERT INTO yur_kl (`NAME`,`ADRES`,`EDRPOU`,`SVID`,`IPN`,`TELEF`,`EMAIL`,`ED_POD`,`PRILAD`,`SERT_S`,`SERT_N`,`SO_IPN`,`SO_PR`,`SO_IM`,`SO_PB`) 
     VALUES('$subj','$adrs_subj','$edrpou','$svid','$ipn','$tl','$email','$ed_pod','$prilad','$sert_s','$sert_n','$idn','$pr','$im','$pb');");
-                if (!$ath5) { echo "Клієнт не внесений до БД";}
+                if (!$ath5) {
+                    echo "Клієнт не внесений до БД";
+                }
             }
             mysql_free_result($atu5);
         }
@@ -164,4 +145,3 @@ if (mysql_close($db)) {
 } else {
     echo("Не можливо виконати закриття бази");
 }
-?>
