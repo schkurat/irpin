@@ -93,6 +93,8 @@ if (!empty($_GET['adr_id'])) {
             $no = $aut2["NUMB_OBL"];
             $do = $aut2["DT_OBL"];
         }
+        $sql5 = "UPDATE `arhiv` SET `N_SPR` = '$nspr' WHERE id = " . $id;
+        $atu5 = mysql_query($sql5);
     }
 } else {
     if (!empty($_GET['zap_id'])) {

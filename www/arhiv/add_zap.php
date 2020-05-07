@@ -4,7 +4,7 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 include("../function.php");
 $id = $_POST['id'];
-$inv_n = $_POST['inv_number'];
+//$inv_n = $_POST['inv_number'];
 $ns = $_POST['nsp'];
 $vl = $_POST['vyl'];
 $bd = $_POST['bud'];
@@ -37,7 +37,7 @@ if (!@mysql_select_db(kpbti, $db)) {
 }
 
 $sql = "UPDATE arhiv SET 
-PRIM = '$prim',N_SPR = '$inv_n',FIRST_DT_INV = '$dt_perv',FIRST_VUK = '$vk_perv',NUMB_OBL = '$numb_obl', DT_OBL = '$dt_obl',NAME = '$nameobj',
+PRIM = '$prim',FIRST_DT_INV = '$dt_perv',FIRST_VUK = '$vk_perv',NUMB_OBL = '$numb_obl', DT_OBL = '$dt_obl',NAME = '$nameobj',
 VLASN = '$vlasn',PL_ZEM = '$plzem',PL_ZAG = '$plzag',PL_JIT = '$pljit', PL_DOP = '$pldop', SKL_CHAST = '$skl_chast', KAD_NOM = '$kad_nom' 
 WHERE id = $id";
 //echo $sql;
