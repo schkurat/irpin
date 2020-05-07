@@ -24,7 +24,7 @@ include_once "../function.php";
         color: #009aff;
     }
 
-    .fa-file-contract, .fa-plus, .fa-list-ol, .fa-inbox-in {
+    .fa-file-contract, .fa-plus, .fa-list-ol, .fa-inbox-in, .fa-file-archive {
         color: #11cc06;
     }
 
@@ -184,6 +184,12 @@ while ($aut = mysql_fetch_array($atu)) {
 
         $obj_ner_dop = objekt_ner(0, $bd, $kv);
 
+        $address = $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop;
+        $adr_storage = urlencode(serialize($address));
+
+        $url = ($aut1["id_arh"] != 0)? $aut1["id_arh"] . '/keeper': '';
+        $vst_ea = (!empty($url))? '<a href="arhiv.php?filter=storage&url=' . $url . '&parent_link=&adr=' . $adr_storage . '>&parent_link=&adr=" title="Електронний архів"><i class="fal fa-file-archive"></i></a>' : '';
+
         $sql2 = "SELECT N_SPR FROM arhiv WHERE RN='" . $rayon . "' AND NS = '" . $ns . "' AND VL = '" . $vl . "' 
                     AND BD = '" . $bd . "' AND KV = '" . $kv . "'";
         //echo $sql2;
@@ -227,7 +233,7 @@ while ($aut = mysql_fetch_array($atu)) {
                 $dop_adr .= '<div style="color:red;">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
             }
         } elseif ($job_type == 2) {
-            $dop_adr .= '<div>' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
+            $dop_adr .= '<div>' . $vst_ea . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
             $col_hidden = 'style="display:none;"';
         }
 

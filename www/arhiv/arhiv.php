@@ -18,6 +18,7 @@ $dt_now = date("d.m.Y");
     <script src="../datp/external/jquery/jquery.js"></script>
     <script src="../datp/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/autozap.js"></script>
+    <script type="text/javascript" src="../js/bti.js"></script>
     <!--<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>-->
     <link rel="stylesheet" type="text/css" href="../datp/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="../js/autozap.css"/>
