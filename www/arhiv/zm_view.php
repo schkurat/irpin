@@ -190,16 +190,21 @@ while ($aut = mysql_fetch_array($atu)) {
         $url = ($aut1["id_arh"] != 0)? $aut1["id_arh"] . '/keeper': '';
         $vst_ea = (!empty($url))? '<a href="arhiv.php?filter=storage&url=' . $url . '&parent_link=&adr=' . $adr_storage . '>&parent_link=&adr=" title="Електронний архів"><i class="fal fa-file-archive"></i></a>' : '';
 
+        $n_spr = '';
         $sql2 = "SELECT N_SPR FROM arhiv WHERE RN='" . $rayon . "' AND NS = '" . $ns . "' AND VL = '" . $vl . "' 
                     AND BD = '" . $bd . "' AND KV = '" . $kv . "'";
         //echo $sql2;
         $atu2 = mysql_query($sql2);
         $is_archive = mysql_num_rows($atu2);
+        while ($aut2 = mysql_fetch_array($atu2)) {
+            $n_spr = $aut2["N_SPR"];
+        }
+        mysql_free_result($atu2);
         $col_hidden = '';
 
         if ($job_type == 3) {
             if ($aut1["status"] == "0") {
-                if ($is_archive > 0) {
+                if ($is_archive > 0 and !empty($n_spr)) {
                     $paste_action = ($aut1["PV"] == '0') ? '<a href="http://ibti.pp.ua/arhiv/arhiv.php?filter=edit_zap_info&adr_id=' . $aut1["id"] . '" class="action-adr" title="Відмітка про внесеня матеріалів до справи">
                             <i class="fal fa-inbox-in"></i></a>' : '';
                 } else {
