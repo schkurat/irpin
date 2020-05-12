@@ -152,7 +152,7 @@ while ($aut = mysql_fetch_array($atu)) {
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=5" class="text-link" title="Додаток 5 до договору"><i class="fal fa-paperclip">5</i></a>';
         }
     }elseif ($code_job == 6){
-        $vst_bl2 .= '<a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=1" class="spr-icon" title="Додаток звичайна"><i class="fal fa-file-user"></i></a>
+        $vst_bl2 .= '<a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=1" class="spr-icon" title="Довідка звичайна"><i class="fal fa-file-user"></i></a>
         <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=2" class="spr-icon" title="Довідка з технічними показниками"><i class="fal fa-file-spreadsheet"></i></a>
         <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=3" class="spr-icon" title="Довідка про відсутність"><i class="fal fa-file-excel"></i></a>';
     }

@@ -22,7 +22,7 @@ include "./scriptu.php";
                 Суб'єкт
             </td>
             <td>
-                <select name="posluga">
+                <select name="subj">
                     <option value=""></option>
                     <?php
                     $p = '';

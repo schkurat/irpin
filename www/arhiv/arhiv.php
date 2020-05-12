@@ -20,6 +20,7 @@ $dt_now = date("d.m.Y");
     <script src="../datp/jquery-ui.js"></script>
     <script type="text/javascript" src="../js/autozap.js"></script>
     <script type="text/javascript" src="../js/bti.js"></script>
+    <script type="text/javascript" src="../js/fix_table.js"></script>
     <!--<script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>-->
     <link rel="stylesheet" type="text/css" href="../datp/jquery-ui.css"/>
     <link rel="stylesheet" type="text/css" href="../js/autozap.css"/>
@@ -69,7 +70,7 @@ $dt_now = date("d.m.Y");
                         <li><a href="arhiv.php?filter=seach_zm_info">Пошук</a></li>
                     </ul>
                 </li>
-                <li><a href="arhiv.php?filter=history_info">Історія по суб'єкту(в розробці)</a></li>
+                <li><a href="arhiv.php?filter=history_info">Історія по суб'єкту</a></li>
 <!--                <li><a href="arhiv.php?filter=vozvrat_view">Повернення справи</a></li>-->
                 <!--   <li><a href="#">Повернення</a>
                    <ul>
