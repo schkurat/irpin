@@ -49,6 +49,8 @@ include "../scriptu.php";
         $('#add_ns').click(add_nsp);
         $('#add_vl').click(add_vul);
 //		$("input[ name='vlasnik']").change(rdvl);
+        $('#vulutsya').change(searchArhiv);
+        $('#bd, #kv').keyup(searchArhiv);
 
 
     });
@@ -409,7 +411,7 @@ include "../scriptu.php";
         </tr>
     </table>
 </div>
-<form action="add_zm.php" name="myform" method="post" enctype="multipart/form-data">
+<form action="add_zm.php" name="myform" method="post" enctype="multipart/form-data" style="float: left;">
     <table align="" class="zmview">
         <tr>
             <th colspan="5" style="font-size: 35px;"><b>Нове замовлення</b></th>
@@ -603,3 +605,16 @@ include "../scriptu.php";
         </tr>
     </table>
 </form>
+<table class="zmview" id="e_arhiv" style="display: none;">
+    <thead>
+    <tr>
+        <th colspan="2">Електронний архів</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><button class="set-arh-item" data-arh="0">+</button></td>
+        <td>test</td>
+    </tr>
+    </tbody>
+</table>

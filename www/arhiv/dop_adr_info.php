@@ -39,7 +39,8 @@ $kl = $_GET['kl'];
         $('input.bt').click(HideElement_cancel);
         $('#add_ns').click(add_nsp);
         $('#add_vl').click(add_vul);
-
+        $('#vulutsya').change(searchArhiv);
+        $('#bd, #kv').keyup(searchArhiv);
     });
 
     function ShowElement() {
@@ -220,7 +221,7 @@ $kl = $_GET['kl'];
 </div>
 
 
-<form action="add_dop_adr.php" name="myform" method="post">
+<form action="add_dop_adr.php" name="myform" method="post" style="float: left;">
     <table align="" class="zmview">
         <tr>
             <th colspan="4" style="font-size: 35px;"><b>Додаткова адреса</b></th>
@@ -281,3 +282,16 @@ $kl = $_GET['kl'];
         </tr>
     </table>
 </form>
+<table class="zmview" id="e_arhiv" style="display: none;">
+    <thead>
+    <tr>
+        <th colspan="2">Електронний архів</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><button class="set-arh-item" data-arh="0">+</button></td>
+        <td>test</td>
+    </tr>
+    </tbody>
+</table>

@@ -24,7 +24,7 @@ if ($_POST['action'] == 'select') {
     $bd = $_POST['bd'];
     $kv = $_POST['kv'];
 
-    $ath = mysql_query("SELECT arhiv.ID,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,
+    $ath = mysql_query("SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,
                                 arhiv.BD,arhiv.KV 
                         FROM arhiv,rayonu,nas_punktu,tup_nsp,vulutsi,tup_vul
                         WHERE arhiv.Dl='1' AND arhiv.RN='$rn' AND arhiv.NS='$ns' AND arhiv.VL='$vl' 
@@ -36,9 +36,10 @@ if ($_POST['action'] == 'select') {
                                 AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL;");
     if ($ath) {
         while ($aut = mysql_fetch_array($ath)) {
+            $inventory_number = ($aut["N_SPR"] > '')? 'Інв. № ' . str_pad($aut["RN"],2,0,STR_PAD_LEFT) . $aut["N_SPR"]: '';
             $obj_ner = objekt_ner(0, $aut["BD"], $aut["KV"]);
             $response .= '<tr>
-                        <td><button class="set-arh-item" data-arh="' . $aut["ID"] . '">+</button></td>
+                        <td>' . $inventory_number . '</td>
                         <td class="arh-item-adr">' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner . '</td>
                    </tr>';
         }
