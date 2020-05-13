@@ -80,7 +80,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     $pr = $aut1["PR"];
     $im = $aut1["IM"];
     $pb = $aut1["PB"];
-    $prim = $aut1["PRIM"];
+//    $prim = $aut1["PRIM"];
     $vukon = $aut1["VUK"];
     $ns = $aut1["NSP"];
     $tns = $aut1["TIP_NSP"];
@@ -116,7 +116,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 <td align="center">' . $zakaz . '</td>
 <td align="center">' . $tip_zak . '</td>
 <td>' . $adres . '</td>
-<td>' . $fio . ' ' . $prim . '</td>
+<td>' . $fio . '</td>
 <td>' . $vukon . '</td>
 <td align="center">' . $data_ps . '</td>
 <td align="center">' . $d_opl . '</td>
@@ -140,7 +140,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 <td align="center">' . $zakaz . '</td>
 <td align="center">' . $tip_zak . '</td>
 <td>' . $adres . '</td>
-<td>' . $fio . ' ' . $prim . '</td>
+<td>' . $fio . '</td>
 <td>' . $vukon . '</td>
 <td align="center">' . $data_ps . '</td>
 <td align="center">' . $d_opl . '</td>
