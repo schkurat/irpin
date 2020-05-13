@@ -11,14 +11,6 @@ $id_storage = $_POST['id_storage'];
 $page = (isset($_POST['page'])) ? $_POST['page'] : 0;
 $o_file = ($page > 0) ? $_POST['old_file'] : '';
 
-$db = mysql_connect("localhost", $lg, $pas);
-if (!$db) echo "Не вiдбулося зєднання з базою даних";
-
-if (!@mysql_select_db(kpbti, $db)) {
-    echo("Не завантажена таблиця");
-    exit();
-}
-
 //------------------------------------------------------------------------------------
 if (isset($_FILES)) {
     //пролистываем весь массив изображений по одному $_FILES['file']['name'] as $k=>$v
@@ -35,11 +27,11 @@ if (isset($_FILES)) {
         $uploadfile = "$uploaddir$apend";
 
         //Проверка расширений загружаемых изображений
-        if ($_FILES['file']['type'][$k] == "image/gif" || $_FILES['file']['type'][$k] == "image/png" ||
-            $_FILES['file']['type'][$k] == "image/jpg" || $_FILES['file']['type'][$k] == "image/jpeg" ||
-            $_FILES['file']['type'][$k] == "application/pdf" || $_FILES['file']['type'][$k] == "application/msword" ||
-            $_FILES['file']['type'][$k] == "application/excel" || $_FILES['file']['type'][$k] == "application/x-excel" ||
-            $_FILES['file']['type'][$k] == "application/x-msexcel" || $_FILES['file']['type'][$k] == "application/vnd.ms-excel") {
+//        if ($_FILES['file']['type'][$k] == "image/gif" || $_FILES['file']['type'][$k] == "image/png" ||
+//            $_FILES['file']['type'][$k] == "image/jpg" || $_FILES['file']['type'][$k] == "image/jpeg" ||
+//            $_FILES['file']['type'][$k] == "application/pdf" || $_FILES['file']['type'][$k] == "application/msword" ||
+//            $_FILES['file']['type'][$k] == "application/excel" || $_FILES['file']['type'][$k] == "application/x-excel" ||
+//            $_FILES['file']['type'][$k] == "application/x-msexcel" || $_FILES['file']['type'][$k] == "application/vnd.ms-excel") {
             //черный список типов файлов
             $blacklist = array(".php", ".phtml", ".php3", ".php4");
             foreach ($blacklist as $item) {
@@ -89,17 +81,11 @@ if (isset($_FILES)) {
                 }
             } else
                 echo "<center><br>Файл не загружен, вернитесь и попробуйте еще раз.</center>";
-        } else
-            echo "<center><br>Можно загружать только изображения в форматах jpg, jpeg, gif и png.</center>";
+//        } else
+//            echo "<center><br>Можно загружать только изображения в форматах jpg, jpeg, gif и png.</center>";
     }
 }
 //-------------------------------------------------------------------------
 
-//Zakrutie bazu       
-if (mysql_close($db)) {
-    // echo("Закриття бази даних");
-} else {
-    echo("Не можливо виконати закриття бази");
-}
 
 header("location: earhiv.php?filter=spr_view&sz=" . $sz . "&nz=" . $nz . "&id_storage=" . $id_storage);

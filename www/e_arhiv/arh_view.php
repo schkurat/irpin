@@ -2,7 +2,7 @@
 include_once "../function.php";
 $flag = "";
 
-if (isset($_GET['rejum'])) $rej = $_GET['rejum'];
+$rej = (isset($_GET['rejum'])) ? $_GET['rejum'] : '';
 
 if ($rej == "seach") {
     if (isset($_GET['info'])) {
@@ -12,48 +12,37 @@ if ($rej == "seach") {
     }
 }
 
-$p = '<table align="center" class="zmview">
-<tr>
-<th>Номер справи</th>
-<th>Адреса</th>
-</tr>';
-
-$zz = 0;
-$kat = 'ea';
-if ($dh = opendir($kat)) {
-    while (false !== ($file = readdir($dh))) {
-        if ($file != "." && $file != "..") {
-            //$p.='<tr><td>'.$file.'</td></tr>';
-            $sql = "SELECT nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV 
-	FROM arhiv,nas_punktu,vulutsi,tup_nsp,tup_vul 
-	WHERE " . $flag . " arhiv.DL='1' AND arhiv.ID=" . $file . " 
+$sql = "SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV 
+	FROM arhiv,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul 
+	WHERE " . $flag . " arhiv.DL='1' 
+	AND rayonu.ID_RAYONA=arhiv.RN
 	AND nas_punktu.ID_NSP=arhiv.NS 
 	AND vulutsi.ID_VUL=arhiv.VL 
 	AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP 
-	AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
-            $atu = mysql_query($sql);
-            while ($aut = mysql_fetch_array($atu)) {
-                $zz++;
-                $obj_ner = objekt_ner(0, $aut["BD"], $aut["KV"]);
-                $adr = $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
-            }
-            mysql_free_result($atu);
-            if ($zz != 0) {
-                $p .= '<tr>
-	<td align="center">' . $file . '</td>
-	<td><a class="text-link" href="earhiv.php?filter=spr_view&id_storage=' . $file . '">' . $adr . '</a></td>
-    </tr>';
-            }
-//            else {
-//                $p .= '<tr>
-//	<td colspan="2">Не знайдено жодної справи!</td>
-//    </tr>';
-//            }
-        }
+	AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL ORDER BY rayonu.RAYON,nas_punktu.NSP,vulutsi.VUL COLLATE utf8_unicode_ci";
+//            echo $sql;
+$atu = $db->db_link->query($sql);
+if ($atu->num_rows > 0){
+?>
+<table align="center" class="zmview">
+    <tr>
+        <th>Номер справи</th>
+        <th>Адреса</th>
+    </tr>
+    <?php
+    while ($aut = $atu->fetch_array(MYSQLI_ASSOC)) {
+        $obj_ner = objekt_ner(0, $aut["BD"], $aut["KV"]);
+        $adr = $aut["RAYON"]. " " . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $obj_ner;
+        $inventory = (!empty($aut["N_SPR"])) ? str_pad($aut["RN"], 2, 0, STR_PAD_LEFT) . $aut["N_SPR"] : '';
+        ?>
+        <tr>
+            <td align="center"><?= $inventory ?></td>
+            <td><a class="text-link" href="earhiv.php?filter=spr_view&id_storage=<?= $aut["ID"] ?>"><?= $adr ?></a></td>
+        </tr>
+        <?php
     }
-    closedir($dh);
-}
+    }
+    $atu->free_result();
+    ?>
+</table>
 
-
-$p .= '</table>';
-echo $p;
