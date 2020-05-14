@@ -8,7 +8,7 @@ include "../function.php";
             width: 30%;
             padding: 5px;
             height: 280px;
-            overflow-y: hidden;
+            overflow-y: scroll;
         }
     </style>
 <?php
@@ -21,6 +21,12 @@ if ($id_storage == 0) {
 } else {
     $filter = "arhiv.ID='$id_storage' ";
     $add_table = '';
+}
+
+if ($ddl == '1') {
+    $cssp = '2';
+} else {
+    $cssp = '1';
 }
 
 $fl = 0;
@@ -88,11 +94,17 @@ if ($fl != 0) {
                                                 $sf++;
                                                 ?>
                                                 <tr>
-                                                    <td align="center">
-                                                        <a href="earhiv.php?filter=delete_file&url=<?= $kat ?>/<?= $file ?>&sz=<?= $sz ?>&nz=<?= $nz ?>&id_storage=<?= $id_storage ?>">
-                                                            <img src="../images/b_drop.png" border="0">
-                                                        </a>
-                                                    </td>
+                                                    <?php
+                                                    if($ddl == '1'){
+                                                        ?>
+                                                        <td align="center">
+                                                            <a href="earhiv.php?filter=delete_file&url=<?= $kat ?>/<?= $file ?>&sz=<?= $sz ?>&nz=<?= $nz ?>&id_storage=<?= $id_storage ?>">
+                                                                <img src="../images/b_drop.png" border="0">
+                                                            </a>
+                                                        </td>
+                                                        <?php
+                                                    }
+                                                    ?>
                                                     <td id="zal"><a
                                                                 href="download_file.php?url=<?= $kat ?>/<?= $file ?>"><?= $file ?></a>
                                                     </td>

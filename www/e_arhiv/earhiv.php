@@ -2,6 +2,7 @@
 session_start();
 $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
+$ddl = $_SESSION['DDL'];
 include '../classes/database.php';
 
 header('Content-Type: text/html; charset=utf-8');
