@@ -1,5 +1,7 @@
 <?php
 include "../function.php";
+
+$frn = get_filter_for_rn($drn,'arhiv','RN');
 ?>
     <style>
         .ea_card {
@@ -33,7 +35,7 @@ $fl = 0;
 $dir = 0;
 $sql = "SELECT arhiv.ID,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV  
 	FROM arhiv,nas_punktu,vulutsi,tup_nsp,tup_vul" . $add_table . " 
-	WHERE " . $filter . " 
+	WHERE " . $filter . " AND (" . $frn . ") 
 	AND nas_punktu.ID_NSP=arhiv.NS 
 	AND vulutsi.ID_VUL=arhiv.VL 
 	AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP 

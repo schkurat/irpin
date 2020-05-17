@@ -1,7 +1,8 @@
 <?php
 include "../scriptu.php";
+include_once "../function.php";
 $krit = (isset($_GET['krit'])) ? $_GET['krit'] : '';
-
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
 ?>
 <form action="index.php" name="myform" method="get">
     <table align="center" class="zmview">
@@ -39,7 +40,7 @@ $krit = (isset($_GET['krit'])) ? $_GET['krit'] : '';
                             <?php
                             $id_rn = '';
                             $rajn = '';
-                            $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
+                            $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu WHERE " . $frn . " ORDER BY rayonu.ID_RAYONA";
                             $atu = mysql_query($sql);
                             while ($aut = mysql_fetch_array($atu)) {
                                 $dl_s = strlen($aut["RAYON"]) - 10;

@@ -1,6 +1,11 @@
 <?php
 include "../scriptu.php";
+include_once "../function.php";
+
 $krit = $_GET['krit'];
+
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
+
 if ($krit == "zm") {
     ?>
     <form action="index.php?filter=kontrol_view" name="myform" method="post">
@@ -76,7 +81,7 @@ if ($krit == "adr") {
                             <?php
                             $id_rn = '';
                             $rajn = '';
-                            $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
+                            $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu WHERE " . $frn . " ORDER BY rayonu.ID_RAYONA";
                             $atu = mysql_query($sql);
                             while ($aut = mysql_fetch_array($atu)) {
                                 $dl_s = strlen($aut["RAYON"]) - 10;

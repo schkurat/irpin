@@ -24,6 +24,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $im = $aut["IM"];
     $pb = $aut["PB"];
     $pd = $aut["PRD"];
+    $drn = $aut["DRN"];
     $brigada = $aut["BR"];
     $ddl = $aut['DTL'];
 }
@@ -46,6 +47,7 @@ if ($pr != "") {
     $_SESSION['IM'] = $im;
     $_SESSION['PB'] = $pb;
     $_SESSION['PD'] = $pd;
+    $_SESSION['DRN'] = $drn;
     $_SESSION['BRIGADA'] = $brigada;
     if ($ddl == '1') $_SESSION['DDL'] = '1';
     else $_SESSION['DDL'] = '0';

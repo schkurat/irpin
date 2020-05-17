@@ -1,6 +1,11 @@
 <?php
 include "../scriptu.php";
+include_once "../function.php";
+
 $krit=$_GET['krit'];
+
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
+
 if($krit=="got"){
 ?>
 <form action="print.php" name="myform" method="post">
@@ -19,7 +24,7 @@ if($krit=="got"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {
@@ -58,7 +63,7 @@ if($krit=="nevk"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {
@@ -133,7 +138,7 @@ if($krit=="pr_per"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {
@@ -234,7 +239,7 @@ if($krit=="d_vuh"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {
@@ -272,7 +277,7 @@ if($krit=="nespl"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {
@@ -310,7 +315,7 @@ if($krit=="vuhodu"){
 			<select style="float:right;" name="rayon">
 			<option value="0">Всі</option>
 			<?php
-			$sql = "SELECT * FROM `rayonu`";
+			$sql = "SELECT * FROM `rayonu` WHERE " . $frn;
 			echo $sql;
 			$atu=mysql_query($sql); 
 			while ($aut = mysql_fetch_array($atu)) {

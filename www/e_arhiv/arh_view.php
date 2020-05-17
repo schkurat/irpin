@@ -1,5 +1,6 @@
 <?php
 include_once "../function.php";
+
 $flag = "";
 
 $rej = (isset($_GET['rejum'])) ? $_GET['rejum'] : '';
@@ -18,9 +19,11 @@ if($rayon != 0){
     $flag_rn = " AND arhiv.RN = " . $rayon;
 }
 
+$frn = get_filter_for_rn($drn,'arhiv','RN');
+
 $sql = "SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV 
 	FROM arhiv,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul 
-	WHERE " . $flag . " arhiv.DL='1' " . $flag_rn . "
+	WHERE " . $flag . " arhiv.DL='1' " . $flag_rn . " AND (" . $frn . ") 
 	AND rayonu.ID_RAYONA=arhiv.RN
 	AND nas_punktu.ID_NSP=arhiv.NS 
 	AND vulutsi.ID_VUL=arhiv.VL 

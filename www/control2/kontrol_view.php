@@ -1,5 +1,8 @@
 <?php
 include_once "../function.php";
+
+$frn = get_filter_for_rn($drn,'zamovlennya','RN');
+
 $kr_fl = '';
 if (isset($_POST['flag'])) {
     $flg = $_POST['flag'];
@@ -49,7 +52,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVO
 		zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.SKL 
 		FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE
-		zamovlennya.DL='1' " . $kr_fl . " 
+		zamovlennya.DL='1' " . $kr_fl . " AND (" . $frn . ") 
 		AND rayonu.ID_RAYONA=zamovlennya.RN 
 		AND nas_punktu.ID_NSP=zamovlennya.NS
 		AND vulutsi.ID_VUL=zamovlennya.VL

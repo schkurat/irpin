@@ -1,5 +1,8 @@
 <?php
 include "../scriptu.php";
+include_once "../function.php";
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
+
 $pid=0;
 $sql = "SELECT MAX(rayonu.ID_RAYONA) AS PID FROM rayonu";
 $atu=mysql_query($sql);
@@ -50,7 +53,7 @@ if($krit=="adr"){
 <option value="">Оберіть район</option>
 <?php
 //$id_rn=''; $rajn='';
-$sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
+$sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu WHERE " . $frn . " ORDER BY rayonu.ID_RAYONA";
  $atu=mysql_query($sql);
  while($aut=mysql_fetch_array($atu))
  {

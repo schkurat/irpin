@@ -406,3 +406,16 @@ function get_adr($url,$lg,$pas){
 
     return $address;
 }
+
+function get_filter_for_rn($drn,$table,$col_name){
+    $drn = explode(';', $drn);
+    $filter = '';
+    foreach ($drn as $dr){
+        if(empty($filter)){
+            $filter .= $table . "." . $col_name . "=" . $dr . " ";
+        }else{
+            $filter .= " OR " . $table . "." . $col_name . "=" . $dr;
+        }
+    }
+    return $filter;
+}

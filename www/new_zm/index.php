@@ -10,6 +10,7 @@ $pb_prie = $_SESSION['PB'];
 //$nas_s=$_SESSION['NAS'];
 //$kod_zm=$_SESSION['KOD_ZM'];
 //$kod_rn=$_SESSION['NR'];
+$drn=$_SESSION['DRN'];
 $ddl = $_SESSION['DDL'];
 //echo $pr_p;
 ?>

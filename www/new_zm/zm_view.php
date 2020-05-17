@@ -15,6 +15,8 @@ $idn = $_GET['idn'];
 $rah = $_GET['rah'];
 $pr = $_GET['priz'];
 
+$frn = get_filter_for_rn($drn,'zamovlennya','RN');
+
 $parent_link = urlencode(json_encode($_REQUEST));
 if (isset($_GET['npr'])) {
     $npr = date_bd($_GET['npr']);
@@ -79,7 +81,7 @@ $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,rayonu.*,nas_punktu.NSP,t
 				vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY
 			 FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 				WHERE 
-					" . $flag . "
+					" . $flag . " AND (" . $frn . ") 
 					AND zamovlennya.DL='1'  
 					AND dlya_oformlennya.id_oform=VUD_ROB
 					AND rayonu.ID_RAYONA=RN

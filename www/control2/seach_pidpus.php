@@ -1,6 +1,9 @@
 <?php
 include "../scriptu.php";
+include_once "../function.php";
 $krit = $_GET['krit'];
+
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
 
 if ($krit == "zm") {
     ?>

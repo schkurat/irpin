@@ -51,6 +51,8 @@ if (isset($_GET['flag'])) {
     $kr_fl = "AND zamovlennya.SZ='" . date("dmy") . "'";
     $vi = "view";
 }
+
+$frn = get_filter_for_rn($drn,'zamovlennya','RN');
 ?>
 
     <script type="text/javascript">
@@ -118,7 +120,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 		zamovlennya.D_PR,zamovlennya.VUK,zamovlennya.DATA_GOT,zamovlennya.SUM,zamovlennya.SUM_KOR
 				FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul" . $vst_tbl . "
 				WHERE
-					zamovlennya.DL='1' " . $kr_fl . " 
+					zamovlennya.DL='1' " . $kr_fl . " AND (" . $frn . ") 
 					AND rayonu.ID_RAYONA=zamovlennya.RN
 					AND nas_punktu.ID_NSP=zamovlennya.NS
 					AND vulutsi.ID_VUL=zamovlennya.VL
@@ -126,6 +128,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 					ORDER BY SZ, NZ DESC";
 $i = 1;
+//echo $sql;
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     if ($aut["BUD"] != "") $bud = "буд." . $aut["BUD"]; else $bud = "";

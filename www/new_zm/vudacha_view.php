@@ -42,6 +42,8 @@ if (!empty($for_client)) {
     $filter = " AND zamovlennya.PS='1' AND zamovlennya.VD='0'";
 }
 
+$frn = get_filter_for_rn($drn,'zamovlennya','RN');
+
 $p = '<table align="center" class="zmview">
 <tr bgcolor="#B5B5B5">
 <th colspan="2">#</th>
@@ -62,7 +64,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.PRI
 	nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY
 	FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 	WHERE
-		zamovlennya.DL='1' " . $filter . $filter2 . " 
+		zamovlennya.DL='1' " . $filter . $filter2 . " AND (" . $frn . ") 
 		AND dlya_oformlennya.id_oform=zamovlennya.VUD_ROB
 		AND rayonu.ID_RAYONA=zamovlennya.RN
 		AND nas_punktu.ID_NSP=zamovlennya.NS

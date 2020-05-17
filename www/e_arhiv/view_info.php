@@ -1,6 +1,8 @@
 <?php
-//include "../function.php";
+include_once "../function.php";
 include "../scriptu.php";
+
+$frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
 ?>
 <form action="earhiv.php" name="myform" method="get">
     <table align="center" class="zmview">
@@ -13,7 +15,7 @@ include "../scriptu.php";
                 <select class="sel_ad" id="rayon" name="rayon">
                     <option value="0">Всі райони</option>
                     <?php
-                    $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
+                    $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu WHERE " . $frn . " ORDER BY rayonu.ID_RAYONA";
                     $atu = $db->db_link->query($sql);
                     while ($aut = $atu->fetch_array(MYSQLI_ASSOC)) {
                         $dl_s = strlen($aut["RAYON"]) - 10;

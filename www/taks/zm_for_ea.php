@@ -1,6 +1,8 @@
 <?php
 include_once "../function.php";
 
+$frn = get_filter_for_rn($drn,'zamovlennya','RN');
+
 $user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
 //$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.') ? "" : "AND zamovlennya.VUK='$user'";
 $flag = ($brigada == 8 || $brigada == 9)? "": " AND zamovlennya.VUK='$user'";
@@ -50,7 +52,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 	tup_vul.TIP_VUL,zamovlennya.DATA_GOT,zamovlennya.VD,zamovlennya.SKL    
 	FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
 	WHERE 
-		zamovlennya.VD=0 AND zamovlennya.EA!=0 " . $flag . $flag2 . " AND zamovlennya.DL='1' 
+		zamovlennya.VD=0 AND zamovlennya.EA!=0 " . $flag . $flag2 . " AND zamovlennya.DL='1' AND (" . $frn . ") 
 		AND zamovlennya.VUD_ROB=dlya_oformlennya.id_oform
 		AND rayonu.ID_RAYONA=zamovlennya.RN 
 		AND nas_punktu.ID_NSP=zamovlennya.NS

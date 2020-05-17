@@ -8,6 +8,7 @@ $t_pr = $_SESSION['PR'];
 $t_im = $_SESSION['IM'];
 $t_pb = $_SESSION['PB'];
 $brigada = $_SESSION['BRIGADA'];
+$drn=$_SESSION['DRN'];
 
 header('Content-Type: text/html; charset=utf-8');
 ?>

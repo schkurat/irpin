@@ -2,6 +2,7 @@
 session_start();
 $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
+$drn=$_SESSION['DRN'];
 //$kodp=$_SESSION['KODP'];
 //$kod_rn=$_SESSION['NR'];
 //$br=$_SESSION['BR'];
