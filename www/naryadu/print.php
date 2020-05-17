@@ -15,6 +15,9 @@ include "../function.php";
         border: 1px solid black;
         padding: 2px 3px;
     }
+    .pidpus p{
+        margin-left: 20%;
+    }
 </style>
 <?php
 
@@ -195,7 +198,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 }
 mysql_free_result($atu1);
 $p .= '<tr>
-    <th colspan="5" align="left">Всього:</th>
+    <th colspan="5" align="left">Всього: </th>
     <th>' . number_format($s_taks_not_pdv,2) . '</th>
     <th>' . number_format($s_sm_taks,2) . '</th>
     <th>' . number_format($s_sm_zp,2) . '</th>
@@ -205,6 +208,13 @@ $p .= '<tr>
 
 echo $p;
 echo '<br>Всього замовлень: ' . $num_rows;
+if ($flg == "got_vuk" and  !empty($vukonavets)){
+    ?>
+    <div class="pidpus">
+        <p>Виконавець __________________________ <?= $vukonavets ?></p>
+    </div>
+    <?php
+}
 if (mysql_close($db)) {
     // echo("Закриття бази даних");
 } else {

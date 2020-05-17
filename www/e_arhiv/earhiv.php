@@ -48,7 +48,7 @@ header('Content-Type: text/html; charset=utf-8');
                 <li><a href="#">Електронний архів</a>
                     <ul>
                         <li><a href="earhiv.php?filter=new_zap_info">По замовленню</a></li>
-                        <li><a href="earhiv.php?filter=arh_view">Перегляд</a></li>
+                        <li><a href="earhiv.php?filter=view_info">Перегляд</a></li>
                         <li><a href="earhiv.php?filter=seach_info">Пошук</a></li>
                     </ul>
                 </li>

@@ -12,9 +12,15 @@ if ($rej == "seach") {
     }
 }
 
+$rayon = (isset($_GET['rayon']))? $_GET['rayon'] : '0';
+$flag_rn = "";
+if($rayon != 0){
+    $flag_rn = " AND arhiv.RN = " . $rayon;
+}
+
 $sql = "SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV 
 	FROM arhiv,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul 
-	WHERE " . $flag . " arhiv.DL='1' 
+	WHERE " . $flag . " arhiv.DL='1' " . $flag_rn . "
 	AND rayonu.ID_RAYONA=arhiv.RN
 	AND nas_punktu.ID_NSP=arhiv.NS 
 	AND vulutsi.ID_VUL=arhiv.VL 
@@ -22,8 +28,10 @@ $sql = "SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp
 	AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL ORDER BY rayonu.RAYON,nas_punktu.NSP,vulutsi.VUL COLLATE utf8_unicode_ci";
 //            echo $sql;
 $atu = $db->db_link->query($sql);
-if ($atu->num_rows > 0){
+$spr_number = $atu->num_rows;
+if ($spr_number > 0){
 ?>
+<h3>Кількість справ: <?= $spr_number ?></h3>
 <table align="center" class="zmview">
     <tr>
         <th>Номер справи</th>

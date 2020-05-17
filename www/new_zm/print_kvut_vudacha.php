@@ -70,7 +70,7 @@ while ($aut = mysql_fetch_array($atu)) {
     if ($aut["SUM_D"] != 0) $s_rah = $aut["SUM_D"];
     $sum = number_format(($sum + $s_rah), 2, '.', '');
     if ($t_zak == 1) {
-        $zamovnuk = $aut["PR"] . ' ' . p_buk($aut["IM"]) . '.' . p_buk($aut["PB"]) . '.';
+        $zamovnuk = $aut["PR"] . ' ' . $aut["IM"] . ' ' . $aut["PB"];
         $zakaz = get_num_order($kod_rn, $aut["SZ"], $aut["NZ"]);
         $datavuh = german_date($aut["DATA_VUH"]);
         $datagot = german_date($aut["DATA_GOT"]);
@@ -219,11 +219,11 @@ if ($t_zak == 1) {
     $pdf->Line(37, 57, 100, 57);
 
     $pdf->SetFont('dejavu_light', '', 10);
-    $pdf->Text(50, 14, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
+    $pdf->Text(48, 14, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
     $pdf->Text(38, 21, '07400 Київська обл.,');
     $pdf->Text(38, 28, 'м.Бровари, вул.Шевченка, 8а,');
-    $pdf->Text(32, 35, $rahunok);
-    $pdf->Text(32, 42, 'КИЇВСЬКЕ ГРУ ПАТ КБ"ПРИВАТБАНК" МФО 321842');
+    $pdf->Text(30, 35, $rahunok);
+    $pdf->Text(20, 42, 'КИЇВСЬКЕ ГРУ ПАТ КБ"ПРИВАТБАНК" МФО 321842');
     $pdf->Text(40, 49, '38250947');
     $pdf->Text(40, 56, '(045) 944-13-21');
 
@@ -244,9 +244,9 @@ if ($t_zak == 1) {
     $pdf->Text(15, 69, 'Платник');
     $pdf->Line(15, 70, 100, 70);
     $pdf->SetFont('dejavu_i', '', 10);
-    $pdf->Text(40, 69, $zamovnuk);
+    $pdf->Text(35, 69, $zamovnuk);
     $pdf->SetFont('dejavu_light', '', 7);
-    $pdf->Text(110, 69, 'замовлення вважається укладеним після сплати рахунку фактури');
+    $pdf->Text(110, 73, 'замовлення вважається укладеним після сплати рахунку фактури');
 
     $pdf->SetFont('dejavub', '', 9);
     $pdf->SetXY(15, 80);
@@ -260,42 +260,45 @@ if ($t_zak == 1) {
     $pdf->SetXY(180, 80);
     $pdf->MultiCell(25, 10, 'Сума', 1, 'C', 0);
 
+    $job = $vidrob . ' за адресою ' . $adresa;
+    $len_str = mb_strlen($job);
+    $count_job_str = ceil(($len_str/54));
+
     $pdf->SetFont('dejavu', '', 9);
     $pdf->SetXY(15, 90);
-    $pdf->MultiCell(100, 5, $vidrob . ' 
-за адресою ' . $adresa, 1, 'L', 0);
+    $pdf->MultiCell(100, 5, $job, 1, 'L', 0);
     $pdf->SetXY(115, 90);
-    $pdf->MultiCell(20, 10, 'послуга', 1, 'C', 0);
+    $pdf->MultiCell(20, 5 * $count_job_str, 'послуга', 1, 'C', 0);
     $pdf->SetXY(135, 90);
-    $pdf->MultiCell(20, 10, '1', 1, 'C', 0);
+    $pdf->MultiCell(20, 5 * $count_job_str, '1', 1, 'C', 0);
     $pdf->SetXY(155, 90);
-    $pdf->MultiCell(25, 10, number_format($sbpdv, 2), 1, 'R', 0);
+    $pdf->MultiCell(25, 5 * $count_job_str, number_format($sbpdv, 2), 1, 'R', 0);
     $pdf->SetXY(180, 90);
-    $pdf->MultiCell(25, 10, number_format($sbpdv, 2), 1, 'R', 0);
+    $pdf->MultiCell(25, 5 * $count_job_str, number_format($sbpdv, 2), 1, 'R', 0);
 
     $pdf->SetFont('dejavub', '', 9);
-    $pdf->SetXY(15, 100);
+    $pdf->SetXY(15, 90 + 5 * $count_job_str);
     $pdf->MultiCell(165, 5, 'Доплата:', 1, 'L', 0);
-    $pdf->SetXY(180, 100);
+    $pdf->SetXY(180, 90 + 5 * $count_job_str);
     $pdf->MultiCell(25, 5, number_format($sbpdv, 2), 1, 'R', 0);
-    $pdf->SetXY(15, 105);
+    $pdf->SetXY(15, 95 + 5 * $count_job_str);
     $pdf->MultiCell(165, 5, 'Податок на додану вартість (ПДВ)', 1, 'L', 0);
-    $pdf->SetXY(180, 105);
+    $pdf->SetXY(180, 95 + 5 * $count_job_str);
     $pdf->MultiCell(25, 5, $spdv, 1, 'R', 0);
-    $pdf->SetXY(15, 110);
+    $pdf->SetXY(15, 100 + 5 * $count_job_str);
     $pdf->MultiCell(165, 5, 'Загальна сума з ПДВ', 1, 'L', 0);
-    $pdf->SetXY(180, 110);
+    $pdf->SetXY(180, 100 + 5 * $count_job_str);
     $pdf->MultiCell(25, 5, $sum, 1, 'R', 0);
 
     $pdf->SetFont('dejavub', '', 8);
-    $pdf->Text(15, 125, 'Загальна сума, що підлягає оплаті');
-    $pdf->Line(75, 126, 200, 126);
+    $pdf->Text(15, 115 + 5 * $count_job_str, 'Загальна сума, що підлягає оплаті');
+    $pdf->Line(75, 116 + 5 * $count_job_str, 200, 116 + 5 * $count_job_str);
     $pdf->SetFont('dejavu', '', 8);
-    $pdf->Text(80, 125, $smpr);
+    $pdf->Text(80, 115 + 5 * $count_job_str, $smpr);
 
     $pdf->SetFont('dejavub', '', 8);
-    $pdf->Text(15, 140, 'Директор _________________________');
-    $pdf->Text(120, 140, 'Гол. бухгалтер _________________________');
+    $pdf->Text(15, 130 + 5 * $count_job_str, 'Директор _________________________');
+    $pdf->Text(120, 130 + 5 * $count_job_str, 'Гол. бухгалтер _________________________');
 
 
 //$file = fopen($file_fiz, 'r');
