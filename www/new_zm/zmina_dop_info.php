@@ -51,7 +51,7 @@ mysql_free_result($atu);
 if($i==1){ 
 if($dokvut=='0000-00-00') $sum=0;
  ?>
-<form action="add_doplata_vudacha.php" name="myform" method="post">
+<form action="add_doplata.php" name="myform" method="post">
 <table align="" class="zmview">
 <tr><th colspan="4" style="font-size: 35px;"><b>Видача</b></th></tr>
 <tr>
