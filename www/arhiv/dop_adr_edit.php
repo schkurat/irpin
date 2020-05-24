@@ -238,7 +238,7 @@ $kl = $_GET['kl'];
 ?>
 
 
-<form action="add_dop_adr.php" name="myform" method="post">
+<form action="update_dop_adr.php" name="myform" method="post">
     <table align="" class="zmview">
         <tr>
             <th colspan="4" style="font-size: 35px;"><b>Редагувати адрес</b></th>

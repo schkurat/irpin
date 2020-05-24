@@ -29,7 +29,7 @@ if($rn!=""){
 					{
 					while($aut=mysql_fetch_array($ath))
 						{
-						$pr3.=',{"value":"'.$aut['ID_VUL'].'","text":"'.$aut['VUL'].' '.$aut['TIP_VUL'].'"}';
+						$pr3.=',{"value":"'.$aut['ID_VUL'].'","text":"'.htmlspecialchars($aut['VUL'],ENT_QUOTES).' '.$aut['TIP_VUL'].'"}';
 						}
 					}
 				 print $pr1.$pr2.$pr3.$pr4;

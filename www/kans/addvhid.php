@@ -384,7 +384,7 @@ include "../scriptu.php";
             </tr>
             <?php
             $robitnuku = '<option value=""></option>';
-            $sql = "SELECT ROBS FROM robitnuku WHERE DL='1' AND BRUGADA<8 ORDER BY ROBS";
+            $sql = "SELECT ROBS FROM robitnuku WHERE DL='1' AND BRUGADA<8 OR ID_ROB=15 ORDER BY ROBS";
             $atu = mysql_query($sql);
             while ($aut = mysql_fetch_array($atu)) {
                 $robitnuku .= '<option value="' . $aut["ROBS"] . '">' . $aut["ROBS"] . '</option>';

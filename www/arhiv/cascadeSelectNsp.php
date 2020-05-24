@@ -27,7 +27,7 @@ if($_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest') {
 					{
 					while($aut=mysql_fetch_array($ath))
 						{
-						$pr3.=',{"value":"'.$aut['ID_NSP'].'","text":"'.$aut['NSP'].' '.$aut['TIP_NSP'].'"}';
+						$pr3.=',{"value":"'.$aut['ID_NSP'].'","text":"'.htmlspecialchars($aut['NSP'],ENT_QUOTES).' '.$aut['TIP_NSP'].'"}';
 						}
 					}
 					

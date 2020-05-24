@@ -11,12 +11,29 @@
 	  });
   }
   // заполняем select
+    let entityMap = {
+        '&amp;': '&',
+        '&lt;': '<',
+        '&gt;': '>',
+        '&quot;': '"',
+        '&#039;': "'",
+        '&#x2F;': '/',
+        '&#x60;': '`',
+        '&#x3D;': '='
+    };
+
+    function escapeHtml (string) {
+        return String(string).replace(/&quot;|&#039;/g, function (s) {
+            return entityMap[s];
+        });
+    }
+
   $.fn.fillSelect = function(dataArray) {
 	  return this.clearSelect().each(function(){
 		  if(this.tagName=="SELECT") {
 			  var currentSelect = this;
 			  $.each(dataArray,function(index,data){
-				  var option = new Option(data.text,data.value);
+				  var option = new Option(escapeHtml(data.text),data.value);
 				  if($.support.cssFloat) {
 					  currentSelect.add(option,null);
 				  } else {
@@ -63,33 +80,33 @@ $(document).ready(function(){
 });
 //---------------------------End select1 adress--------------------------------------------
 //---------------------------Begin select2 adress-----------------------------------------
-(function($){
-  // очищаем select
-  $.fn.clearSelect = function() {
-	  return this.each(function(){
-		  if(this.tagName=="SELECT") {
-		      this.options.length = 0;
-		      $(this).attr("disabled","disabled");
-		  }
-	  });
-  }
-  // заполняем select
-  $.fn.fillSelect = function(dataArray) {
-	  return this.clearSelect().each(function(){
-		  if(this.tagName=="SELECT") {
-			  var currentSelect = this;
-			  $.each(dataArray,function(index,data){
-				  var option = new Option(data.text,data.value);
-				  if($.support.cssFloat) {
-					  currentSelect.add(option,null);
-				  } else {
-					  currentSelect.add(option);
-				  }
-			  });
-		  }
-	  });
-  }
-})(jQuery);
+// (function($){
+//   // очищаем select
+//   $.fn.clearSelect = function() {
+// 	  return this.each(function(){
+// 		  if(this.tagName=="SELECT") {
+// 		      this.options.length = 0;
+// 		      $(this).attr("disabled","disabled");
+// 		  }
+// 	  });
+//   }
+//   // заполняем select
+//   $.fn.fillSelect = function(dataArray) {
+// 	  return this.clearSelect().each(function(){
+// 		  if(this.tagName=="SELECT") {
+// 			  var currentSelect = this;
+// 			  $.each(dataArray,function(index,data){
+// 				  var option = new Option(data.text,data.value);
+// 				  if($.support.cssFloat) {
+// 					  currentSelect.add(option,null);
+// 				  } else {
+// 					  currentSelect.add(option);
+// 				  }
+// 			  });
+// 		  }
+// 	  });
+//   }
+// })(jQuery);
 
 $(document).ready(function(){
 
@@ -266,33 +283,34 @@ $("#brug").autocomplete("../js/robitnuk.php", {
 }); 
 //------------------------End autozap robitnuk---------------------------------
 //---------------------------Begin select adress podst-----------------------------------------
-(function($){
-  // очищаем select
-  $.fn.clearSelect = function() {
-	  return this.each(function(){
-		  if(this.tagName=="SELECT") {
-		      this.options.length = 0;
-		      $(this).attr("disabled","disabled");
-		  }
-	  });
-  }
-  // заполняем select
-  $.fn.fillSelect = function(dataArray) {
-	  return this.clearSelect().each(function(){
-		  if(this.tagName=="SELECT") {
-			  var currentSelect = this;
-			  $.each(dataArray,function(index,data){
-				  var option = new Option(data.text,data.value);
-				  if($.support.cssFloat) {
-					  currentSelect.add(option,null);
-				  } else {
-					  currentSelect.add(option);
-				  }
-			  });
-		  }
-	  });
-  }
-})(jQuery);
+// (function($){
+//   // очищаем select
+//   $.fn.clearSelect = function() {
+// 	  return this.each(function(){
+// 		  if(this.tagName=="SELECT") {
+// 		      this.options.length = 0;
+// 		      $(this).attr("disabled","disabled");
+// 		  }
+// 	  });
+//   }
+//   // заполняем select
+//   $.fn.fillSelect = function(dataArray) {
+// 	  return this.clearSelect().each(function(){
+// 		  if(this.tagName=="SELECT") {
+// 			  var currentSelect = this;
+// 			  $.each(dataArray,function(index,data){
+// 			      console.log(data.text);
+// 				  var option = new Option(data.text,data.value);
+// 				  if($.support.cssFloat) {
+// 					  currentSelect.add(option,null);
+// 				  } else {
+// 					  currentSelect.add(option);
+// 				  }
+// 			  });
+// 		  }
+// 	  });
+//   }
+// })(jQuery);
 
 $(document).ready(function(){
 

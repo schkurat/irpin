@@ -98,7 +98,7 @@ if($kod_rob == 6 || $kod_rob == 7){
 Тел: ' . $tel, 0, 'L', 0);
 //    $pdf->Text(125, 30, 'Тел: ' . $tel);
     $pdf->Text(80, 50, 'Замовлення № ' . $ndog);
-    $pdf->Text(95, 57, $dtdog . 'р.');
+//    $pdf->Text(95, 57, $dtdog . 'р.');
 
     $pdf->Text(20, 70, 'Прошу: ' . $vidrob);
     $pdf->SetXY(19, 72);
@@ -137,9 +137,9 @@ if($kod_rob == 6 || $kod_rob == 7){
         $y = 120;
     }
     $pdf->SetFont('dejavu', '', 10);
-    $pdf->Text(90, $y, 'Замовник: _________________ ' . $zayavnuk . ' ' . $dtdog);
-    $pdf->Text(69, $y + 12.5, 'Замовлення прийняв: _________________ ' . $user . ' ' . $dtdog);
-    $pdf->Text(20, $y + 25, 'Документи відповідно до замовлення отримав: _________________ ' . $zayavnuk . ' ' . $dtdog);
+    $pdf->Text(90, $y, 'Замовник: _________________ ' . $zayavnuk );
+    $pdf->Text(69, $y + 12.5, 'Замовлення прийняв: _________________ ' . $user);
+    $pdf->Text(20, $y + 25, 'Документи відповідно до замовлення отримав: _________________ ' . $zayavnuk);
 
 }elseif ($kod_rob == 1 || $kod_rob == 5){
     $sql = "SELECT * FROM yur_kl WHERE yur_kl.EDRPOU='$edrpou' AND yur_kl.DL='1'";

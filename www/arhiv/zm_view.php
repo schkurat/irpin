@@ -224,6 +224,7 @@ while ($aut = mysql_fetch_array($atu)) {
             } else {
                 $dop_adr .= '<div style="color:gray;">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
             }
+            $edit_info_fl = 'subj';
         } elseif ($job_type == 1) {
             if ($aut1["status"] != 2) {
                 $v_insert = ($aut1["VD"] == '0') ? '<i class="fal fa-inbox-out" data-kl="' . $aut1["id"] . '" title="Відмітка про видачу"></i>' : '';
@@ -237,9 +238,11 @@ while ($aut = mysql_fetch_array($atu)) {
             } else {
                 $dop_adr .= '<div style="color:red;">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</div><div style="clear: both"></div>';
             }
+            $edit_info_fl = 'subj';
         } elseif ($job_type == 2) {
             $dop_adr .= '<div>' . $vst_ea . '<a href="arhiv.php?filter=dop_adr_edit&kl=' . $aut1["id"] . '" class="text-link" title="Редагування адреси">' . $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop . '</a></div><div style="clear: both"></div>';
             $col_hidden = 'style="display:none;"';
+            $edit_info_fl = 'prizv';
         }
 
     }
@@ -259,7 +262,7 @@ while ($aut = mysql_fetch_array($atu)) {
 <td align="center">' . $kvut . '</td>	
 <td align="center">' . $vst_bl2 . '</td>
       <td align="center">' . $order . '</td>
-      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=subj&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=' . $edit_info_fl . '&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
       <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
 	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">' . $aut["PRIM"] . '</a></td>
       <td style="font-size: 12px;">' . $address . '</td>
