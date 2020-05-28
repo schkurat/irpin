@@ -10,7 +10,11 @@ $parent_link = $_POST['parent_link'];
 $adr = $_POST['adr'];
 
 $katalog = 'ea/' . $url;
-if (!is_dir($katalog)) {
+$pars_url =  explode('/',$url);
+$main_dir = 'ea/' . $pars_url[0];
+
+if (!is_dir($main_dir)) {
+    mkdir($main_dir);
     mkdir($katalog);
 }
 
