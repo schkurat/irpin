@@ -31,19 +31,15 @@ if (!@mysql_select_db(kpbti, $db)) {
 $p = '<b>Період: з  ' . german_date($bdat) . ' по ' . german_date($edat) . '</b>
 	<table border="1" cellpadding="0" cellspacing="0"><tr>
 	<th align="center"><font size="2">Замов лення</font></th>
-	<th align="center"><font size="2">Адреса</font></th>
-	<th align="center"><font size="2">Вид робіт</font></th>
-	<th align="center"><font size="2">ПІБ (назва)</font></th>
-	<th align="center"><font size="2">ЄДРПОУ</font></th>
-	<th align="center"><font size="2">ІПН</font></th>
-	<th align="center"><font size="2">Свідоцтво</font></th>
 	<th align="center"><font size="2">Дата прийому</font></th>
-	<th align="center"><font size="2">Дата готовності</font></th>
-	<!--<th align="center"><font size="2">Дата таксування</font></th>-->
-	<th align="center"><font size="2">Виконавець</font></th>
+	<th align="center"><font size="2">Адреса</font></th>
+	<th align="center"><font size="2">ПІБ (назва)</font></th>
+	<th align="center"><font size="2">Вид робіт</font></th>
 	<th align="center"><font size="2">Прийом замовлення</font></th>
+	<th align="center"><font size="2">Дата готовності</font></th>
+	<th align="center"><font size="2">Виконавець</font></th>
 	<th align="center"><font size="2">Телефон</font></th>
-	<th align="center"><font size="2">Сума</font></th>
+	<th align="center"><font size="2">Сума аванс+доплата</font></th>
 	<th align="center"><font size="2">Підпис</font></th>
 	</tr>
 	';
@@ -107,17 +103,13 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 //if($kod_zm!="") $kod_zm='-'.$kod_zm; 
         $p .= '<tr>
 	<td align="center"><font size="2">' . $zakaz . '</font></td>
+	<td><font size="2">' . german_date($aut1["D_PR"]) . '</td>
 	<td><font size="2">' . $adres . '</td>
-	<td align="center"><font size="2">' . $vud_rob . '</font></td>
 	<td align="center"><font size="2">' . $fio . '</font></td>
-	<td align="center"><font size="2">' . $edrpou . '</font></td>
-	<td align="center"><font size="2">' . $ipn . '</font></td>
-	<td align="center"><font size="2">' . $svid . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["D_PR"]) . '</font></td>
-	<td align="center"><font size="2">' . german_date($aut1["DATA_GOT"]) . '</font></td>
-	<!--<td align="center"><font size="2">' . $d_taks . '</font></td>-->
-	<td align="center"><font size="2">' . $vukon . '</font></td>
+	<td align="center"><font size="2">' . $vud_rob . '</font></td>
 	<td align="center"><font size="2">' . $aut1["PR_OS"] . '</font></td>
+	<td align="center"><font size="2">' . german_date($aut1["DATA_GOT"]) . '</font></td>
+	<td align="center"><font size="2">' . $vukon . '</font></td>
 	<td align="center"><font size="2">' . $tel . '</font></td>
 	<td align="center"><font size="2">' . $sum . '</font></td>
 	<td align="center"><font size="2">' . $pidpus . '</font></td>

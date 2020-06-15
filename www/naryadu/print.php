@@ -50,12 +50,14 @@ $p = '<b>Період: з  ' . german_date($bdat) . ' по ' . german_date($edat
 	<th align="center" rowspan="2">Адреса</th>
 	<th align="center" rowspan="2">Вид робіт</th>
 	<th align="center" rowspan="2">ПІБ (назва)</th>
+	<th align="center" rowspan="2">Приймальник</th>
+	<th align="center" rowspan="2">Виконавець</th>
 	<th align="center" rowspan="2">Дата прийому</th>
+	<th align="center" rowspan="2">Дата виконання</th>
 	<th align="center" rowspan="2">Таксування<br>без ПДВ</th>
 	<th align="center" rowspan="2">Таксування<br>з ПДВ</th>
 	<th align="center" rowspan="2">Сума на ЗП</th>
 	<th align="center" colspan="2">Сплачено</th>
-	<th align="center" rowspan="2">Виконавець</th>
 	</tr>
 	<tr><th>Сума</th><th>Дата</th></tr>
 	';
@@ -74,6 +76,10 @@ if ($flg == "nevuk_vuk") {
 if ($flg == "got_vuk") {
     $vukonavets = $_POST['isp'];
     $kr_fl = "AND zamovlennya.DATA_PS>='$bdat' AND zamovlennya.DATA_PS<='$edat' AND zamovlennya.PS='1' AND zamovlennya.VUK='$vukonavets'";
+    ?>
+    <p>Затверджую:</p>
+    <p>в.о. генерального директора__________________ Кондратенко О.Є.</p>
+    <?php
 }
 if ($flg == "pr_period") {
     $kr_fl = "AND zamovlennya.D_PR>='$bdat' AND zamovlennya.D_PR<='$edat'";
@@ -88,7 +94,7 @@ $s_sm_taks = 0;
 $s_taks_not_pdv = 0;
 $s_sm_zp = 0;
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
-			zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,rayonu.*,
+			zamovlennya.PB,zamovlennya.PS,zamovlennya.PR_OS,zamovlennya.DATA_PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,rayonu.*,
 			tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,dlya_oformlennya.id_oform,
 			zamovlennya.D_PR,zamovlennya.EDRPOU,zamovlennya.IPN,zamovlennya.SVID,
 			zamovlennya.DATA_GOT,zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.TUP_ZAM 
@@ -159,6 +165,7 @@ while ($aut1 = mysql_fetch_array($atu1)) {
         $taks_without_keeper = $sm_taks - 700;
     }
     $sm_zp = round((($taks_without_keeper) - ($taks_without_keeper / 6)) * 0.25,2);
+    $sm_zp = ($sm_zp < 0)? 0: $sm_zp;
     $s_sm_zp += $sm_zp;
 
     $sm_opl = 0;
@@ -193,22 +200,24 @@ while ($aut1 = mysql_fetch_array($atu1)) {
 	<td rowspan="' . $cunt_pay . '">' . $adres . '</td>
 	<td align="center" rowspan="' . $cunt_pay . '">' . $vud_rob . '</td>
 	<td align="center" rowspan="' . $cunt_pay . '">' . $fio . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . $aut1["PR_OS"] . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . $vukon . '</td>
 	<td align="center" rowspan="' . $cunt_pay . '">' . german_date($aut1["D_PR"]) . '</td>
+	<td align="center" rowspan="' . $cunt_pay . '">' . german_date($aut1["DATA_PS"]) . '</td>
 	<td align="right" rowspan="' . $cunt_pay . '">' . number_format($taks_not_pdv,2) . '</td>
 	<td align="right" rowspan="' . $cunt_pay . '">' . number_format($sm_taks,2) . '</td>
 	<td align="right" rowspan="' . $cunt_pay . '">' . $sm_zp . '</td>
 	'. $pay_insert_one .'
-	<td align="center" rowspan="' . $cunt_pay . '">' . $vukon . '</td>
 	</tr>'.$pay_insert_more;
 }
 mysql_free_result($atu1);
 $p .= '<tr>
-    <th colspan="5" align="left">Всього: </th>
+    <th colspan="8" align="left">Всього: </th>
     <th>' . number_format($s_taks_not_pdv,2) . '</th>
     <th>' . number_format($s_sm_taks,2) . '</th>
     <th>' . number_format($s_sm_zp,2) . '</th>
     <th>' . number_format($s_sm_opl,2) . '</th>
-    <th colspan="2"></th>
+    <th></th>
     </tr></table>';
 
 echo $p;
