@@ -89,7 +89,7 @@ $s_taks_not_pdv = 0;
 $s_sm_zp = 0;
 $sql1 = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.PR,zamovlennya.IM,zamovlennya.ZVON,zamovlennya.DOKVUT,zamovlennya.DODOP,
 			zamovlennya.PB,zamovlennya.PS,nas_punktu.NSP,vulutsi.VUL,tup_nsp.TIP_NSP,rayonu.*,
-			tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,
+			tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.BUD,zamovlennya.KVAR,dlya_oformlennya.document,dlya_oformlennya.id_oform,
 			zamovlennya.D_PR,zamovlennya.EDRPOU,zamovlennya.IPN,zamovlennya.SVID,
 			zamovlennya.DATA_GOT,zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.TUP_ZAM 
 		FROM zamovlennya,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul,dlya_oformlennya 
@@ -152,7 +152,12 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     }
     mysql_free_result($atu2);
 
-    $taks_without_keeper = $sm_taks - 700;
+    $code_rob = (int)$aut1["id_oform"];
+    if($code_rob == 14 || $code_rob == 15 || $code_rob == 16 || $code_rob == 23){
+        $taks_without_keeper = $sm_taks;
+    }else{
+        $taks_without_keeper = $sm_taks - 700;
+    }
     $sm_zp = round((($taks_without_keeper) - ($taks_without_keeper / 6)) * 0.25,2);
     $s_sm_zp += $sm_zp;
 
