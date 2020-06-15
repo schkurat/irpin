@@ -3,7 +3,7 @@ include_once "../function.php";
 
 $frn = get_filter_for_rn($drn,'zamovlennya','RN');
 
-$user = $t_pr . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
+$user = trim($t_pr) . ' ' . p_buk($t_im) . '.' . p_buk($t_pb) . '.';
 //$flag = ($user == 'Шкурат А.О.' || $user == 'Разно Ю.Ю.' || $user == 'Чернях Ю.С.' || $user == 'Голуб Г.О.') ? "" : "AND zamovlennya.VUK='$user'";
 $flag = ($brigada == 8 || $brigada == 9)? "": " AND zamovlennya.VUK='$user'";
 
@@ -60,7 +60,7 @@ $sql = "SELECT zamovlennya.EA,zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
 		ORDER BY SZ, NZ DESC";
-
+//echo $sql;
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
     $order = get_num_order($aut["ID_RAYONA"], $aut["SZ"], $aut["NZ"]);

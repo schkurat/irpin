@@ -17,7 +17,7 @@ if (isset($_GET['flag'])) {
         $vst_tbl = ", taks ";
     }
     if ($flg == "pid") {
-        $kr_fl = "AND zamovlennya.PS='1' AND zamovlennya.DATA_PS='" . date("Y-m-d") . "'";
+        $kr_fl = "AND zamovlennya.PS='1' AND MONTH(zamovlennya.DATA_PS) = MONTH(CURRENT_DATE())";
         $vi = "view";
     }
     if ($flg == "zm") {

@@ -60,8 +60,8 @@ $p = '<table align="center" class="zmview">
 $lich = 0;
 $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.PRIM,rayonu.ID_RAYONA,zamovlennya.VD,
 	zamovlennya.DOKVUT,zamovlennya.IDN,zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.D_NAR,
-	zamovlennya.BUD,zamovlennya.KVAR,zamovlennya.SUM_D,zamovlennya.DATA_GOT,dlya_oformlennya.document,
-	nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY
+	zamovlennya.BUD,zamovlennya.KVAR,zamovlennya.SUM_D,zamovlennya.DATA_GOT,zamovlennya.DOKVUT,dlya_oformlennya.document,
+	nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.KEY,zamovlennya.SUM_KOR,zamovlennya.SUM  
 	FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 	WHERE
 		zamovlennya.DL='1' " . $filter . $filter2 . " AND (" . $frn . ") 
@@ -94,6 +94,34 @@ while ($aut = mysql_fetch_array($atu)) {
         $second_insert = '-';
     }
 
+    $kl = $aut["KEY"];
+
+    if($aut["SUM_D"] == 0){
+        $sum_kor=$aut["SUM_KOR"];
+        $sum=$aut["SUM"];
+        $dokvut=$aut["DOKVUT"];
+        if($dokvut=='0000-00-00') $sum=0;
+        $taks=0;
+        $nds=0;
+        $sql2 = "SELECT taks.SUM,taks.SUM_OKR,taks.NDS FROM taks WHERE taks.IDZM='$kl' AND DL='1'";
+        $atu2=mysql_query($sql2);
+        while($aut2=mysql_fetch_array($atu2))
+        {
+            $taks=$aut2["SUM"]+$aut2["SUM_OKR"];
+            $nds=$aut2["NDS"];
+        }
+        mysql_free_result($atu2);
+        if($taks!=0){
+            if($sum_kor!=0) $dopl=round($sum_kor,2);
+            else $dopl=round(((($nds+100)*$taks)/100)-$sum,2);
+        }
+        else {$dopl='0';}
+    }else{
+        $dopl = $aut["SUM_D"];
+    }
+    $dopl = number_format($dopl,2);
+
+
     $p .= '<tr bgcolor="#FFFAF0">
 <td align="center">' . $first_insert . '</td>
 <td align="center">' . $second_insert . '</td>
@@ -104,7 +132,7 @@ while ($aut = mysql_fetch_array($atu)) {
 	  <td align="center">' . $aut["PRIM"] . '</td>
 	  <td align="center">' . german_date($aut["D_NAR"]) . '</td>
       <td align="center">' . $aut["TIP_NSP"] . $aut["NSP"] . " " . $aut["TIP_VUL"] . $aut["VUL"] . " " . $bud . " " . $kvar . '</td>
-	  <td align="center" id="zal"><a href="index.php?filter=zmina_dop_info&kl=' . $aut["KEY"] . '">' . $aut["SUM_D"] . '</a></td>
+	  <td align="center" id="zal"><a href="index.php?filter=zmina_dop_info&kl=' . $aut["KEY"] . '">' . $dopl . '</a></td>
 	  <td align="center">' . german_date($aut["DATA_GOT"]) . '</td>
       </tr>';
     $lich++;

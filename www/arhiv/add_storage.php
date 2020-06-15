@@ -17,6 +17,9 @@ if (!is_dir($main_dir)) {
     mkdir($main_dir);
     mkdir($katalog);
 }
+if(!is_dir($katalog)){
+    mkdir($katalog);
+}
 
 if (isset($_FILES)) {
     //пролистываем весь массив изображений по одному $_FILES['file']['name'] as $k=>$v
