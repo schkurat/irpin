@@ -34,9 +34,27 @@ $atu = $db->db_link->query($sql);
 $spr_number = $atu->num_rows;
 if ($spr_number > 0){
 ?>
+<style>
+    .fal {
+        padding: 5px 5px;
+    }
+    .fa-trash-alt {
+        color: #ff0000;
+    }
+    .fa-pen-alt {
+        color: #00e;
+    }
+</style>
 <h3>Кількість справ: <?= $spr_number ?></h3>
 <table align="center" class="zmview">
     <tr>
+        <?php
+        if ($ddl == '1') {
+            ?>
+            <th colspan="2">Дія</th>
+            <?php
+        }
+        ?>
         <th>Номер справи</th>
         <th>Адреса</th>
     </tr>
@@ -47,6 +65,14 @@ if ($spr_number > 0){
         $inventory = (!empty($aut["N_SPR"])) ? str_pad($aut["RN"], 2, 0, STR_PAD_LEFT) . $aut["N_SPR"] : '';
         ?>
         <tr>
+            <?php
+            if ($ddl == '1') {
+                ?>
+                <td><a href="delete.php?kl=<?= $aut["ID"] ?>&rn=<?= $rayon ?>" onclick="return confirm('Ви дісно бажаєте видалити?') ? true : false;" title="Видалення"><i class="fal fa-trash-alt"></i></a></td>
+                <td><a href="earhiv.php?filter=adr_edit&kl=<?= $aut["ID"] ?>&rn=<?= $rayon ?>" title="Редагувати адресу"><i class="fal fa-pen-alt"></i></a></td>
+                <?php
+            }
+            ?>
             <td align="center"><?= $inventory ?></td>
             <td><a class="text-link" href="earhiv.php?filter=spr_view&id_storage=<?= $aut["ID"] ?>"><?= $adr ?></a></td>
         </tr>

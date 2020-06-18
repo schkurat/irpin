@@ -16,6 +16,7 @@ $frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
                     <option value="0">Всі райони</option>
                     <?php
                     $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu WHERE " . $frn . " ORDER BY rayonu.ID_RAYONA";
+//                    echo $sql;
                     $atu = $db->db_link->query($sql);
                     while ($aut = $atu->fetch_array(MYSQLI_ASSOC)) {
                         $dl_s = strlen($aut["RAYON"]) - 10;

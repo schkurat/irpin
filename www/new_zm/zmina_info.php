@@ -448,7 +448,7 @@ include "../function.php";
                     <td>Район:</td>
                     <td colspan="3">
                         <div class="border">
-                            <select class="sel_ad" id="r_pd" name="rjn" required>
+                            <select class="sel_ad" id="rayon" name="rjn" required>
                                 <option value="">Оберіть район</option>
                                 <?php
                                 $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
@@ -470,7 +470,7 @@ include "../function.php";
                     <td colspan="3">
                         <div class="border">
                             <input type="hidden" id="idns" value="<?= $zm_ns ?>">
-                            <select class="sel_ad" id="nas_p_pd" name="nsp" required>
+                            <select class="sel_ad" id="nas_punkt" name="nsp" required>
                                 <option value="">Оберіть населений пункт</option>
                                 <?php
                                 $sql = "SELECT nas_punktu.ID_NSP,nas_punktu.NSP,tup_nsp.TIP_NSP FROM nas_punktu,tup_nsp 
@@ -491,7 +491,7 @@ include "../function.php";
                     <td colspan="3">
                         <div class="border">
                             <input type="hidden" id="idvl" value="<?= $zm_vl ?>">
-                            <select class="sel_ad" id="vul_pd" name="vyl" disabled="disabled" required></select>
+                            <select class="sel_ad" id="vulutsya" name="vyl" disabled="disabled" required></select>
                             <input type="button" id="bt2" value="Додати вулицю" style="width:125px;"/>
                         </div>
                     </td>
