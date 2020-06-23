@@ -47,6 +47,7 @@ $pdv=round((((($aut["SM_T"]+$aut["SUM_OKR"])*($aut["NDS"]/100))*$aut["VIDSOTOK"]
 $dt_ps=$aut["DATA_PS"];
 $dt_opl=$aut["DOKVUT"];
 $dt_opl_d=$aut["DODOP"];
+$adres =htmlspecialchars($adres,ENT_QUOTES);
 
 if($dt_ps>$dt_k or $dt_ps=='0000-00-00'){
 $sum_zak=0;
@@ -91,6 +92,7 @@ $sz=$aut["SZ"];
 $nz=$aut["NZ"];
 $idzak=$aut["KEY"];
 $adres=$aut["TIP_NSP"].' '.$aut["NSP"].' '.$aut["TIP_VUL"].' '.$aut["VUL"].' '.$bud.' '.$kvar;
+$adres =htmlspecialchars($adres,ENT_QUOTES);
 $fio=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
 $sum_zak=$aut["SUM"]+$aut["SUM_D"];
 $sum_kas=$aut["SM"];
@@ -164,6 +166,7 @@ $sql="SELECT n_ostatok.*,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_
 	AND vulutsi.ID_VUL=zamovlennya.VL
 	AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 	AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
+//echo $sql;
 $atu=mysql_query($sql);
 while($aut=mysql_fetch_array($atu)){
 if($aut["BUD"]!="") $bud="буд.".$aut["BUD"]; else $bud="";
@@ -171,6 +174,7 @@ if($aut["KVAR"]!="") $kvar="кв.".$aut["KVAR"]; else $kvar="";
 $sz=$aut["SZ"];
 $nz=$aut["NZ"];
 $adres=$aut["TIP_NSP"].' '.$aut["NSP"].' '.$aut["TIP_VUL"].' '.$aut["VUL"].' '.$bud.' '.$kvar;
+$adres =htmlspecialchars($adres,ENT_QUOTES);
 $fio=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
 $deb=$aut["DEB"];
 $kre=$aut["KRE"];
@@ -226,6 +230,7 @@ if($aut["KVAR"]!="") $kvar="кв.".$aut["KVAR"]; else $kvar="";
 $sz=$aut["SZ"];
 $nz=$aut["NZ"];
 $adres=$aut["TIP_NSP"].' '.$aut["NSP"].' '.$aut["TIP_VUL"].' '.$aut["VUL"].' '.$bud.' '.$kvar;
+$adres =htmlspecialchars($adres,ENT_QUOTES);
 $fio=$aut["PR"].' '.$aut["IM"].' '.$aut["PB"];
 $sum_71=$aut["SM_71"];
 $dt_ps=$aut["DATA_PS"];

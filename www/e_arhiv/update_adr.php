@@ -12,12 +12,14 @@ $ns = (isset($_POST['nsp'])) ? $_POST['nsp'] : '';
 $vl = (isset($_POST['vyl'])) ? $_POST['vyl'] : '';
 $bd = (isset($_POST['bud'])) ? trim($_POST['bud']) : '';
 $kva = (isset($_POST['kvar'])) ? trim($_POST['kvar']) : '';
-
+$inv = (isset($_POST['inv']) && !empty($_POST['inv'])) ? str_pad(substr($_POST['inv'],2),7,'0',STR_PAD_LEFT) : '';
+//var_dump($inv);
+//die();
 $db = new Database($lg, $pas);
 
 if (!empty($rn) && !empty($ns) && !empty($vl)) {
 
-    $ath1 = $db->db_link->query("UPDATE arhiv SET RN='$rn', NS='$ns', VL='$vl', BD='$bd', KV='$kva' WHERE ID='$kl' AND DL='1'");
+    $ath1 = $db->db_link->query("UPDATE arhiv SET N_SPR='$inv',RN='$rn', NS='$ns', VL='$vl', BD='$bd', KV='$kva' WHERE ID='$kl' AND DL='1'");
     if (!$ath1) {
         echo "Запис не скоригований";
     }

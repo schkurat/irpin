@@ -419,3 +419,11 @@ function get_filter_for_rn($drn,$table,$col_name){
     }
     return $filter;
 }
+
+function check_or_create_folder($main_dir){
+    if(!is_dir($main_dir . '/document')) mkdir($main_dir . '/document');
+    if(!is_dir($main_dir . '/keeper')) mkdir($main_dir . '/keeper');
+    if(!is_dir($main_dir . '/technical')) mkdir($main_dir . '/technical');
+    if(!is_dir($main_dir . '/correspondence')) mkdir($main_dir . '/correspondence');
+    if(!is_dir($main_dir . '/inventory')) mkdir($main_dir . '/inventory');
+}

@@ -57,6 +57,7 @@ if ($fl != 0) {
     <?php
     $main_dir = 'ea/' . $id_storage;
     if (is_dir($main_dir)) {
+        check_or_create_folder($main_dir);
         if ($mdh = opendir($main_dir)) {
             while (false !== ($item = readdir($mdh))) {
                 if ($item != "." && $item != "..") {

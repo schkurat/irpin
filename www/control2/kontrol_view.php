@@ -43,13 +43,16 @@ $p = '<table align="center" class="zmview">
 <th>Виконавець</th>
 <th>Приймальник</th>
 <th>Телефон</th>
+<th>Таксування</th>
+<th>Підпис</th>
+<th>Видача</th>
 </tr>';
 
 $sql = "SELECT zamovlennya.SZ,zamovlennya.NZ,zamovlennya.TUP_ZAM,zamovlennya.ZVON,rayonu.*,
 		zamovlennya.PR,zamovlennya.IM,zamovlennya.PB,zamovlennya.KEY,nas_punktu.NSP,
 		vulutsi.VUL,tup_nsp.TIP_NSP,tup_vul.TIP_VUL,zamovlennya.BUD,zamovlennya.KVAR,
 		dlya_oformlennya.document,zamovlennya.D_PR,zamovlennya.DATA_VUH,zamovlennya.DATA_GOT,
-		zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.SKL 
+		zamovlennya.PR_OS,zamovlennya.VUK,zamovlennya.TEL,zamovlennya.SKL,zamovlennya.PS,zamovlennya.VD   
 		FROM zamovlennya, rayonu, nas_punktu, vulutsi, tup_nsp, tup_vul, dlya_oformlennya
 		WHERE
 		zamovlennya.DL='1' " . $kr_fl . " AND (" . $frn . ") 
@@ -69,10 +72,11 @@ while ($aut = mysql_fetch_array($atu)) {
 
     $key_zm = $aut['KEY'];
     $d_taks = "";
-    $sql2 = "SELECT DATE_T FROM taks WHERE IDZM='$key_zm' AND DL='1'";
+    $sql2 = "SELECT * FROM taks WHERE IDZM='$key_zm' AND DL='1'";
     $atu2 = mysql_query($sql2);
     while ($aut2 = mysql_fetch_array($atu2)) {
         $d_taks = german_date($aut2["DATE_T"]);
+        $sm_taks = round((($aut2["SUM"] + $aut2["SUM_OKR"]) * (($aut2["NDS"] / 100) + 1)), 2);
     }
     mysql_free_result($atu2);
 
@@ -86,6 +90,8 @@ while ($aut = mysql_fetch_array($atu)) {
     if ($aut["VUK"] == "") $vukon_zm = "-";
     else $vukon_zm = $aut["VUK"];
     $zakaz = get_num_order($aut["ID_RAYONA"], $aut["SZ"], $aut["NZ"]);
+    $autograph = ($aut["PS"] == '1')? 'так' : 'ні';
+    $vudacha = ($aut["VD"] == '1')? 'так' : 'ні';
 
     $p .= '<tr>
 	<td align="center">' . $zakaz . '</td>
@@ -97,6 +103,9 @@ while ($aut = mysql_fetch_array($atu)) {
 	<td align="center" ' . $vst1 . '>' . $vst2 . ' ' . $vukon_zm . ' ' . $vst3 . '</td>
     <td align="center">' . $aut["PR_OS"] . '</td>
 	<td align="center">' . $aut["TEL"] . '</td>
+	<td align="center">' . $sm_taks . '</td>
+	<td align="center">' . $autograph . '</td>
+	<td align="center">' . $vudacha . '</td>
     </tr>';
 }
 mysql_free_result($atu);

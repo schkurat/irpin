@@ -9,6 +9,7 @@ $sql1 = "SELECT * FROM `arhiv` WHERE ID = " . $kl;
 // echo $sql1;
 $atu = $db->db_link->query($sql1);
 while ($aut1 = $atu->fetch_array(MYSQLI_ASSOC)) {
+    $n_spr = $aut1["N_SPR"];
     $rn = $aut1["RN"];
     $nsp = $aut1["NS"];
     $vl = $aut1["VL"];
@@ -16,6 +17,7 @@ while ($aut1 = $atu->fetch_array(MYSQLI_ASSOC)) {
     $kv = $aut1["KV"];
 }
 $atu->free_result();
+$inv = (!empty($n_spr))? str_pad($rn,2,'0', 0) . $n_spr : '';
 echo '
 	<input id="id_rn" name="id_rn" type="hidden" value="' . $rn . '">
 	<input id="id_nsp" name="id_nsp" type="hidden" value="' . $nsp . '">
@@ -24,8 +26,10 @@ echo '
 <form action="update_adr.php" name="myform" method="post">
     <table align="" class="zmview">
         <tr>
-            <th colspan="4" style="font-size: 35px;"><b>Редагувати адрес</b></th>
+            <th colspan="4" style="font-size: 35px;"><b>Редагування запису</b></th>
         </tr>
+        <td>Інвентарний номер</td>
+        <td colspan="3"><input type="text" name="inv" value="<?= $inv ?>"></td>
         <tr>
             <td>Район:</td>
             <td colspan="3">
