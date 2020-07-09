@@ -67,10 +67,10 @@ $sumpr=in_str($grn);
 $smpr=$sumpr.' грн. ';
 if($kop!=0) $smpr.=$kop.' коп.';
 
-//$file_fiz='dovidka.xml';
+//$file_fiz='akt_fiz.xml';
 //$file_fiz_new='akt_fiz_new.xml';
 //$file_ur='akt.xml';
-//$file_ur_new='dovidka_new.xml';
+//$file_ur_new='akt_new.xml';
 //
 //$rahunok="26002283741";
 

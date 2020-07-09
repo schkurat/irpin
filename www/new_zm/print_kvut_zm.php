@@ -25,9 +25,9 @@ if ($tz == 2) {
 			AND rayonu.ID_RAYONA=RN AND nas_punktu.ID_NSP=NS AND vulutsi.ID_VUL=VL
 			AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 			AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
-    $patterns1[0] = "[nomer]";
+   /* $patterns1[0] = "[nomer]";
     $patterns1[1] = "[adresa]";
-    $patterns1[2] = "[sbpdv]";
+    $patterns1[2] = "[sbpdv]";*/
 } else {
     $sql = "SELECT zamovlennya.*,dlya_oformlennya.document,dlya_oformlennya.name_for_dog,rayonu.RAYON,rayonu.ID_RAYONA,nas_punktu.NSP, tup_nsp.TIP_NSP,
 		dlya_oformlennya.id_oform,vulutsi.VUL,tup_vul.TIP_VUL,zamovlennya.SZ,zamovlennya.NZ
@@ -39,7 +39,7 @@ if ($tz == 2) {
 		AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
 		AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL";
 }
-
+//echo $sql;
 $i = 1;
 $pilga = 0;
 $atu = mysql_query($sql);
@@ -98,10 +98,131 @@ if ($pilga == 0) {
     $smpr = $sumpr . ' грн. ' . $kop . ' коп.';
     $prpdv = '';
 }
+//Для юр лиц *********************************************************************************************************
+if ($t_zak == 2) {
+require('../tfpdf/tfpdf.php');
+// створюємо FPDF обєкт
+    $pdf = new TFPDF();
 
-//if ($t_zak == 2) {
-//
-//}
+    $pdf->SetAutoPageBreak('true', 2);
+    $pdf->SetMargins(05, 05, 2);
+
+    $pdf->AddFont('dejavu', '', 'DejaVuSans.ttf', true);
+    $pdf->AddFont('dejavub', '', 'DejaVuSans-Bold.ttf', true);
+//$pdf->AddFont('dejavu_bobl', '', 'DejaVuSans-BoldOblique.ttf', true);
+    $pdf->AddFont('dejavu_light', '', 'DejaVuSans-ExtraLight.ttf', true);
+    $pdf->AddFont('dejavu_i', '', 'DejaVuSans-Oblique.ttf', true);
+
+// Вказуємо автора та заголовок
+    $pdf->SetAuthor('КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
+    $pdf->SetTitle('Рахунок');
+
+//створюємо нову сторiнку та вказуємо режим її вiдображення
+    $pdf->AddPage('P');
+    $pdf->SetDisplayMode('real', 'default');
+
+    $pdf->SetXY(05, 05);
+    $pdf->SetDrawColor(50, 60, 100);
+
+    $pdf->SetFont('dejavub', '', 10);
+    $pdf->Text(15, 15, 'Постачальник');
+    $pdf->Line(45, 15, 100, 15);
+    $pdf->Text(15, 22, 'Адреса');
+    $pdf->Line(33, 22, 100, 22);
+    $pdf->Line(33, 29, 100, 29);
+    $pdf->Text(15, 36, 'IBAN');
+    $pdf->Line(27, 36, 100, 36);
+    $pdf->Text(15, 43, 'в');
+    $pdf->Line(20, 43, 100, 43);
+    $pdf->Text(15, 50, 'ЄДРПОУ');
+    $pdf->Line(35, 50, 100, 50);
+    $pdf->Text(15, 57, 'Телефон');
+    $pdf->Line(37, 57, 100, 57);
+
+    $pdf->SetFont('dejavu_light', '', 10);
+    $pdf->Text(48, 14, 'КП КОР "КИЇВСЬКЕ ОБЛАСНЕ БТІ"');
+    $pdf->Text(38, 21, '07400 Київська обл.,');
+    $pdf->Text(38, 28, 'м.Бровари, вул.Шевченка, 8а,');
+    $pdf->Text(30, 35, $rahunok);
+    $pdf->Text(20, 42, 'КИЇВСЬКЕ ГРУ ПАТ КБ"ПРИВАТБАНК" МФО 321842');
+    $pdf->Text(40, 49, '38250947');
+    $pdf->Text(40, 56, '(045) 944-13-21');
+
+    $pdf->SetFont('dejavub', '', 14);
+    $pdf->Text(125, 20, 'РАХУНОК-ФАКТУРА');
+
+    $pdf->SetFont('dejavu', '', 12);
+    $pdf->SetXY(134, 25);
+    $pdf->MultiCell(40, 10, $zakaz, 1, 'C', 0);
+
+    $pdf->SetFont('dejavu', '', 10);
+    $pdf->Text(125, 45, 'від');
+    $pdf->Line(135, 45, 175, 45);
+    $pdf->Text(177, 45, 'р.');
+    $pdf->Text(145, 44, $dtzak);
+
+    $pdf->SetFont('dejavub', '', 10);
+    $pdf->Text(15, 69, 'Платник');
+    $pdf->Line(15, 70, 100, 70);
+    $pdf->SetFont('dejavu_i', '', 10);
+    $pdf->Text(35, 69, $zamovnuk);
+    $pdf->SetFont('dejavu_light', '', 7);
+    $pdf->Text(110, 73, 'замовлення вважається укладеним після сплати рахунку фактури');
+
+    $pdf->SetFont('dejavub', '', 9);
+    $pdf->SetXY(15, 80);
+    $pdf->MultiCell(100, 10, 'Найменування', 1, 'C', 0);
+    $pdf->SetXY(115, 80);
+    $pdf->MultiCell(20, 10, 'Одиниця', 1, 'C', 0);
+    $pdf->SetXY(135, 80);
+    $pdf->MultiCell(20, 10, 'Кількість', 1, 'C', 0);
+    $pdf->SetXY(155, 80);
+    $pdf->MultiCell(25, 10, 'Ціна', 1, 'C', 0);
+    $pdf->SetXY(180, 80);
+    $pdf->MultiCell(25, 10, 'Сума', 1, 'C', 0);
+
+    $job = $vidrob . ' за адресою ' . $adresa;
+    $len_str = mb_strlen($job);
+    $count_job_str = ceil(($len_str/55));
+
+    $pdf->SetFont('dejavu', '', 9);
+    $pdf->SetXY(15, 90);
+    $pdf->MultiCell(100, 5, $job, 1, 'L', 0);
+    $pdf->SetXY(115, 90);
+    $pdf->MultiCell(20, 5 * $count_job_str, 'послуга', 1, 'C', 0);
+    $pdf->SetXY(135, 90);
+    $pdf->MultiCell(20, 5 * $count_job_str, '1', 1, 'C', 0);
+    $pdf->SetXY(155, 90);
+    $pdf->MultiCell(25, 5 * $count_job_str, number_format($sbpdv, 2), 1, 'R', 0);
+    $pdf->SetXY(180, 90);
+    $pdf->MultiCell(25, 5 * $count_job_str, number_format($sbpdv, 2), 1, 'R', 0);
+
+    $pdf->SetFont('dejavub', '', 9);
+    $pdf->SetXY(15, 90 + 5 * $count_job_str);
+    $pdf->MultiCell(165, 5, 'Аванс:', 1, 'L', 0);
+    $pdf->SetXY(180, 90 + 5 * $count_job_str);
+    $pdf->MultiCell(25, 5, number_format($sbpdv, 2), 1, 'R', 0);
+    $pdf->SetXY(15, 95 + 5 * $count_job_str);
+    $pdf->MultiCell(165, 5, 'Податок на додану вартість (ПДВ)', 1, 'L', 0);
+    $pdf->SetXY(180, 95 + 5 * $count_job_str);
+    $pdf->MultiCell(25, 5, $spdv, 1, 'R', 0);
+    $pdf->SetXY(15, 100 + 5 * $count_job_str);
+    $pdf->MultiCell(165, 5, 'Загальна сума з ПДВ', 1, 'L', 0);
+    $pdf->SetXY(180, 100 + 5 * $count_job_str);
+    $pdf->MultiCell(25, 5, $sum, 1, 'R', 0);
+
+    $pdf->SetFont('dejavub', '', 8);
+    $pdf->Text(15, 115 + 5 * $count_job_str, 'Загальна сума, що підлягає оплаті');
+    $pdf->Line(75, 116 + 5 * $count_job_str, 200, 116 + 5 * $count_job_str);
+    $pdf->SetFont('dejavu', '', 8);
+    $pdf->Text(80, 115 + 5 * $count_job_str, $smpr);
+
+    $pdf->SetFont('dejavub', '', 8);
+    $pdf->Text(15, 130 + 5 * $count_job_str, 'Директор _________________________');
+    $pdf->Text(120, 130 + 5 * $count_job_str, 'Гол. бухгалтер _________________________');
+}
+
+//конец для юр лиц ******************************************************************************************************
 if ($t_zak == 1) {
     require('../tfpdf/tfpdf.php');
 // створюємо FPDF обєкт
@@ -186,7 +307,7 @@ if ($t_zak == 1) {
 
     $job = $vidrob . ' за адресою ' . $adresa;
     $len_str = mb_strlen($job);
-    $count_job_str = ceil(($len_str/54));
+    $count_job_str = ceil(($len_str/55));
 
     $pdf->SetFont('dejavu', '', 9);
     $pdf->SetXY(15, 90);

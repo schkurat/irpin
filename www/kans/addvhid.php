@@ -1,5 +1,5 @@
 <?php
-require('top.php');
+require("top.php");
 include "../function.php";
 include "../scriptu.php";
 ?>
@@ -37,18 +37,18 @@ include "../scriptu.php";
             //     maxItemsToShow: 30,
             // });
 
-            $('#bt1').click(ShowElement);
-            $('#bt2').click(HideElement);
-            $('#add_ns').click(add_nsp);
-            $('#add_vl').click(add_vul);
-            $('input.bt').click(HideElement_cancel);
+            $("#bt1").click(ShowElement);
+            $("#bt2").click(HideElement);
+            $("#add_ns").click(add_nsp);
+            $("#add_vl").click(add_vul);
+            $("input.bt").click(HideElement_cancel);
 
 
-            $('#vulutsya').change(searchArhiv);
-            $('#bd, #kv').keyup(searchArhiv);
-            $('#e_arhiv').on('click', '.set-arh-item', selectArhiv);
-            $('#e_arhiv').on('click', '.del-file', delFile);
-            $('#kores, #nkores').change(checkEaSelect);
+            $("#vulutsya").change(searchArhiv);
+            $("#bd, #kv").keyup(searchArhiv);
+            $("#e_arhiv").on("click", ".set-arh-item", selectArhiv);
+            $("#e_arhiv").on("click", ".del-file", delFile);
+            $("#kores, #nkores").change(checkEaSelect);
 
         });
 
@@ -76,11 +76,11 @@ include "../scriptu.php";
             $.ajax({
                 type: "POST",
                 url: "nspadd.php",
-                data: 'rajon2=' + $("#rayon2").val() + '&nsp2=' + $("#nsp2").val() + '&tup2=' + $("#tup2").val(),
+                data: "rajon2=" + $("#rayon2").val() + "&nsp2=" + $("#nsp2").val() + "&tup2=" + $("#tup2").val(),
                 dataType: "html",
                 success: function (html) {
                     var rp = html;
-                    if (rp == '1') {
+                    if (rp == "1") {
                         $("#rayon :nth-child(1)").attr("selected", "selected");
                         $("#nas_punkt").empty();
                         $("#vulutsya").empty();
@@ -99,11 +99,11 @@ include "../scriptu.php";
             $.ajax({
                 type: "POST",
                 url: "vladd.php",
-                data: 'rajon3=' + $("#rayon3").val() + '&nsp3=' + $("#nas_punkt3").val() + '&vul3=' + $("#vul3").val() + '&tup3=' + $("#tup3").val(),
+                data: "rajon3=" + $("#rayon3").val() + "&nsp3=" + $("#nas_punkt3").val() + "&vul3=" + $("#vul3").val() + "&tup3=" + $("#tup3").val(),
                 dataType: "html",
                 success: function (html) {
                     var rp = html;
-                    if (rp == '1') {
+                    if (rp == "1") {
                         $("#rayon :nth-child(1)").attr("selected", "selected");
                         $("#nas_punkt").empty();
                         $("#vulutsya").empty();
@@ -140,14 +140,14 @@ include "../scriptu.php";
                     <select class="sel_ad" id="rayon2" name="rajon2">
                         <option value="0">Оберіть район</option>
                         <?php
-                        $id_rn = '';
-                        $rajn = '';
+                        $id_rn = "";
+                        $rajn = "";
                         $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
                         $atu = mysql_query($sql);
                         while ($aut = mysql_fetch_array($atu)) {
                             $dl_s = strlen($aut["RAYON"]) - 10;
                             $n_rjn = substr($aut["RAYON"], 0, $dl_s);
-                            echo '<option ' . $sl[$aut["ID_RAYONA"]] . ' value="' . $aut["ID_RAYONA"] . '">' . $n_rjn . '</option>';
+                            echo "<option " . $sl[$aut["ID_RAYONA"]] . " value=\"" . $aut["ID_RAYONA"] . "\">" . $n_rjn . "</option>";
                         }
                         mysql_free_result($atu);
                         ?>
@@ -164,7 +164,7 @@ include "../scriptu.php";
                         $sql = "SELECT tup_nsp.ID_TIP_NSP,tup_nsp.TIP_NSP FROM tup_nsp ORDER BY tup_nsp.ID_TIP_NSP";
                         $atu = mysql_query($sql);
                         while ($aut = mysql_fetch_array($atu)) {
-                            echo '<option value="' . $aut["ID_TIP_NSP"] . '">' . $aut["TIP_NSP"] . '</option>';
+                            echo "<option value=\"" . $aut["ID_TIP_NSP"] . "\">" . $aut["TIP_NSP"] . "</option>";
                         }
                         mysql_free_result($atu);
                         ?>
@@ -193,14 +193,14 @@ include "../scriptu.php";
                     <select class="sel_ad" id="rayon3" name="rajon3">
                         <option value="0">Оберіть район</option>
                         <?php
-                        $id_rn = '';
-                        $rajn = '';
+                        $id_rn = "";
+                        $rajn = "";
                         $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
                         $atu = mysql_query($sql);
                         while ($aut = mysql_fetch_array($atu)) {
                             $dl_s = strlen($aut["RAYON"]) - 10;
                             $n_rjn = substr($aut["RAYON"], 0, $dl_s);
-                            echo '<option ' . $sl[$aut["ID_RAYONA"]] . ' value="' . $aut["ID_RAYONA"] . '">' . $n_rjn . '</option>';
+                            echo "<option " . $sl[$aut["ID_RAYONA"]] . " value=\"" . $aut["ID_RAYONA"] . "\">" . $n_rjn . "</option>";
                         }
                         mysql_free_result($atu);
                         ?>
@@ -227,7 +227,7 @@ include "../scriptu.php";
                         $sql = "SELECT tup_vul.ID_TIP_VUL,tup_vul.TIP_VUL FROM tup_vul ORDER BY tup_vul.ID_TIP_VUL";
                         $atu = mysql_query($sql);
                         while ($aut = mysql_fetch_array($atu)) {
-                            echo '<option value="' . $aut["ID_TIP_VUL"] . '">' . $aut["TIP_VUL"] . '</option>';
+                            echo "<option value=\"" . $aut["ID_TIP_VUL"] . "\">" . $aut["TIP_VUL"] . "</option>";
                         }
                         mysql_free_result($atu);
                         ?>
@@ -256,14 +256,14 @@ include "../scriptu.php";
                         <select class="sel_ad" id="rayon" name="rajon">
                             <option value="">Оберіть район</option>
                             <?php
-                            $id_rn = '';
-                            $rajn = '';
+                            $id_rn = "";
+                            $rajn = "";
                             $sql = "SELECT rayonu.ID_RAYONA,rayonu.RAYON FROM rayonu ORDER BY rayonu.ID_RAYONA";
                             $atu = mysql_query($sql);
                             while ($aut = mysql_fetch_array($atu)) {
                                 $dl_s = strlen($aut["RAYON"]) - 10;
                                 $n_rjn = substr($aut["RAYON"], 0, $dl_s);
-                                echo '<option ' . $sl[$aut["ID_RAYONA"]] . ' value="' . $aut["ID_RAYONA"] . '">' . $n_rjn . '</option>';
+                                echo "<option " . $sl[$aut["ID_RAYONA"]] . " value=\"" . $aut["ID_RAYONA"] . "\">" . $n_rjn . "</option>";
                             }
                             mysql_free_result($atu);
                             ?>
@@ -383,11 +383,11 @@ include "../scriptu.php";
                 </td>
             </tr>
             <?php
-            $robitnuku = '<option value=""></option>';
-            $sql = "SELECT ROBS FROM robitnuku WHERE DL='1' AND BRUGADA<8 OR ID_ROB=15 ORDER BY ROBS";
+            $robitnuku = "<option value=\"\"></option>";
+            $sql = "SELECT ROBS FROM robitnuku WHERE DL=\"1\" AND BRUGADA<8 OR ID_ROB=15 ORDER BY ROBS";
             $atu = mysql_query($sql);
             while ($aut = mysql_fetch_array($atu)) {
-                $robitnuku .= '<option value="' . $aut["ROBS"] . '">' . $aut["ROBS"] . '</option>';
+                $robitnuku .= "<option value=\"" . $aut["ROBS"] . "\">" . $aut["ROBS"] . "</option>";
             }
             mysql_free_result($atu);
             ?>
@@ -454,4 +454,4 @@ include "../scriptu.php";
         </tbody>
     </table>
 <?php
-require('bottom.php');
+require("bottom.php");

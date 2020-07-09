@@ -1,5 +1,5 @@
 <?php
-require('top.php');
+require("top.php");
 include "function.php";
 ?>
     <script type="text/javascript">
@@ -37,10 +37,10 @@ include "function.php";
 
 
         $sql = "SELECT ID,EA,DATAKL,DATAV,NI,NV,NKL,NAIM,DATAI,ZMIST,TIP,BOSS,DATAVK FROM kans
-		WHERE DATAV>='$d1' AND DATAV<='$d2' AND PR='1' ORDER BY NV DESC";
+		WHERE DATAV>=\"$d1\" AND DATAV<=\"$d2\" AND PR=\"1\" ORDER BY NV DESC";
         $atu = mysql_query($sql);
         while ($aut = mysql_fetch_array($atu)) {
-            $url = ($aut["EA"] != 0)? $aut["EA"] . '/correspondence': 'correspondence/' . $aut["ID"];
+            $url = ($aut["EA"] != 0)? $aut["EA"] . "/correspondence": "correspondence/" . $aut["ID"];
             ?>
             <tr>
                 <td align="center"><a class="text-link" href="storage.php?url=<?= $url ?>&parent_link=&adr=">ЕА</a></td>
@@ -63,4 +63,4 @@ include "function.php";
         ?>
     </table>
 <?php
-require('bottom.php');
+require("bottom.php");

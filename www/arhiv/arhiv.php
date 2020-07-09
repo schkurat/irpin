@@ -6,6 +6,7 @@ $pas = $_SESSION['PAS'];
 $pr_prie = $_SESSION['PR'];
 $im_prie = $_SESSION['IM'];
 $pb_prie = $_SESSION['PB'];
+$drn=$_SESSION['DRN'];
 $ddl = $_SESSION['DDL'];
 header('Content-Type: text/html; charset=utf-8');
 $dt_now = date("d.m.Y");

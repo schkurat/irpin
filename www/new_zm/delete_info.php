@@ -25,7 +25,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $sm = $aut["SM"];
 }
 mysql_free_result($atu);
-var_dump($sm);
+//var_dump($sm);
 ?>
 <table class="zmview">
     <tr>
@@ -49,7 +49,7 @@ var_dump($sm);
         </tr>
         <tr>
             <td align="center">
-                <a href="delete_zm.php?tip=' . $tp . '&kl=' . $kl . '"><input name="cancel" type="button"
+                <a href="delete_zm.php?tip=<?= $tp ?>&kl=<?= $kl ?>"><input name="cancel" type="button"
                                                                               value="Ок"></a>
                 <a href="index.php?filter=zm_view"><input name="cancel" type="button" value="Відміна"></a>
             </td>

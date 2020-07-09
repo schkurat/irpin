@@ -1,6 +1,7 @@
 <?php
 include_once "../function.php";
 $vst_tbl = "";
+$order = "ORDER BY SZ, NZ DESC";
 if (isset($_GET['flag'])) {
     $flg = $_GET['flag'];
     $vi = '';
@@ -15,6 +16,7 @@ if (isset($_GET['flag'])) {
         (zamovlennya.DODOP!='0000-00-00' OR zamovlennya.TUP_ZAM=2 OR
         (zamovlennya.VUD_ROB=9 AND zamovlennya.DOKVUT!='0000-00-00'))   */
         $vst_tbl = ", taks ";
+        $order = "ORDER BY taks.DATE_T ASC";
     }
     if ($flg == "pid") {
         $kr_fl = "AND zamovlennya.PS='1' AND MONTH(zamovlennya.DATA_PS) = MONTH(CURRENT_DATE())";
@@ -125,8 +127,7 @@ $sql = "SELECT zamovlennya.SZ,zamovlennya.EA,zamovlennya.NZ,zamovlennya.TUP_ZAM,
 					AND nas_punktu.ID_NSP=zamovlennya.NS
 					AND vulutsi.ID_VUL=zamovlennya.VL
 					AND tup_nsp.ID_TIP_NSP=nas_punktu.ID_TIP_NSP
-					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL
-					ORDER BY SZ, NZ DESC";
+					AND tup_vul.ID_TIP_VUL=vulutsi.ID_TIP_VUL " . $order;
 $i = 1;
 //echo $sql;
 $atu = mysql_query($sql);

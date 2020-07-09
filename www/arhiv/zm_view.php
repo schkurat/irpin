@@ -16,7 +16,7 @@ include_once "../function.php";
         padding: 5px 2px;
     }
 
-    .spr-icon{
+    .spr-icon {
         display: block;
     }
 
@@ -44,7 +44,7 @@ include_once "../function.php";
         color: #ff0000;
     }
 
-    .fa-inbox-out, .fa-paperclip, .fa-inbox-in, .fa-file-archive{
+    .fa-inbox-out, .fa-paperclip, .fa-inbox-in, .fa-file-archive {
         float: left;
     }
 </style>
@@ -151,7 +151,7 @@ while ($aut = mysql_fetch_array($atu)) {
             $vst_bl2 .= '<a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=4" class="text-link" title="Додаток 4 до договору"><i class="fal fa-paperclip">4</i></a>
         <a href="print_dod.php?kl=' . $aut["KEY"] . '&dod=5" class="text-link" title="Додаток 5 до договору"><i class="fal fa-paperclip">5</i></a>';
         }
-    }elseif ($code_job == 6){
+    } elseif ($code_job == 6) {
         $vst_bl2 .= '<a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=1" class="spr-icon" title="Довідка звичайна"><i class="fal fa-file-user"></i></a>
         <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=2" class="spr-icon" title="Довідка з технічними показниками"><i class="fal fa-file-spreadsheet"></i></a>
         <a href="print_spr.php?kl=' . $aut["KEY"] . '&sp=3" class="spr-icon" title="Довідка про відсутність"><i class="fal fa-file-excel"></i></a>';
@@ -187,8 +187,8 @@ while ($aut = mysql_fetch_array($atu)) {
         $address = $aut1["TIP_NSP"] . $aut1["NSP"] . " " . $aut1["TIP_VUL"] . $aut1["VUL"] . " " . $obj_ner_dop;
         $adr_storage = urlencode(serialize($address));
 
-        $url = ($aut1["id_arh"] != 0)? $aut1["id_arh"] . '/keeper': '';
-        $vst_ea = (!empty($url))? '<a href="arhiv.php?filter=storage&url=' . $url . '&parent_link=&adr=' . $adr_storage . '>&parent_link=&adr=" title="Електронний архів"><i class="fal fa-file-archive"></i></a>' : '';
+        $url = ($aut1["id_arh"] != 0) ? $aut1["id_arh"] . '/keeper' : '';
+        $vst_ea = (!empty($url)) ? '<a href="arhiv.php?filter=storage&url=' . $url . '&parent_link=&adr=' . $adr_storage . '>&parent_link=&adr=" title="Електронний архів"><i class="fal fa-file-archive"></i></a>' : '';
 
         $n_spr = '';
         $sql2 = "SELECT N_SPR FROM arhiv WHERE RN='" . $rayon . "' AND NS = '" . $ns . "' AND VL = '" . $vl . "' 
@@ -249,14 +249,17 @@ while ($aut = mysql_fetch_array($atu)) {
     mysql_free_result($atu1);
     $address = $dop_adr;
 
-    $order = get_num_order($rayon, $aut["SZ"], $aut["NZ"]);
 
-    $customer = ($job_type != 2) ? $aut["SUBJ"] : $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"];
-    $srt_worker = ($job_type != 2) ? $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] : '';
-    $phone = (!empty($aut["TEL"])) ? 'Тел. ' . $aut["TEL"] : '';
-    $email = (!empty($aut["EMAIL"])) ? $aut["EMAIL"] : '';
 
-    $p .= '<tr bgcolor="#FFFAF0">
+        $order = get_num_order($rayon, $aut["SZ"], $aut["NZ"]);
+
+        $customer = ($job_type != 2) ? $aut["SUBJ"] : $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"];
+        $srt_worker = ($job_type != 2) ? $aut["PR"] . " " . $aut["IM"] . " " . $aut["PB"] : '';
+        $phone = (!empty($aut["TEL"])) ? 'Тел. ' . $aut["TEL"] : '';
+        $email = (!empty($aut["EMAIL"])) ? $aut["EMAIL"] : '';
+    if (!empty($_GET['rayon'])) {
+        if($_GET['rayon'] == $rayon){
+        $p .= '<tr bgcolor="#FFFAF0">
 ' . $vst_bl . '	
 <td align="center">' . $vst_print . '</td>	
 <td align="center">' . $kvut . '</td>	
@@ -264,13 +267,29 @@ while ($aut = mysql_fetch_array($atu)) {
       <td align="center">' . $order . '</td>
       <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=' . $edit_info_fl . '&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
       <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
-	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">' . $aut["PRIM"] . '</a></td>
+	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">&nbsp' . $aut["PRIM"] . '</a></td>
       <td style="font-size: 12px;">' . $address . '</td>
 	  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '" title="Додати адресу"><i class="fal fa-plus"></i></td>
 	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . $aut["SUM"] . '</a></td>
 	  <td align="center">' . $d_pr . '</td>
       </tr>';
-
+        }
+    }else{
+        $p .= '<tr bgcolor="#FFFAF0">
+' . $vst_bl . '	
+<td align="center">' . $vst_print . '</td>	
+<td align="center">' . $kvut . '</td>	
+<td align="center">' . $vst_bl2 . '</td>
+      <td align="center">' . $order . '</td>
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=' . $edit_info_fl . '&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
+      <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
+	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">&nbsp' . $aut["PRIM"] . '</a></td>
+      <td style="font-size: 12px;">' . $address . '</td>
+	  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '" title="Додати адресу"><i class="fal fa-plus"></i></td>
+	  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . $aut["SUM"] . '</a></td>
+	  <td align="center">' . $d_pr . '</td>
+      </tr>';
+    }
 }
 mysql_free_result($atu);
 $p .= '</table>';

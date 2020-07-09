@@ -79,6 +79,8 @@ $pb_p = $_SESSION['PB'];
                         <li><a href="admin.php?filter=earh_view">Перегляд</a></li>
                     </ul>
                 </li>
+				<li><a href="admin.php?filter=adres">Адреси</a>
+                </li>
                 <!--<li><a href="admin.php?filter=graf">Графіки</a></li>-->
                 <li><a href="../menu.php">Вихід</a></li>
             </ul>

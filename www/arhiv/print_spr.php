@@ -45,7 +45,11 @@ while ($aut = mysql_fetch_array($atu)) {
     $zamovnuk = $aut["PR"] . ' ' . $aut["IM"] . ' ' . $aut["PB"];
     $vlasnuk = $zamovnuk;
     $prumitka = $aut["PRIM"];
-    $address = $aut["RAYON"] . ' ' . $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]);
+    if($aut["RAYON"] == 'Ірпінський район'){
+        $address = 'Київська обл.' . $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]);
+    }else{
+        $address = 'Київська обл.' . $aut["RAYON"] . ' ' . $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]);
+    }
     $zmad = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ', ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ', ' . objekt_ner(0, $aut["bud"], $aut["kvar"]);
 //    $vart = $aut["SUM"];
 //    $tel = $aut["TEL"];

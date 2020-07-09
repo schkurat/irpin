@@ -15,7 +15,7 @@ $response = '';
 if ($_POST['action'] == 'select') {
     $ie_ea = $_POST['id_ea'];
     $adr = $_POST['adr'];
-    $dir = 'ea/' . $ie_ea . '/correspondence';
+    $dir = 'ea/' . $ie_ea . '/document';
     $response = open_dir($dir, $adr);
 } elseif ($_POST['action'] == 'search') {
     $rn = $_POST['rn'];

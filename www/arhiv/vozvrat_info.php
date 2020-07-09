@@ -48,7 +48,7 @@ mysql_free_result($atu);
 mysql_free_result($atu);
 ?>
 <body>
-    <form action="vozvrat_EXPIRED.php" name="myform" method="get">
+    <form action="vozvrat.php" name="myform" method="get">
 <table align="center" class="zmview">
 <tr><th colspan="4"><b>Редагування запису в архіві</b></th></tr>
 <tr>
