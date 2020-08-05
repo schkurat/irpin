@@ -164,7 +164,8 @@ while ($aut1 = mysql_fetch_array($atu1)) {
     }else{
         $taks_without_keeper = $sm_taks - 700;
     }
-    $sm_zp = round((($taks_without_keeper) - ($taks_without_keeper / 6)) * 0.25,2);
+//    $sm_zp = round((($taks_without_keeper) - ($taks_without_keeper / 6)) * 0.25,2);
+    $sm_zp = round((($sm_taks - 500) - ($sm_taks - $taks_not_pdv)) * 0.35,2);
     $sm_zp = ($sm_zp < 0)? 0: $sm_zp;
     $s_sm_zp += $sm_zp;
 

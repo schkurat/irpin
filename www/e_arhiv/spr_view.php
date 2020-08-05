@@ -56,6 +56,7 @@ if ($fl != 0) {
     <h2 style="text-align: center"><?= $adr ?></h2>
     <?php
     $main_dir = 'ea/' . $id_storage;
+    if(!is_dir($main_dir)) mkdir($main_dir);
     if (is_dir($main_dir)) {
         check_or_create_folder($main_dir);
         if ($mdh = opendir($main_dir)) {

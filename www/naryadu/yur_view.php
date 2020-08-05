@@ -18,7 +18,7 @@ $p='<table class="zmview">
 <th>Пл.ПДВ</th>
 </tr>';
 
-$sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' ORDER BY NAME";
+$sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.BTI_OR_ZBER='0'  ORDER BY NAME";
 $atu=mysql_query($sql);
   while($aut=mysql_fetch_array($atu))
  {		

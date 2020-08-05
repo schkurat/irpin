@@ -359,6 +359,50 @@ function open_dir($dir, $adr)
     return $files;
 }
 
+function check_open_dir($dir, $adr)
+{
+	$i=0;
+    if ($dh = opendir($dir)) {
+        while (false !== ($file = readdir($dh))) {
+            if ($file != "." && $file != "..") {
+                $i++;
+            }
+        }
+        closedir($dh);
+    }
+    return $i;
+}
+
+function check_kasa($sz,$nz,$sum)
+{
+    $sql_k = "SELECT * FROM `arhiv_kasa`  WHERE `SZ`=$sz AND `NZ`=$nz";
+    $atu_k = mysql_query($sql_k);
+	if(mysql_affected_rows()==1)
+	{
+		while ($aut_k = mysql_fetch_array($atu_k)) 
+		{
+			$s=floatval($aut_k["SM"]);
+		}
+	}
+	else
+	{
+		$s=0;
+	}
+	
+	
+	if($s<floatval($sum)){
+		return $sum;
+	}
+	else
+	{
+		return '<span style="color:rgb(10,205,5);">'.$sum.'</span>';
+	}
+
+    mysql_free_result($atu_k);
+}
+
+
+
 function get_num_order($rn,$dt_order,$nz){
    return str_pad($rn, 2, 0, STR_PAD_LEFT) . $dt_order . str_pad($nz,2,'0',STR_PAD_LEFT);
 }

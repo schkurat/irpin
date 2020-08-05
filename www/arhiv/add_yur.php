@@ -44,8 +44,8 @@ $sql = "SELECT * FROM yur_kl WHERE yur_kl.EDRPOU='$edrpou' AND yur_kl.DL='1'";
 $atu = mysql_query($sql);
 $search_kl = mysql_num_rows($atu);
 if (empty($search_kl)) {
-    $ath1 = mysql_query("INSERT INTO yur_kl(N_DOG,DT_DOG,NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,BOSS,BOSS_F,PIDSTAVA,RR,BANK,MFO,EMAIL,ED_POD,PRILAD,SERT_S,SERT_N,SO_IPN,SO_PR,SO_IM,SO_PB) 
-	VALUES('$n_dog','$dt_dog','$name','$edrpou','$svid','$ipn','$adres','$telef','$namef','$boss','$boss_f','$pidstava','$rr','$bank','$mfo','$email','$pdv','$prilad','$ser_sert','$numb_sert','$so_ipn','$so_pr','$so_im','$so_pb');");
+    $ath1 = mysql_query("INSERT INTO yur_kl(N_DOG,DT_DOG,NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,BOSS,BOSS_F,PIDSTAVA,RR,BANK,MFO,EMAIL,ED_POD,PRILAD,SERT_S,SERT_N,SO_IPN,SO_PR,SO_IM,SO_PB,BTI_OR_ZBER) 
+	VALUES('$n_dog','$dt_dog','$name','$edrpou','$svid','$ipn','$adres','$telef','$namef','$boss','$boss_f','$pidstava','$rr','$bank','$mfo','$email','$pdv','$prilad','$ser_sert','$numb_sert','$so_ipn','$so_pr','$so_im','$so_pb','1');");
     if (!$ath1) {
         echo "Клієнт не внесений до БД";
     }

@@ -33,6 +33,7 @@ $i = 1;
 $pilga = 0;
 $atu = mysql_query($sql);
 while ($aut = mysql_fetch_array($atu)) {
+	//var_dump($aut);
     if ($aut["bud"] != "") $bud = "буд." . $aut["bud"]; else $bud = "";
     if ($aut["kvar"] != "") $kvar = "кв." . $aut["kvar"]; else $kvar = "";
     if($i == 1){
@@ -42,7 +43,7 @@ while ($aut = mysql_fetch_array($atu)) {
         $vidrob = $aut["name"];
         $kod_rob = $aut["id"];
         $zakaz = get_num_order($kod_rn, $aut["SZ"], $aut["NZ"]);
-        $datagot = german_date($aut["DATA_GOT"]);
+        //$datagot = german_date($aut["DATA_GOT"]);
 
         $address = $aut["TIP_NSP"] . ' ' . $aut["NSP"] . ' ' . $aut["TIP_VUL"] . ' ' . $aut["VUL"] . ' ' . $bud . ' ' . $kvar;
         $sum = number_format($aut["SUM"], 2, '.', '');

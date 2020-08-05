@@ -17,9 +17,20 @@ $rayon = (isset($_GET['rayon']))? $_GET['rayon'] : '0';
 $flag_rn = "";
 if($rayon != 0){
     $flag_rn = " AND arhiv.RN = " . $rayon;
+	$sql1 = "SELECT COUNT( id ) FROM  `arhiv` WHERE `RN` = $rayon AND  `N_SPR` <>  '' AND DL='1'" ;
+} else {
+	$sql1 = "SELECT COUNT( id ) FROM  `arhiv` WHERE `N_SPR` <>  '' AND DL='1'" ;
 }
+$atu1 = $db->db_link->query($sql1);
+ while ($aut1 = $atu1->fetch_array(MYSQLI_ASSOC)) {
+	$count = $aut1["COUNT( id )"];
+ }
+
 
 $frn = get_filter_for_rn($drn,'arhiv','RN');
+//echo $sql1;
+
+
 
 $sql = "SELECT arhiv.ID,arhiv.N_SPR,arhiv.RN,rayonu.RAYON,nas_punktu.NSP,tup_nsp.TIP_NSP,vulutsi.VUL,tup_vul.TIP_VUL,arhiv.BD,arhiv.KV 
 	FROM arhiv,rayonu,nas_punktu,vulutsi,tup_nsp,tup_vul 
@@ -46,6 +57,7 @@ if ($spr_number > 0){
     }
 </style>
 <h3>Кількість справ: <?= $spr_number ?></h3>
+<h3>Кількість присвоєних інвентарних номерів: <?= $count ?></h3>
 <table align="center" class="zmview">
     <tr>
         <?php

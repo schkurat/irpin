@@ -27,9 +27,9 @@ if(!$db) echo "Не вiдбулося зєднання з базою даних"
    exit(); 
    }
 	
-$ath1=mysql_query("INSERT INTO yur_kl(NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,RR,BANK,MFO,EMAIL,ED_POD) 
+$ath1=mysql_query("INSERT INTO yur_kl(NAME,EDRPOU,SVID,IPN,ADRES,TELEF,NAME_F,RR,BANK,MFO,EMAIL,ED_POD,BTI_OR_ZBER) 
 	VALUES('$name','$edrpou','$svid','$ipn','$adres','$telef','$namef','$rr','$bank','$mfo','$email',
-	'$pdv');");
+	'$pdv','0');");
 if(!$ath1){echo "Клієнт не внесений до БД";} 
 
 	
