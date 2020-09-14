@@ -2,9 +2,9 @@
 session_start();
 $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
-//$kodp=$_SESSION['KODP'];
 
 include("../function.php");
+$pruymalnuk = $_SESSION['PR'] . ' ' . p_buk($_SESSION['IM']) . '.' . p_buk($_SESSION['PB']). '.';
 
 $v_zm = (int)$_POST['vud_zam'];
 
@@ -82,9 +82,9 @@ if ($error == 0) {
     }
 
     if ($id_vr != "" and $pr != "" and $rn != "" and $ns != "" and $vl != "" and $bd != "" and $sm != "") {
-        $ath1 = mysql_query("INSERT INTO arhiv_zakaz (SZ,NZ,VUD_ROB,EDRPOU,IPN,SVID,SUBJ,ADR_SUBJ,PRILAD,PR,IM,PB,PRIM,
+        $ath1 = mysql_query("INSERT INTO arhiv_zakaz (SZ,NZ,VUD_ROB,PR_OS,EDRPOU,IPN,SVID,SUBJ,ADR_SUBJ,PRILAD,PR,IM,PB,PRIM,
 	SERT,TEL,EMAIL,DOR,SUM,D_PR)
-	VALUES('$sz','$nz','$id_vr','$edrpou','$ipn','$svid','$subj','$adrs_subj','$prilad','$pr','$im','$pb','$prim',
+	VALUES('$sz','$nz','$id_vr','$pruymalnuk','$edrpou','$ipn','$svid','$subj','$adrs_subj','$prilad','$pr','$im','$pb','$prim',
 	'$sert','$tl','$email','$dover','$sm','$d_pr');");
         $l_id = mysql_insert_id();
         if (!$ath1) {

@@ -152,6 +152,12 @@ while ($aut = mysql_fetch_array($atu)) {
     $zm_id = $aut["KEY"];
     $job_type = $aut["type"];
     $code_job = $aut["id"];
+    if($aut["VUD_ROB"] == 6 and !empty($aut["PR_OS"])){
+        $pruymalnuk = '<br><span style="color: #009aff;">Виконавець: ' . $aut["PR_OS"] . '</span>';
+    } else {
+        $pruymalnuk = '';
+    }
+
 
     $obj_ner = objekt_ner(0, $aut["BUD"], $aut["KVAR"]);
 
@@ -376,7 +382,7 @@ while ($aut = mysql_fetch_array($atu)) {
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=' . $edit_info_fl . '&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">&nbsp' . $aut["PRIM"] . '</a></td>
-		  <td style="font-size: 12px;">' . $address . '</td>
+		  <td style="font-size: 12px;">' . $address . $pruymalnuk . '</td>
 		  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '" title="Додати адресу"><i class="fal fa-plus"></i></a></td>
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . /*$aut["SUM"]*/
                         check_kasa($aut["SZ"], $aut["NZ"], $aut["SUM"]) . '</a></td>
@@ -393,7 +399,7 @@ while ($aut = mysql_fetch_array($atu)) {
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=' . $edit_info_fl . '&kl=' . $aut["KEY"] . '">' . $customer . '</a><br>' . $phone . '<br>' . $email . '<br><a href="arhiv.php?filter=zmina_info&fl=prizv&kl=' . $aut["KEY"] . '">' . $srt_worker . '</a></td>    
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=tup_spr&kl=' . $aut["KEY"] . '">' . $aut["name"] . '</a></td>
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=prim&kl=' . $aut["KEY"] . '">&nbsp' . $aut["PRIM"] . '</a></td>
-		  <td style="font-size: 12px;">' . $address . '</td>
+		  <td style="font-size: 12px;">' . $address . $pruymalnuk . '</td>
 		  <td align="center"><a href="arhiv.php?filter=dop_adr_info&kl=' . $aut["KEY"] . '" title="Додати адресу"><i class="fal fa-plus"></i></a></td>
 		  <td align="center" id="zal"><a href="arhiv.php?filter=zmina_info&fl=vartist&kl=' . $aut["KEY"] . '">' . /*$aut["SUM"]*/
                     check_kasa($aut["SZ"], $aut["NZ"], $aut["SUM"]) . '</a></td>
