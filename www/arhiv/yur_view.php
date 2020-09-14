@@ -12,7 +12,7 @@ include_once "../function.php";
         <th>Банк</th>
     </tr>
     <?php
-    $sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.BTI_OR_ZBER='1' ORDER BY NAME";
+    $sql = "SELECT * FROM yur_kl WHERE yur_kl.DL='1' AND yur_kl.BTI_OR_ZBER='1' ORDER BY DT_DOG DESC, N_DOG";
     $atu = mysql_query($sql);
     while ($aut = mysql_fetch_array($atu)) {
         if ($aut["ED_POD"] == '0') $pdv = 'так';

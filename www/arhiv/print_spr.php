@@ -73,6 +73,7 @@ while ($aut = mysql_fetch_array($atu)) {
     $pljit = $aut["PL_JIT"];
     $pldop = $aut["PL_DOP"];
     $sklchast = $aut["SKL_CHAST"];
+    $sp_prumitka = $aut["PRIM"];
 }
 mysql_free_result($atu);
 
@@ -116,7 +117,7 @@ $replacements[3] = $dtdog;
 $replacements[4] = $address;
 $replacements[5] = $vlasnuk;
 $replacements[6] = $sprava;
-$replacements[7] = $prumitka;
+$replacements[7] = $sp_prumitka;
 $replacements[8] = $vukonav;
 $replacements[9] = $dtinv;
 $replacements[10] = $vkinv;

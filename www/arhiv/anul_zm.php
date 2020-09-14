@@ -1,11 +1,13 @@
 <?php
 if(isset($_GET)){
 	$key=$_GET["kl"];
+	
 }
+$url=$_SERVER["HTTP_REFERER"];
 ?>
 
 
-<form metod="post" action="anul_zm_update.php" name="form">
+<form metod="post" action="http://ibti.pp.ua/arhiv/anul_zm_update.php" name="form">
 	<table align="" class="zmview">
 			<tbody>
 				<tr>
@@ -19,6 +21,7 @@ if(isset($_GET)){
 						<input type="hidden" name="pr" value="<?php echo $pr_prie; ?>">
 						<input type="hidden" name="im" value="<?php echo $im_prie; ?>">
 						<input type="hidden" name="pb" value="<?php echo $pb_prie; ?>">
+						<input type="hidden" name="url" value="<?php echo $url; ?>">
 					</td>
 				</tr>
 				<tr>

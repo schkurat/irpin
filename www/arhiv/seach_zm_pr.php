@@ -21,6 +21,16 @@ $frn = get_filter_for_rn($drn,'rayonu','ID_RAYONA');
         </tr>
         <tr>
             <td>
+                Тип замовлення
+            </td>
+            <td>
+                <input id="r1" type="radio" name="vud_zam" value="1" /><label for="r1">Фізичне</label>
+                <input id="r2" type="radio" name="vud_zam" value="2" /><label for="r2">Юридичне</label>
+                <input id="r3" type="radio" name="vud_zam" value="3" checked/><label for="r3">Всі</label>
+            </td>
+        </tr>
+        <tr>
+            <td>
                 Тип справи
             </td>
             <td>

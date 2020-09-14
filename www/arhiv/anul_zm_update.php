@@ -4,9 +4,11 @@ $lg = $_SESSION['LG'];
 $pas = $_SESSION['PAS'];
 
 
+
 if(isset($_GET)){
 	
 	$key=$_GET["key"];
+	$url=$_GET["url"];
 	$com=$_GET["pr"].' '.$_GET["im"].' '.$_GET["pb"].' '.date("d.m.Y").'
 '.$_GET["comment"];
 	$sql = "UPDATE `arhiv_zakaz`
@@ -26,6 +28,8 @@ if (!@mysql_select_db(kpbti, $db)) {
 $ath1 = mysql_query($sql);
 if (!$ath1) {
     echo "Замовлення не внесене до БД";
+}else{
+	echo "Замовлення успішно анульовано.";
 }
 //Zakrutie bazu       
 if (mysql_close($db)) {
@@ -34,7 +38,9 @@ if (mysql_close($db)) {
     echo("Не можливо виконати закриття бази");
 }
 
-header("location: arhiv.php?filter=zm_view");
+header("location: ".$url);
+//	header("location: arhiv.php?filter=zm_view");
+
 
 }
 

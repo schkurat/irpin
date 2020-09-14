@@ -31,6 +31,7 @@ header('Content-Type: text/html; charset=utf-8');
             });
         });
     </script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 </head>
 <body>
 <table width="100%" border="0" cellspacing=0>
@@ -52,6 +53,7 @@ header('Content-Type: text/html; charset=utf-8');
                         <li><a href="earhiv.php?filter=new_zap_info">По замовленню</a></li>
                         <li><a href="earhiv.php?filter=view_info">Перегляд</a></li>
                         <li><a href="earhiv.php?filter=seach_info">Пошук</a></li>
+                        <li><a href="earhiv.php?filter=react">Розділ в розробці</a></li>
                     </ul>
                 </li>
                 <li><a href="../menu.php">Вихід</a></li>
@@ -83,5 +85,9 @@ $db->__destruct();
 //    echo("Не можливо виконати закриття бази");
 //}
 ?>
+<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+<script src="../js/archive.js"></script>
 </body>
 </html>
